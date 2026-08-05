@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ScaleIQ — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,700;1,700&family=DM+Sans:wght@400;500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --ink: #1A1815;          /* near-black text, not pure black — matches the interface's dark grey text */
+    --ink-soft: #55504A;
+    --ink-muted: #8C8680;
+    --paper: #FFFFFF;
+    --off: #F7F5F1;
+    --line: rgba(26,24,21,0.09);
+    --gold: #BD8737;
+    --gold-soft: #F2E4CC;
+  }
+  body { font-family:'DM Sans', sans-serif; color:var(--ink); background:var(--paper); line-height:1.6; }
+  a { text-decoration:none; color:inherit; }
+  .wrap { max-width:1160px; margin:0 auto; padding:0 2.5rem; }
+
+  /* NAV — logo + hamburger only, nothing else visible */
+  nav {
+    position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px); border-bottom:1px solid var(--line);
+  }
+  .nav-inner { display:flex; align-items:center; gap:1rem; padding:1.1rem 0; }
+  .logo { font-family:'Orbitron', sans-serif; font-size:1rem; letter-spacing:0.1em; color:var(--gold); }
+  .burger {
+    width:34px; height:34px; border:1px solid var(--line); border-radius:6px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+    background:none; cursor:pointer; flex-shrink:0;
+  }
+  .burger span { width:16px; height:1.5px; background:var(--ink); display:block; }
+
+  /* SLIDE-IN MENU PANEL — sidebar-styled, opens from the LEFT, appears only on tap */
+  .menu-overlay {
+    position:fixed; inset:0; background:rgba(26,24,21,0.25);
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease; z-index:90;
+  }
+  .menu-overlay.open { opacity:1; pointer-events:auto; }
+  .menu-panel {
+    position:fixed; top:0; left:-340px; width:320px; height:100%;
+    background:var(--paper); z-index:100; padding:1.5rem 1.5rem 2rem;
+    transition:left 0.3s ease; overflow-y:auto;
+    box-shadow:8px 0 30px rgba(26,24,21,0.08);
+    border-right:1px solid var(--line);
+  }
+  .menu-panel.open { left:0; }
+  .menu-top { display:flex; align-items:center; gap:0.75rem; margin-bottom:2.25rem; }
+  .menu-close {
+    width:32px; height:32px; border:1px solid var(--line); border-radius:6px; background:none; cursor:pointer;
+    font-size:1rem; color:var(--ink-muted); flex-shrink:0;
+  }
+  .menu-top .logo { font-size:0.9rem; }
+  .menu-group { margin-bottom:1.75rem; }
+  .menu-group h4 {
+    font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:0.7rem;
+  }
+  .menu-group a {
+    display:block; font-size:0.95rem; color:var(--ink); padding:0.4rem 0;
+    transition:color 0.15s;
+  }
+  .menu-group a:hover { color:var(--gold); }
+
+  /* HERO — no color block, typography carries it */
+  .hero { padding:7rem 0 6rem; }
+  .eyebrow {
+    font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:1.5rem; font-weight:500;
+    display:flex; align-items:center; gap:0.6rem;
+  }
+  .eyebrow::before { content:''; width:20px; height:1px; background:var(--gold); }
+  h1.hero-h {
+    font-family:'PT Serif', serif; font-weight:700;
+    font-size:clamp(2.4rem, 5vw, 4rem); line-height:1.15; letter-spacing:-0.01em;
+    max-width:780px; margin-bottom:1.75rem;
+  }
+  h1.hero-h em, h2.section-h em {
+    font-style:italic; font-weight:700; color:var(--gold);
+  }
+  .hero-sub { font-size:1.05rem; color:var(--ink-soft); max-width:520px; margin-bottom:2.25rem; }
+  .btn-gold {
+    display:inline-block; background:var(--gold); color:white; font-size:0.9rem; font-weight:500;
+    padding:0.85rem 1.75rem; border-radius:3px; margin-right:1.25rem;
+  }
+  .link-arrow { font-size:0.9rem; color:var(--ink-soft); border-bottom:1px solid var(--line); padding-bottom:2px; }
+
+  /* ASK SCALEIQ — a distinct product-surface band, pill input, no visible example chips */
+  .ask-band { background:var(--off); padding:4rem 0 4.5rem; margin-top:1rem; }
+  .ask-inner { max-width:680px; margin:0 auto; text-align:center; }
+  .ask-eyebrow {
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold);
+    font-weight:500; margin-bottom:1rem;
+  }
+  .ask-box {
+    border:1px solid var(--line); border-radius:100px;
+    background:var(--paper); box-shadow:0 8px 28px rgba(26,24,21,0.06);
+    padding:0.4rem 0.4rem 0.4rem 1.5rem; display:flex; align-items:center; gap:0.75rem;
+  }
+  .ask-icon { color:var(--gold); font-size:1rem; flex-shrink:0; }
+  .ask-box input {
+    flex:1; border:none; outline:none; font-family:'DM Sans', sans-serif;
+    font-size:1rem; color:var(--ink); background:transparent; padding:0.9rem 0; text-align:left;
+  }
+  .ask-box input::placeholder { color:var(--ink-muted); }
+  .ask-send {
+    width:42px; height:42px; border-radius:50%; border:none; background:var(--gold);
+    color:white; font-size:1.05rem; cursor:pointer; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; transition:background 0.15s;
+  }
+  .ask-send:hover { background:#9E6D32; }
+
+  /* PAGE TRANSITION VIEW — simulates real navigation away from the homepage */
+  #pageView {
+    display:none; min-height:70vh; padding:5rem 2.5rem; max-width:780px; margin:0 auto;
+    opacity:0; transition:opacity 0.35s ease;
+  }
+  #pageView.show { display:block; }
+  #pageView.in { opacity:1; }
+  .page-back { font-size:0.85rem; color:var(--ink-soft); margin-bottom:2rem; display:inline-block; cursor:pointer; }
+  .page-back:hover { color:var(--gold); }
+  .page-label { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; font-weight:500; }
+  .page-title { font-family:'PT Serif', serif; font-weight:700; font-size:2.2rem; margin-bottom:1.25rem; }
+  .page-blurb { font-size:1.05rem; color:var(--ink-soft); line-height:1.75; }
+  .page-note { margin-top:2rem; padding:1rem 1.25rem; background:var(--off); border-radius:8px; font-size:0.85rem; color:var(--ink-muted); }
+  .page-contact { display:flex; gap:0.6rem; margin-top:1.5rem; flex-wrap:wrap; }
+  .page-contact input {
+    flex:1; min-width:200px; border:1px solid var(--line); border-radius:6px; padding:0.75rem 1rem;
+    font-size:0.9rem; font-family:'DM Sans', sans-serif;
+  }
+  .page-contact button {
+    border:none; background:var(--gold); color:white; border-radius:6px; padding:0.75rem 1.4rem;
+    font-size:0.9rem; cursor:pointer;
+  }
+
+  /* SECTION LABELS */
+  .section { padding:5rem 0; border-top:1px solid var(--line); }
+  .label {
+    font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);
+    font-weight:500; margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem;
+  }
+  .label::before { content:''; width:20px; height:1px; background:var(--gold); }
+  h2.section-h {
+    font-family:'PT Serif', serif; font-weight:700; font-size:2rem; letter-spacing:-0.01em;
+    max-width:640px; margin-bottom:1rem;
+  }
+  .section-lead { color:var(--ink-soft); max-width:560px; margin-bottom:3rem; font-size:1rem; }
+
+  /* PORTFOLIO — Oges shown properly, thin black frame (callback to the "black only via
+     thin frame lines" rule), no placeholder cards */
+  .company-feature {
+    display:grid; grid-template-columns: 1fr 1fr; gap:3.5rem; align-items:center;
+    padding:3rem; border:1.5px solid var(--ink); border-radius:6px;
+  }
+  .company-tag {
+    display:inline-block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase;
+    background:var(--gold-soft); color:var(--gold); padding:0.3rem 0.7rem; border-radius:2px;
+    margin-bottom:1.25rem; font-weight:500;
+  }
+  .company-name { font-family:'PT Serif', serif; font-weight:700; font-size:2rem; margin-bottom:1rem; }
+  .company-desc { color:var(--ink-soft); font-size:0.95rem; margin-bottom:1.5rem; }
+  .company-products { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.5rem; }
+  .prod-chip { font-size:0.78rem; padding:0.3rem 0.7rem; background:var(--off); border-radius:2px; color:var(--ink-soft); }
+  .company-visual {
+    background:var(--ink); border-radius:6px; height:280px;
+    display:flex; align-items:center; justify-content:center;
+    color:rgba(255,255,255,0.4); font-size:0.85rem; text-align:center; padding:2rem;
+  }
+
+  /* IMPACT — three short proof points, thin gold accent line per item */
+  .impact-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:2.5rem; }
+  .impact-item { border-left:2px solid var(--gold); padding-left:1.25rem; }
+  .impact-item h3 { font-family:'PT Serif', serif; font-weight:700; font-size:1.15rem; margin-bottom:0.6rem; }
+  .impact-item p { font-size:0.9rem; color:var(--ink-soft); }
+
+  /* WHAT IT MEANS TO BE A SCALEIQ COMPANY — numbered list, sits right after the Oges proof */
+  .work-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:3rem; }
+  .work-step { display:flex; gap:1.5rem; padding:1.75rem 0; border-top:1px solid var(--line); }
+  .work-step:first-child { border-top:none; }
+  .work-num { font-family:'PT Serif', serif; font-weight:700; font-size:1.6rem; color:var(--gold-soft); flex-shrink:0; width:2.5rem; }
+  .work-step h4 { font-size:1.02rem; font-weight:700; margin-bottom:0.4rem; }
+  .work-step p { font-size:0.9rem; color:var(--ink-soft); }
+
+  /* HOW WE GROW — single band, capital + operations mentioned together, not two cards */
+  .grow-band { background:var(--off); border-radius:6px; padding:3.5rem; border-top:3px solid var(--gold); }
+  .grow-band p.lead-text { font-size:1.05rem; max-width:680px; margin-bottom:2.5rem; }
+  .stat-row { display:flex; gap:3.5rem; flex-wrap:wrap; }
+  .stat-num { font-family:'PT Serif', serif; font-weight:700; font-size:2rem; color:var(--gold); }
+  .stat-label { font-size:0.8rem; color:var(--ink-muted); margin-top:0.25rem; }
+
+  /* CLOSING CTA — deliberate black bookend, mirrors the footer below it */
+  .cta-band { text-align:center; padding:6rem 0; background:var(--off); border-top:1px solid var(--line); }
+  .cta-band h2 { font-family:'PT Serif', serif; font-weight:700; font-size:1.9rem; margin-bottom:1rem; color:var(--ink); }
+  .cta-band h2 em { color:var(--gold); font-style:italic; }
+  .cta-band p { color:var(--ink-soft); margin-bottom:2rem; }
+
+  footer { background:var(--paper); border-top:1px solid var(--line); padding:3rem 0; }
+  .footer-row { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  .footer-links { display:flex; gap:1.75rem; flex-wrap:wrap; }
+  .footer-links a { font-size:0.82rem; color:var(--ink-soft); }
+  .footer-links a:hover { color:var(--gold); }
+  .footer-copy { font-size:0.78rem; color:var(--ink-muted); }
+
+  @media (max-width:820px) {
+    .company-feature, .impact-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner wrap">
+    <button class="burger" onclick="document.getElementById('menuPanel').classList.add('open'); document.getElementById('menuOverlay').classList.add('open');">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="logo">SCALEIQ</div>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay" onclick="document.getElementById('menuPanel').classList.remove('open'); this.classList.remove('open');"></div>
+<div class="menu-panel" id="menuPanel">
+  <div class="menu-top">
+    <button class="menu-close" onclick="document.getElementById('menuPanel').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('open');">✕</button>
+    <div class="logo">SCALEIQ</div>
+  </div>
+
+  <div class="menu-group">
+    <h4>About</h4>
+    <a href="#">Who We Are</a>
+    <a href="#">What We Do</a>
+    <a href="#">How We Grow</a>
+    <a href="#">A Note From Our Founder</a>
+  </div>
+  <div class="menu-group">
+    <h4>People &amp; Culture</h4>
+    <a href="#">Leadership</a>
+    <a href="#">Our Culture</a>
+    <a href="#">Join Us</a>
+  </div>
+  <div class="menu-group">
+    <h4>Portfolio</h4>
+    <a href="#">Our Companies</a>
+    <a href="#">Impact &amp; Growth</a>
+  </div>
+  <div class="menu-group">
+    <h4>Our Work</h4>
+    <a href="#">Whom We Serve</a>
+    <a href="#">Our Services</a>
+  </div>
+  <div class="menu-group">
+    <h4>Resources</h4>
+    <a href="#">Case Studies</a>
+    <a href="#">Blogs</a>
+  </div>
+  <div class="menu-group">
+    <h4>Contact</h4>
+    <a href="#">Contact Us</a>
+    <a href="#">For Investors</a>
+    <a href="#">For Partners</a>
+    <a href="#">For Portfolio Companies</a>
+  </div>
+</div>
+
+<!-- HOME VIEW (fades out on simulated navigation) -->
+<div id="homeView">
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div class="eyebrow">Digital engineering · Energy sector</div>
+  <h1 class="hero-h">Growing the digital <em>backbone</em> of the energy industry.</h1>
+  <p class="hero-sub">ScaleIQ invests in and builds the specialist technology companies solving energy's hardest digital problems.</p>
+  <a href="#portfolio" class="btn-gold">See our portfolio</a>
+  <a href="#grow" class="link-arrow">How we grow →</a>
+</section>
+
+<!-- ASK SCALEIQ -->
+<section class="ask-band">
+  <div class="ask-inner">
+    <div class="ask-eyebrow">Ask ScaleIQ</div>
+    <div class="ask-box">
+      <span class="ask-icon">✦</span>
+      <input type="text" id="askInput" placeholder="" onkeydown="if(event.key==='Enter'){ freezeInput(); askSubmit(); }" onfocus="freezeInput()">
+      <button class="ask-send" onclick="askSubmit()">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section wrap" id="portfolio">
+  <div class="label">Our Companies</div>
+  <h2 class="section-h">Proof, not <em>promises</em>.</h2>
+  <p class="section-lead">ScaleIQ companies solve real problems for real energy operators — not managed from a distance, but built by teams who know the industry.</p>
+
+  <div class="company-feature">
+    <div>
+      <div class="company-tag">Oil &amp; Gas · Active since 2015</div>
+      <div class="company-name">Oges</div>
+      <p class="company-desc">Oges builds software that keeps oil and gas operations running — trusted by E&amp;P operators, drilling contractors, and service vendors, with active deployments at ONGC, Cairn, and OIL India.</p>
+      <div class="company-products">
+        <span class="prod-chip">OgesOne</span>
+        <span class="prod-chip">WIPA</span>
+        <span class="prod-chip">HVMS</span>
+        <span class="prod-chip">Udbhav</span>
+      </div>
+      <a href="#" class="link-arrow">Find out more about Oges →</a>
+    </div>
+    <div class="company-visual">[ Oges product photography / screenshot goes here ]</div>
+  </div>
+</section>
+
+<!-- WHAT IT MEANS TO BE A SCALEIQ COMPANY -->
+<section class="section wrap">
+  <div class="work-grid">
+    <div>
+      <div class="label">How We Work</div>
+      <h2 class="section-h">What it means to be a <em>ScaleIQ company</em></h2>
+      <p class="section-lead" style="margin-bottom:0;">For portfolio companies, joining ScaleIQ means keeping what makes you great and gaining everything you never had time to build.</p>
+    </div>
+    <div>
+      <div class="work-step">
+        <div class="work-num">01</div>
+        <div>
+          <h4>Retain your identity</h4>
+          <p>Your brand, your team, your technical culture — all intact. ScaleIQ doesn't absorb companies into a corporate monolith. Oges is Oges; future portfolio companies keep their names and autonomy.</p>
+        </div>
+      </div>
+      <div class="work-step">
+        <div class="work-num">02</div>
+        <div>
+          <h4>Gain shared infrastructure</h4>
+          <p>Business development, finance, and HR functions move to ScaleIQ Operations. Your engineers and domain experts stop context-switching into overhead work and focus entirely on delivery.</p>
+        </div>
+      </div>
+      <div class="work-step">
+        <div class="work-num">03</div>
+        <div>
+          <h4>Access group-wide BD</h4>
+          <p>Your technical sales team works in close coordination with ScaleIQ's central BD function — opening doors to clients and sectors that individual companies struggle to reach alone.</p>
+        </div>
+      </div>
+      <div class="work-step">
+        <div class="work-num">04</div>
+        <div>
+          <h4>Grow with investment backing</h4>
+          <p>ScaleIQ Capital ensures each portfolio company has the runway to invest in product, people, and market development — without the uncertainty of independent fundraising.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="section wrap">
+  <div class="label">Impact</div>
+  <h2 class="section-h">What that actually changes <em>on the ground</em>.</h2>
+  <div class="impact-grid">
+    <div class="impact-item">
+      <h3>Fewer manual workflows</h3>
+      <p>Field and back-office processes that used to run on spreadsheets and phone calls, automated end to end.</p>
+    </div>
+    <div class="impact-item">
+      <h3>Knowledge that stays</h3>
+      <p>Operational knowledge captured and shared, instead of leaving the company when an engineer does.</p>
+    </div>
+    <div class="impact-item">
+      <h3>Real-time visibility</h3>
+      <p>Production data operators can actually see and act on, not just report on after the fact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE GROW -->
+<section class="section wrap" id="grow">
+  <div class="label">How We Grow</div>
+  <h2 class="section-h">Built for growth, the <em>same way</em> our companies are.</h2>
+  <div class="grow-band">
+    <p class="lead-text">We invest in energy-technology companies with strong products and give them capital and an engineering bench built specifically for this industry. Companies keep their name, their leadership, and their independence — what they gain is what they couldn't build alone.</p>
+    <div class="stat-row">
+      <div>
+        <div class="stat-num">—</div>
+        <div class="stat-label">Countries served</div>
+      </div>
+      <div>
+        <div class="stat-num">—</div>
+        <div class="stat-label">Years in energy tech</div>
+      </div>
+      <div>
+        <div class="stat-num">—</div>
+        <div class="stat-label">Engineers on the bench</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Building an <em>energy-technology</em> company?</h2>
+    <p>If you're weighing what's next — capital, growth, or simply more resources than you have today — we'd like to talk.</p>
+    <a href="#" class="btn-gold">Talk to us about joining ScaleIQ</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo">SCALEIQ</div>
+    <div class="footer-links">
+      <a href="#">Who We Are</a>
+      <a href="#">Portfolio</a>
+      <a href="#">How We Grow</a>
+      <a href="#">Contact</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Privacy</a>
+    </div>
+    <div class="footer-copy">© 2026 ScaleIQ</div>
+  </div>
+</footer>
+
+</div> <!-- /homeView -->
+
+<!-- PAGE VIEW — populated and shown by askSubmit() to simulate real navigation -->
+<div id="pageView">
+  <a class="page-back" onclick="backHome()">← Back to home</a>
+  <div class="page-label" id="pvLabel"></div>
+  <div class="page-title" id="pvTitle"></div>
+  <div class="page-blurb" id="pvBlurb"></div>
+  <div id="pvExtra"></div>
+</div>
+
+<script>
+  // Routing table — real keyword matching. Weighted toward portfolio-company
+  // questions since that's ~70% of this box's job.
+  const routes = [
+    { match: ["how many", "portfolio companies does", "number of companies"], page: "Portfolio Companies", blurb: "One so far — Oges, active since 2015. See the full story and what comes next." },
+    { match: ["how do i become", "become a scaleiq", "become a portfolio", "join scaleiq", "want to join", "sell my company", "acquire my company"], page: "For Portfolio Companies", blurb: "Tell us about your company. Every conversation stays confidential, no obligation on a first call." },
+    { match: ["receive", "after joining", "what happens", "benefit", "what do i get", "what do portfolio"], page: "Impact & Growth", blurb: "Capital, an engineering bench built for energy, and a network of peer companies — while you keep your name and leadership." },
+    { match: ["what we look for", "criteria", "qualify", "does scaleiq acquire", "what kind of companies", "look for in a portfolio"], page: "Portfolio Companies", blurb: "Founder-led energy-technology companies with an established product and paying customers, ready to grow further." },
+    { match: ["majority stake", "how much equity", "ownership"], page: "Portfolio Companies", blurb: "ScaleIQ structures each investment individually — this is covered case-by-case in an initial conversation." },
+    { match: ["how long does", "how long will", "process take"], page: "For Portfolio Companies", blurb: "Every deal moves at its own pace — but the first conversation is always fast." },
+    { match: ["investment policy", "how does scaleiq invest", "how we grow"], page: "How We Grow", blurb: "How ScaleIQ evaluates, structures, and grows energy-technology investments." },
+    { match: ["founder", "who started", "ceo"], page: "A Note From Our Founder", blurb: "Thirty years in energy, and why he started ScaleIQ." },
+    { match: ["leadership", "management team", "who runs"], page: "Leadership", blurb: "The team behind ScaleIQ, and the industry experience they bring." },
+    { match: ["build software", "build for my energy company", "digital partner", "engineering partner"], page: "Whom We Serve", blurb: "ScaleIQ Operations builds for oil & gas companies, GCCs, energy majors, renewables & utilities, energy ISVs, and oil service companies." },
+    { match: ["what services", "operations offer", "what does scaleiq operations do"], page: "Our Services", blurb: "Application development, AI enablement, staff augmentation, product engineering, professional services, and technical consulting." },
+    { match: ["serve", "clients", "who do you work with"], page: "Whom We Serve", blurb: "Oil & gas companies, GCCs, energy majors, renewables & utilities, energy ISVs, and oil service companies." }
+  ];
+
+  function goToPage(hit) {
+    document.getElementById('homeView').style.display = 'none';
+    document.getElementById('pvLabel').textContent = 'Taking you to';
+    document.getElementById('pvTitle').textContent = hit.page;
+    document.getElementById('pvBlurb').textContent = hit.blurb;
+    document.getElementById('pvExtra').innerHTML = `<div class="page-note">This is a simulated redirect for the demo — in the real build, this is an actual page at /${hit.page.toLowerCase().replace(/[^a-z]+/g,'-')}.</div>`;
+    showPageView();
+  }
+
+  function goToContact(text) {
+    document.getElementById('homeView').style.display = 'none';
+    document.getElementById('pvLabel').textContent = "Let's connect you directly";
+    document.getElementById('pvTitle').textContent = 'Contact ScaleIQ';
+    document.getElementById('pvBlurb').textContent = `"${text}" — that's a specific one. Leave your email or number and we'll get back to you.`;
+    document.getElementById('pvExtra').innerHTML = `
+      <div class="page-contact">
+        <input type="text" placeholder="Email or phone number">
+        <button onclick="event.preventDefault();">Submit</button>
+      </div>`;
+    showPageView();
+  }
+
+  function showPageView() {
+    const pv = document.getElementById('pageView');
+    pv.classList.add('show');
+    window.scrollTo({top:0, behavior:'instant'});
+    requestAnimationFrame(() => pv.classList.add('in'));
+  }
+
+  function backHome() {
+    const pv = document.getElementById('pageView');
+    pv.classList.remove('in');
+    setTimeout(() => {
+      pv.classList.remove('show');
+      document.getElementById('homeView').style.display = '';
+      window.scrollTo({top:0, behavior:'instant'});
+    }, 350);
+  }
+
+  function askSubmit() {
+    const input = document.getElementById('askInput');
+    const text = (input.value || '').trim();
+    if (!text) return;
+    const lower = text.toLowerCase();
+    const hit = routes.find(r => r.match.some(k => lower.includes(k)));
+    if (hit) goToPage(hit); else goToContact(text);
+  }
+
+  // Typewriter cycling placeholder — variety on purpose, not just one topic on loop.
+  // ~70% portfolio-company questions (that's the priority), rest split between
+  // energy clients and general/founder questions. Index 1 is deliberately the
+  // "how do I become a portfolio company" question — it's the one people notice
+  // and tap first, so it gets the second slot, not buried at the end.
+  const demoQueries = [
+    "How many portfolio companies does ScaleIQ have?",
+    "How do I become a ScaleIQ portfolio company?",
+    "What do portfolio companies receive after joining?",
+    "Can ScaleIQ build software for my energy company?",
+    "What does ScaleIQ look for in a portfolio company?",
+    "I want to sell my company to ScaleIQ",
+    "What services does ScaleIQ Operations offer?",
+    "Does ScaleIQ take a majority stake?",
+    "Tell me about ScaleIQ's founder",
+    "How long does it take to join ScaleIQ?"
+  ];
+  let qi = 0, ci = 0, deleting = false, frozen = false;
+  const input = document.getElementById('askInput');
+
+  function freezeInput() {
+    if (frozen) return;
+    frozen = true;
+    input.placeholder = '';
+    input.value = demoQueries[qi];
+  }
+
+  function cyclePlaceholder() {
+    if (frozen) return;
+    const full = demoQueries[qi];
+    if (!deleting) {
+      ci++;
+      input.placeholder = full.slice(0, ci);
+      if (ci === full.length) { deleting = true; setTimeout(cyclePlaceholder, 1400); return; }
+    } else {
+      ci--;
+      input.placeholder = full.slice(0, ci);
+      if (ci === 0) { deleting = false; qi = (qi + 1) % demoQueries.length; }
+    }
+    setTimeout(cyclePlaceholder, deleting ? 22 : 45);
+  }
+  input.placeholder = '';
+  cyclePlaceholder();
+</script>
+</body>
+</html>

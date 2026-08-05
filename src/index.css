@@ -1,0 +1,326 @@
+/* Global styles — tokens come from theme.config.js via CSS custom properties
+   set in main.jsx (--ink, --ink-soft, --ink-muted, --paper, --off, --line,
+   --gold, --gold-soft). Ported from ScaleIQ_Minimal_Demo.html, the design
+   system source of truth. */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* NAV — logo + hamburger only, nothing else visible */
+nav.site-nav {
+  position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 0; }
+.logo { font-family: var(--logo); font-size: 1rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
+.burger {
+  width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  background: none; cursor: pointer; flex-shrink: 0;
+}
+.burger span { width: 16px; height: 1.5px; background: var(--ink); display: block; }
+
+/* SLIDE-IN MENU PANEL — opens from the LEFT */
+.menu-overlay {
+  position: fixed; inset: 0; background: rgba(26,24,21,0.25);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 90;
+}
+.menu-overlay.open { opacity: 1; pointer-events: auto; }
+.menu-panel {
+  position: fixed; top: 0; left: -340px; width: 320px; height: 100%;
+  background: var(--paper); z-index: 100; padding: 1.5rem 1.5rem 2rem;
+  transition: left 0.3s ease; overflow-y: auto;
+  box-shadow: 8px 0 30px rgba(26,24,21,0.08);
+  border-right: 1px solid var(--line);
+}
+.menu-panel.open { left: 0; }
+.menu-top { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.25rem; }
+.menu-close {
+  width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 6px; background: none; cursor: pointer;
+  font-size: 1rem; color: var(--ink-muted); flex-shrink: 0;
+}
+.menu-top .logo { font-size: 0.9rem; }
+.menu-group { margin-bottom: 1.75rem; }
+.menu-group h4 {
+  font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin-bottom: 0.7rem;
+}
+.menu-group a {
+  display: block; font-size: 0.95rem; color: var(--ink); padding: 0.4rem 0;
+  transition: color 0.15s;
+}
+.menu-group a:hover { color: var(--gold); }
+
+/* HERO */
+.hero { padding: 7rem 0 6rem; position: relative; overflow: hidden; }
+.hero-glow {
+  position: absolute; top: -120px; right: -160px; width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(189,135,55,0.16) 0%, rgba(189,135,55,0) 70%);
+  pointer-events: none; z-index: 0; will-change: transform;
+}
+.hero > * { position: relative; z-index: 1; }
+.eyebrow {
+  font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem; font-weight: 500;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+h1.hero-h {
+  font-family: var(--heading); font-weight: 700;
+  font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.01em;
+  max-width: 780px; margin-bottom: 1.75rem;
+}
+h1.hero-h em, h2.section-h em, .cta-band h2 em {
+  font-style: italic; font-weight: 700; color: var(--gold);
+}
+.hero-sub { font-size: 1.05rem; color: var(--ink-soft); max-width: 520px; margin-bottom: 2.25rem; }
+.btn-gold {
+  display: inline-block; background: var(--gold); color: white; font-size: 0.9rem; font-weight: 500;
+  padding: 0.85rem 1.75rem; border-radius: 3px; margin-right: 1.25rem; border: none; cursor: pointer;
+  font-family: var(--body); transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-gold:hover { background: #9E6D32; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(89,60,20,0.28); }
+.btn-gold:active { transform: translateY(0); box-shadow: none; }
+.link-arrow { font-size: 0.9rem; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease; }
+.link-arrow:hover { color: var(--gold); border-color: var(--gold); }
+
+/* Hero load-in stagger (page load, not scroll-triggered) */
+.hero-load-item {
+  opacity: 0; transform: translateY(14px);
+  animation: heroLoadUp 0.6s ease forwards;
+}
+@keyframes heroLoadUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-load-item { animation: none; opacity: 1; transform: none; }
+}
+
+/* ASK SCALEIQ */
+.ask-band { background: var(--off); padding: 4rem 0 4.5rem; margin-top: 1rem; }
+.ask-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+.ask-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+  font-weight: 500; margin-bottom: 1rem;
+}
+.ask-box {
+  border: 1px solid var(--line); border-radius: 100px;
+  background: var(--paper); box-shadow: 0 8px 28px rgba(26,24,21,0.06);
+  padding: 0.4rem 0.4rem 0.4rem 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.ask-box:focus-within {
+  border-color: var(--gold); box-shadow: 0 8px 32px rgba(189,135,55,0.22), 0 0 0 3px rgba(189,135,55,0.12);
+}
+.ask-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+.ask-box input {
+  flex: 1; border: none; outline: none; font-family: var(--body);
+  font-size: 1rem; color: var(--ink); background: transparent; padding: 0.9rem 0; text-align: left;
+}
+.ask-box input::placeholder { color: var(--ink-muted); }
+.ask-send {
+  width: 42px; height: 42px; border-radius: 50%; border: none; background: var(--gold);
+  color: white; font-size: 1.05rem; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+}
+.ask-send:hover { background: #9E6D32; }
+.ask-fallback {
+  margin-top: 1rem; text-align: left; background: var(--paper); border: 1px solid var(--line);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+}
+.ask-fallback p { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 0.9rem; }
+.ask-fallback form { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.ask-fallback input {
+  flex: 1; min-width: 200px; border: 1px solid var(--line); border-radius: 6px; padding: 0.75rem 1rem;
+  font-size: 0.9rem; font-family: var(--body);
+}
+.ask-fallback button {
+  border: none; background: var(--gold); color: white; border-radius: 6px; padding: 0.75rem 1.4rem;
+  font-size: 0.9rem; cursor: pointer; font-family: var(--body);
+}
+.ask-fallback .sent { font-size: 0.9rem; color: var(--gold); font-weight: 500; }
+
+/* SECTION LABELS */
+.section { padding: 5rem 0; border-top: 1px solid var(--line); }
+.label {
+  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  font-weight: 500; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+}
+.label::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+h2.section-h {
+  font-family: var(--heading); font-weight: 700; font-size: 2rem; letter-spacing: -0.01em;
+  max-width: 640px; margin-bottom: 1rem;
+}
+.section-lead { color: var(--ink-soft); max-width: 560px; margin-bottom: 3rem; font-size: 1rem; }
+
+/* PORTFOLIO — Oges shown properly, thin black frame, no placeholder cards */
+.company-feature {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;
+  padding: 3rem; border: 1.5px solid var(--ink); border-radius: 6px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.company-feature:hover {
+  transform: translateY(-4px); box-shadow: 0 20px 40px rgba(26,24,21,0.1);
+}
+.company-tag {
+  display: inline-block; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  background: var(--gold-soft); color: var(--gold); padding: 0.3rem 0.7rem; border-radius: 2px;
+  margin-bottom: 1.25rem; font-weight: 500;
+}
+.company-name { font-family: var(--heading); font-weight: 700; font-size: 2rem; margin-bottom: 1rem; }
+.company-desc { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1.5rem; }
+.company-products { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.prod-chip { font-size: 0.78rem; padding: 0.3rem 0.7rem; background: var(--off); border-radius: 2px; color: var(--ink-soft); }
+.company-visual {
+  background: var(--ink); border-radius: 6px; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); font-size: 0.85rem; text-align: center; padding: 2rem;
+}
+
+/* IMPACT */
+.impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+.impact-item { border-left: 2px solid var(--gold); padding-left: 1.25rem; }
+.impact-item h3 { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.6rem; }
+.impact-item p { font-size: 0.9rem; color: var(--ink-soft); }
+
+/* WHAT IT MEANS TO BE A SCALEIQ COMPANY — numbered list */
+.work-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; }
+.work-step { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
+.work-step:first-child { border-top: none; }
+.work-num { font-family: var(--heading); font-weight: 700; font-size: 1.6rem; color: var(--gold-soft); flex-shrink: 0; width: 2.5rem; }
+.work-step h4 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.4rem; }
+.work-step p { font-size: 0.9rem; color: var(--ink-soft); }
+
+/* HOW WE GROW */
+.grow-band { background: var(--off); border-radius: 6px; padding: 3.5rem; border-top: 3px solid var(--gold); }
+.grow-band p.lead-text { font-size: 1.05rem; max-width: 680px; margin-bottom: 2.5rem; }
+.stat-row { display: flex; gap: 3.5rem; flex-wrap: wrap; }
+.stat-num { font-family: var(--heading); font-weight: 700; font-size: 2rem; color: var(--gold); }
+.stat-label { font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.25rem; }
+
+/* CLOSING CTA — light band, never dark (reversed after feedback) */
+.cta-band { text-align: center; padding: 6rem 0; background: var(--off); border-top: 1px solid var(--line); }
+.cta-band h2 { font-family: var(--heading); font-weight: 700; font-size: 1.9rem; margin-bottom: 1rem; color: var(--ink); }
+.cta-band p { color: var(--ink-soft); margin-bottom: 2rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+footer.site-footer { background: var(--paper); border-top: 1px solid var(--line); padding: 3rem 0; }
+.footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.footer-links a { font-size: 0.82rem; color: var(--ink-soft); }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 0.78rem; color: var(--ink-muted); }
+
+/* ===== INTERIOR PAGE TEMPLATES ===== */
+
+/* shared page header used by all three templates */
+.page-header { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--line); }
+.page-eyebrow { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; font-weight: 500; display: flex; align-items: center; gap: 0.6rem; }
+.page-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+.page-h1 { font-family: var(--heading); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; max-width: 760px; margin-bottom: 1.25rem; }
+.page-h1 em { font-style: italic; font-weight: 700; color: var(--gold); }
+.page-intro { font-size: 1.05rem; color: var(--ink-soft); max-width: 620px; }
+
+/* CONTENT template — About, Founder's Note, Culture, Leadership */
+.content-body { padding: 4rem 0 6rem; max-width: 720px; }
+.content-body p { font-size: 1rem; color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.8; }
+.content-body p:last-child { margin-bottom: 0; }
+.content-note {
+  margin: 2rem 0; padding: 1.1rem 1.4rem; background: var(--off); border-radius: 8px;
+  font-size: 0.88rem; color: var(--ink-muted); border-left: 3px solid var(--gold);
+}
+.content-note strong { color: var(--ink-soft); }
+.founder-byline { font-family: var(--heading); font-style: italic; font-weight: 700; color: var(--ink); margin-top: 2.5rem; font-size: 1.05rem; }
+
+.leader-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; margin-top: 1rem; }
+.leader-card { border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem 1.75rem; }
+.leader-name { font-family: var(--heading); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
+.leader-role { font-size: 0.85rem; color: var(--gold); }
+
+.numbered-list { max-width: 720px; }
+.numbered-item { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
+.numbered-item:first-child { border-top: none; padding-top: 0; }
+.numbered-item .n { font-family: var(--heading); font-weight: 700; font-size: 1.4rem; color: var(--gold-soft); flex-shrink: 0; width: 2.5rem; }
+.numbered-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.numbered-item p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+
+/* LISTING template — Portfolio detail, Case Studies, Blog index, Whom We Serve, Services */
+.listing-body { padding: 4rem 0 6rem; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+.filter-chip {
+  font-size: 0.8rem; padding: 0.45rem 1rem; border: 1px solid var(--line); border-radius: 100px;
+  color: var(--ink-soft); background: none; cursor: pointer; font-family: var(--body); transition: all 0.15s;
+}
+.filter-chip.active, .filter-chip:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-soft); }
+.listing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+.listing-card { border: 1px solid var(--line); border-radius: 8px; padding: 1.75rem; transition: border-color 0.15s; }
+.listing-card:hover { border-color: var(--gold); }
+.listing-card .card-tag { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; display: block; }
+.listing-card h3 { font-family: var(--heading); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.6rem; line-height: 1.35; }
+.listing-card p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+.segment-block { padding: 2.25rem 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; }
+.segment-block:first-child { border-top: none; }
+.segment-block h3 { font-family: var(--heading); font-weight: 700; font-size: 1.2rem; }
+.segment-block p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
+
+/* FORM / CONTACT template */
+.form-body { padding: 4rem 0 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.form-side p { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1.25rem; line-height: 1.75; }
+.form-list { list-style: none; margin: 1.5rem 0; }
+.form-list li { font-size: 0.92rem; color: var(--ink-soft); padding: 0.5rem 0 0.5rem 1.25rem; position: relative; }
+.form-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+.site-form { display: flex; flex-direction: column; gap: 1.1rem; }
+.field label { display: block; font-size: 0.8rem; color: var(--ink-muted); margin-bottom: 0.4rem; }
+.field input, .field textarea {
+  width: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 0.8rem 1rem;
+  font-size: 0.95rem; font-family: var(--body); color: var(--ink); background: var(--paper);
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.form-success { padding: 1.25rem; background: var(--off); border-radius: 8px; font-size: 0.92rem; color: var(--ink-soft); border-left: 3px solid var(--gold); }
+
+.needs-input {
+  display: inline-block; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase;
+  color: #A15C2E; background: #FBEAD9; padding: 0.2rem 0.55rem; border-radius: 3px; font-weight: 600;
+  margin-left: 0.5rem; vertical-align: middle;
+}
+
+/* LATEST FROM SCALEIQ — single real entry, not a padded grid */
+.latest-card {
+  display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap;
+  border: 1px solid var(--line); border-radius: 8px; padding: 2rem 2.25rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.latest-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 16px 32px rgba(26,24,21,0.08); }
+.latest-card h3 { font-family: var(--heading); font-weight: 700; font-size: 1.25rem; margin-bottom: 0.5rem; max-width: 640px; }
+.latest-card .byline { font-size: 0.85rem; color: var(--ink-muted); }
+
+/* DRIVEN BY PEOPLE band */
+.driven-band { max-width: 720px; }
+.driven-band p { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.5rem; }
+
+/* scroll-reveal, shared across pages */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero-load-item, .company-feature, .btn-gold, .link-arrow, .latest-card, .ask-box, .hero-glow {
+    transition: none !important; animation: none !important;
+  }
+  .hero-glow { transform: none !important; }
+}
+
+@media (max-width: 820px) {
+  .company-feature, .impact-grid, .work-grid, .leader-grid, .listing-grid, .form-body, .segment-block {
+    grid-template-columns: 1fr;
+  }
+  .stat-row { gap: 2rem; }
+}
