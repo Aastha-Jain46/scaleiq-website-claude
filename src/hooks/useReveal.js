@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 
-// Fades up any element with class "reveal" inside this page as it scrolls
-// into view. Triggers once per element, ~15% visibility threshold. Respects
-// prefers-reduced-motion by revealing everything immediately, no observer.
+// Fades up any element with class "reveal" (or slides in "reveal-left" /
+// "reveal-right" — About-section variety variants, homepage never uses
+// these) as it scrolls into view. Triggers once per element, ~15%
+// visibility threshold. Respects prefers-reduced-motion by revealing
+// everything immediately, no observer.
 export default function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal');
+    const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       els.forEach((el) => el.classList.add('in'));
       return;

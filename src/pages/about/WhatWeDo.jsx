@@ -17,28 +17,28 @@ export default function WhatWeDo() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title="What We Do" />
+      <PageHeader eyebrow="About" title={<>We help energy companies do more than survive. We help them <em>lead</em>.</>} />
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">
-          <section id="back" className="hub-section reveal">
+          <section id="back" className="hub-section reveal-left">
             <div className="hub-eyebrow">For Companies We Back</div>
-            <p>Permanent capital, business development access, and a peer network, without giving up your name or independence.</p>
+            <p>If you've already built something real in energy technology, an established product, paying customers, a team that knows the problem cold, ScaleIQ gives you permanent capital and a wider network to grow further. You're not choosing between raising outside money and giving up control, or growing slowly on your own cash flow while competitors with deeper pockets move faster. That choice disappears.</p>
             <Link to="/portfolio/our-companies" className="link-arrow">See our portfolio →</Link>
           </section>
 
-          <section id="build-for" className="hub-section reveal">
+          <section id="build-for" className="hub-section reveal-right">
             <div className="hub-eyebrow">For Companies We Build For</div>
-            <p>Technology delivered through the companies we back, teams that already understand upstream, midstream, and downstream energy workflows.</p>
+            <p>If you're running an energy operation, an oil &amp; gas company, a GCC, an energy major, a renewables or utilities business, and you need technology that actually understands how your operations work, ScaleIQ delivers it through the companies we back. Teams that already live inside upstream, midstream, and downstream workflows, not a vendor learning your industry's constraints on your contract, on your timeline, at your expense.</p>
             <Link to="/our-work/our-services" className="link-arrow">See our work →</Link>
           </section>
 
-          <section id="standard" className="hub-section reveal">
+          <section id="standard" className="hub-section reveal-left">
             <div className="hub-eyebrow">One Standard</div>
             <p>Either way, the same standard applies. Real industry depth, not generalist guesswork learned on someone else's contract.</p>
           </section>
 
-          <section id="proof" className="hub-section reveal">
+          <section id="proof" className="hub-section reveal-right">
             <div className="hub-eyebrow">Proof</div>
             <Testimonial
               quote="ScaleIQ Oges helped bring structure and visibility to complex operational workflows that were earlier managed through fragmented processes. The engagement enabled more disciplined, data-driven decision-making across teams and locations."
