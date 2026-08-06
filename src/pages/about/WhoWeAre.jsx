@@ -1,16 +1,51 @@
-import ContentTemplate from '../../components/templates/ContentTemplate';
+import { Link } from 'react-router-dom';
+import useReveal from '../../hooks/useReveal';
+import PageHeader from '../../components/templates/PageHeader';
+import QuickLinksRail from '../../components/QuickLinksRail';
+import ContinueBand from '../../components/ContinueBand';
+
+const sections = [
+  { id: 'purpose', label: 'Our Purpose' },
+  { id: 'model', label: 'Our Model' },
+  { id: 'leadership', label: 'Our Leadership' },
+  { id: 'founders-note', label: "Founder's Note" },
+];
 
 export default function WhoWeAre() {
+  useReveal();
+
   return (
-    <ContentTemplate
-      eyebrow="About"
-      title="Who We Are"
-      intro="Energy technology deserves patient capital and serious engineering, in equal measure."
-    >
-      <p>We invest in energy-technology companies with strong products and committed teams, and give them the resources to grow further. Alongside that, our engineering practice designs and delivers the digital systems that oil and gas companies, energy majors, and utilities depend on every day.</p>
-      <p>Most platforms choose one side of that equation. They either write cheques or they write code. ScaleIQ does both, under one roof, which means every company we work with gets more than capital, or more than a delivery team. They get a partner that understands the industry from the inside, because we operate in it ourselves.</p>
-      <p>That combination shapes how we work. When we invest in a company, we bring engineering judgment to the table, not just a board seat. When we deliver a project for a client, we bring the discipline of an owner, not just a vendor's checklist.</p>
-      <p>Energy technology is a demanding space to build in: long sales cycles, exacting safety standards, customers who cannot afford downtime. ScaleIQ exists because that space needs a partner built specifically for it, not a generalist investor or a generalist IT vendor stretched across industries it doesn't know.</p>
-    </ContentTemplate>
+    <>
+      <PageHeader eyebrow="About" title="Who We Are" />
+      <div className="hub-layout wrap">
+        <QuickLinksRail sections={sections} />
+        <div className="hub-sections">
+          <section id="purpose" className="hub-section reveal">
+            <div className="hub-eyebrow">Our Purpose</div>
+            <h2>Energy keeps the world running. We make sure its technology keeps up.</h2>
+            <p>For decades, energy companies, especially smaller and mid-sized ones, have modernized with far less than other industries take for granted. Teams work in silos. The same digital problems get solved from scratch, again and again, by companies that could have shared the effort. ScaleIQ exists to close that gap.</p>
+          </section>
+
+          <section id="model" className="hub-section reveal">
+            <div className="hub-eyebrow">Our Model</div>
+            <p>ScaleIQ backs energy-technology companies for the long term through a buy-and-build model, permanent capital and real industry depth, not a quick exit.</p>
+            <Link to="/about/how-we-grow" className="link-arrow">See how we grow →</Link>
+          </section>
+
+          <section id="leadership" className="hub-section reveal">
+            <div className="hub-eyebrow">Our Leadership</div>
+            <p>Led by people who've spent careers inside energy, not observing it from outside.</p>
+            <Link to="/people-culture/leadership" className="link-arrow">Meet our leadership →</Link>
+          </section>
+
+          <section id="founders-note" className="hub-section reveal">
+            <div className="hub-eyebrow">Founder's Note</div>
+            <p>There's a fuller story behind why ScaleIQ exists, from the person who started it.</p>
+            <Link to="/about/founders-note" className="link-arrow">Read the founder's note →</Link>
+          </section>
+        </div>
+      </div>
+      <ContinueBand to="/about/what-we-do" label="Continue to What We Do" />
+    </>
   );
 }

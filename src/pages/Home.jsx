@@ -50,8 +50,8 @@ export default function Home() {
         <h1 className="hero-h hero-load-item" style={{ animationDelay: '100ms' }}>Growing the digital <em>backbone</em> of the energy industry.</h1>
         <p className="hero-sub hero-load-item" style={{ animationDelay: '200ms' }}>ScaleIQ backs energy-technology companies with capital and resources, and builds technology for the wider energy industry as a trusted partner.</p>
         <div className="hero-load-item" style={{ animationDelay: '300ms' }}>
-          <Link to="/portfolio/our-companies" className="btn-gold">See our portfolio</Link>
-          <a href="#how-we-grow" className="link-arrow">See how it works →</a>
+          <Link to="/portfolio/our-companies" className="btn-gold">Explore Portfolio</Link>
+          <Link to="/our-work/our-services" className="link-arrow">See our Work</Link>
         </div>
       </section>
 
@@ -61,10 +61,13 @@ export default function Home() {
       {/* WHAT IT MEANS TO BE A SCALEIQ COMPANY */}
       <section className="section wrap reveal">
         <div className="work-grid">
-          <div>
+          <div className="work-grid-sticky">
             <div className="label">How We Work</div>
             <h2 className="section-h">What it means to be a <em>ScaleIQ company</em></h2>
-            <Link to="/contact/portfolio-companies" className="btn-gold" style={{ marginTop: '0.5rem' }}>Become our portfolio company</Link>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.9rem', marginTop: '1.5rem' }}>
+              <Link to="/portfolio/impact-growth" className="link-arrow">See our Impact &amp; Growth →</Link>
+              <Link to="/contact/portfolio-companies" className="btn-gold">Become our portfolio company</Link>
+            </div>
           </div>
           <div>
             {workSteps.map((step, i) => (
@@ -131,7 +134,7 @@ export default function Home() {
         <div className="label">How We Grow</div>
         <h2 className="section-h">The <em>engine</em> behind every company we back.</h2>
         <div className="grow-band">
-          <p className="lead-text">ScaleIQ follows a buy-and-build model built specifically for energy technology: we back companies with strong products and give them permanent capital and the resources to grow further. Companies keep their name, their leadership, and their independence — what they gain is what they couldn't build alone.</p>
+          <p className="lead-text">ScaleIQ follows a buy-and-build model built specifically for energy technology: we back companies with strong products and services and give them permanent capital and the resources to grow further. Companies keep their name, their leadership, and their independence — what they gain is what they couldn't build alone.</p>
           <div className="stat-row">
             <CountUpStat value={715} suffix="+" label="Global energy experts" icon={UsersIcon} />
             <CountUpStat value={250} suffix="+" label="Years of cumulative energy tech & leadership experience" icon={ClockIcon} />
@@ -150,8 +153,9 @@ export default function Home() {
             <h3>Why Digital Transformation Fails to Deliver Expected Outcomes in Complex Operations</h3>
             <div className="byline">Rajeev Sonthalia, CEO</div>
           </div>
-          <span className="link-arrow">Read the piece →</span>
+          <span className="link-arrow">Read this blog →</span>
         </Link>
+        <Link to="/resources/case-studies" className="link-arrow" style={{ display: 'inline-block', marginTop: '1.25rem' }}>See our Case Studies →</Link>
       </section>
 
       {/* DRIVEN BY PEOPLE */}

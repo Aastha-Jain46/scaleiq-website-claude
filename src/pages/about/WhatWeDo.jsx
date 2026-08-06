@@ -1,16 +1,53 @@
-import ContentTemplate from '../../components/templates/ContentTemplate';
+import { Link } from 'react-router-dom';
+import useReveal from '../../hooks/useReveal';
+import PageHeader from '../../components/templates/PageHeader';
+import QuickLinksRail from '../../components/QuickLinksRail';
+import ContinueBand from '../../components/ContinueBand';
+import Testimonial from '../../components/Testimonial';
+
+const sections = [
+  { id: 'back', label: 'Companies We Back' },
+  { id: 'build-for', label: 'Companies We Build For' },
+  { id: 'standard', label: 'One Standard' },
+  { id: 'proof', label: 'Proof' },
+];
 
 export default function WhatWeDo() {
+  useReveal();
+
   return (
-    <ContentTemplate
-      eyebrow="About"
-      title="What We Do"
-      intro="We invest in energy-technology companies with strong products and loyal customers, giving them capital and the structure to scale."
-    >
-      <p>We also build. Our engineering practice delivers digital engineering, AI, and product development for the energy industry, from oil and gas companies to renewables and utilities — work that spans application development, staff augmentation, product engineering, and technical consulting.</p>
-      <p>For a founder, that means ScaleIQ can offer more than a term sheet. It means access to an engineering bench that already understands the technical and regulatory realities of energy, from day one of the partnership.</p>
-      <p>For a client, it means the team building your platform isn't guessing at energy workflows. It's the same team, and the same standard, we hold our own portfolio companies to.</p>
-      <p>Every company we work with, whether we've invested in it or we're building for it, keeps its identity and its customers. What changes is what it can reach next.</p>
-    </ContentTemplate>
+    <>
+      <PageHeader eyebrow="About" title="What We Do" />
+      <div className="hub-layout wrap">
+        <QuickLinksRail sections={sections} />
+        <div className="hub-sections">
+          <section id="back" className="hub-section reveal">
+            <div className="hub-eyebrow">For Companies We Back</div>
+            <p>Permanent capital, business development access, and a peer network, without giving up your name or independence.</p>
+            <Link to="/portfolio/our-companies" className="link-arrow">See our portfolio →</Link>
+          </section>
+
+          <section id="build-for" className="hub-section reveal">
+            <div className="hub-eyebrow">For Companies We Build For</div>
+            <p>Technology delivered through the companies we back, teams that already understand upstream, midstream, and downstream energy workflows.</p>
+            <Link to="/our-work/our-services" className="link-arrow">See our work →</Link>
+          </section>
+
+          <section id="standard" className="hub-section reveal">
+            <div className="hub-eyebrow">One Standard</div>
+            <p>Either way, the same standard applies. Real industry depth, not generalist guesswork learned on someone else's contract.</p>
+          </section>
+
+          <section id="proof" className="hub-section reveal">
+            <div className="hub-eyebrow">Proof</div>
+            <Testimonial
+              quote="ScaleIQ Oges helped bring structure and visibility to complex operational workflows that were earlier managed through fragmented processes. The engagement enabled more disciplined, data-driven decision-making across teams and locations."
+              attribution="VP Digital, National Energy Company"
+            />
+          </section>
+        </div>
+      </div>
+      <ContinueBand to="/about/how-we-grow" label="Continue to How We Grow" />
+    </>
   );
 }

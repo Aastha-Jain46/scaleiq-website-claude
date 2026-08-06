@@ -124,5 +124,54 @@ Unchanged. Static, no animation.
 
 ---
 
+## ABOUT SECTION (Who We Are / What We Do / How We Grow) — FINALIZED
+
+**Standing rule specific to these three pages, and to any future "identity/model" page (not company-specific pages like Our Companies):** Never name or describe Oges (or any specific portfolio company) on Who We Are, What We Do, or How We Grow. These pages describe the model, not a company. Oges only belongs on the Portfolio / Our Companies page, and — once more portfolio companies exist — no single company should be a recurring anchor across the site. This mirrors Halma's own real site exactly: their Who We Are and How We Grow pages never name a single one of their ~50 companies; only "Our Companies" does.
+
+**Structural pattern for all three pages, borrowed directly from Halma's real site (their "Who We Are" and "How We Grow" pages were checked directly, not assumed):** each page is a hub made of several short (2–4 sentence) subsections, not two or three long paragraphs. A sticky "quick links" side rail (collapsing to horizontal chips on mobile) lists that page's subsections and scrollspy-highlights whichever one is currently in view; clicking jumps to it. Every subsection ends in a plain, spoiler-free signpost line + link where it points to a fuller page elsewhere (e.g. Leadership, Founder's Note) — the teaser must never quote or preview the actual best material from the destination page, it should only describe that fuller content exists and give a reason to click. (Mistake already caught and fixed once: an earlier draft quoted the founder's best line directly in the Who We Are teaser, which both felt repetitive and reduced the incentive to click through to the real Founder's Note page — don't reintroduce that pattern anywhere.)
+
+Each page ends with a "Continue" band distinct from any in-page CTA, moving the reader to the next page in the sequence: Who We Are → What We Do → How We Grow → (conversion CTA). This keeps the three pages functioning as one built narrative arc instead of three disconnected pages.
+
+### Who We Are
+Subsections, in order:
+- **Our Purpose** — Headline: "Energy keeps the world running. We make sure its technology keeps up." Body: For decades, energy companies, especially smaller and mid-sized ones, have modernized with far less than other industries take for granted. Teams work in silos. The same digital problems get solved from scratch, again and again, by companies that could have shared the effort. ScaleIQ exists to close that gap.
+- **Our Model** — ScaleIQ backs energy-technology companies for the long term through a buy-and-build model, permanent capital and real industry depth, not a quick exit. → *See how we grow*
+- **Our Leadership** — Led by people who've spent careers inside energy, not observing it from outside. → *Meet our leadership*
+- **Founder's Note** — There's a fuller story behind why ScaleIQ exists, from the person who started it. → *Read the founder's note* (deliberately no quote/preview here — see the spoiler rule above)
+
+**Animation:** Fade-up per subsection on scroll. Quick-links rail highlight transitions smoothly (no snapping) as the active section changes.
+
+### What We Do
+- **For companies we back** — Permanent capital, business development access, and a peer network, without giving up your name or independence. → *See our portfolio*
+- **For companies we build for** — Technology delivered through the companies we back, teams that already understand upstream, midstream, and downstream energy workflows. → *See our work*
+- **Either way, the same standard applies.** Real industry depth, not generalist guesswork learned on someone else's contract. (This is the closing line tying the two functions together — no company-specific proof needed here, see the no-Oges rule above.)
+- **Proof:** *"ScaleIQ Oges helped bring structure and visibility to complex operational workflows that were earlier managed through fragmented processes. The engagement enabled more disciplined, data-driven decision-making across teams and locations."* — VP Digital, National Energy Company. (Note: this is a real client testimonial found on the live site, about Oges specifically — it's an exception to the "no Oges" rule because it's client-proof of the *delivery* function, not a description of Oges as a company; keep it, but do not add further Oges detail around it.)
+
+**Animation:** Fade-up per subsection. Testimonial gets a distinct, larger visual treatment (big italic serif type, centered, own quiet band), fading in with a slight scale-up as it enters view, not just another paragraph in the flow.
+
+### How We Grow
+- Growth model paragraph (buy-and-build) — unchanged from earlier draft.
+- **What we look for** — founder-led leadership, an established product with paying customers, ambition to grow further, not exit the industry.
+- **Five-principle grid** (Domain-Driven, Focused High-Impact AI, Outcomes Over Offerings, One Cohesive System, Deep Data Engineering — full wording already drafted earlier in this doc's homepage section is NOT it; use the fuller versions below) — styled as an interactive "+"-expandable tile grid (Materra-style, one of the approved reference patterns, not yet used anywhere else on the site): each tile shows only its title by default, expands on hover/click to reveal its full one-paragraph description.
+  1. Domain Driven — ScaleIQ and its portfolio companies engage deeply with oil & gas domain experts before proposing any solution. Constraints, decision logic, and risk on the ground shape every product decision, not abstract best practices imported from other industries.
+  2. Focused High-Impact AI — Every portfolio company prioritizes AI use cases tightly linked to real operational and commercial outcomes, not experiments that never leave a slide deck.
+  3. Outcomes Over Offerings — ScaleIQ companies are built to solve problems end-to-end, not to sell a fixed menu of services. What needs to work matters more than what's easiest to package.
+  4. One Cohesive System — Capabilities and domain expertise come together under a single standard across the group, so data stays consistent and architecture holds up group-wide, not just project by project.
+  5. Deep Data Engineering — Every ScaleIQ company works to connect fragmented data across upstream, midstream, and downstream systems, building the kind of trusted, governed data environment energy operations actually need.
+- **Why founders choose ScaleIQ** — short bullet list, not narrative, animates in as a staggered checklist (small gold check mark per line, fading in one after another):
+  - Retain your name, leadership, and independence
+  - Access permanent capital without losing control
+  - Tap into group-wide business development
+  - Join a network of peer companies solving similar problems
+  - Gain domain-specific engineering depth built for energy
+- Stat row — unchanged, still flagged VERIFY.
+- **Talk to our team** — Rajvardhan Singh, Corporate Development → *Start a conversation* (this is the page's real conversion CTA, not a "Continue" band, since it's the last stop in the About narrative arc).
+
+**Animation:** Fade-up per subsection. Five-principle tiles use hover/click expand (not scroll-reveal) — see interactive pattern above.
+
+**Layout note for Claude Code, all three pages:** build the sticky quick-links rail as one shared component (not three separate implementations), fed by each page's own list of subsection anchors, so it's consistent and only needs building once.
+
+---
+
 ## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
-Who We Are · What We Do · A Note From Our Founder · Leadership · Our Culture · Join Us · Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
+A Note From Our Founder (full page — separate from the Who We Are teaser above) · Leadership · Our Culture · Join Us · Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies

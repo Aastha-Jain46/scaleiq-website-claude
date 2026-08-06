@@ -36,7 +36,11 @@ Running log of work on this project, most recent session first. Maintained autom
 
 **Git**: first commit made and pushed this session.
 
-**Homepage: in progress, not yet finalized.** Several rounds of iteration with the user on content, animation, and layout are underway (new master content doc applied, then multiple rounds of visual/animation feedback). Not logging each round here — will write up a single clean summary once the homepage is actually approved, per the user's instruction not to clutter this log with in-progress iteration detail.
+---
+
+## 2026-08-06
+
+**Homepage: APPROVED, LOCKED, PUSHED.** Final layout, in order: Hero (staggered load-in, parallax removed after review) → Ask ScaleIQ (21-route keyword table) → What It Means to Be a ScaleIQ Company (sticky heading + CTAs, 4-item staggered reveal) → Impact (3 hover-fill cards) → Our Companies/Oges (full-bleed real image, oges.co linked) → How We Grow (2×2 interactive stat cards, real figures) → Latest from ScaleIQ (real blog post + Case Studies link) → Leadership & Culture (industry-experience strip) → Closing CTA. Fonts (PT Serif/DM Sans) and all animation confirmed working in a real browser. Content sourced from `ScaleIQ_Final_Website_Content.md`, superseding the docx for this page.
 
 Noted and acknowledged, not yet acted on: the docx's "in-house engineering practice" framing is confirmed wrong sitewide and will need correcting on every interior page still sourced from the docx, when we get to them.
 
