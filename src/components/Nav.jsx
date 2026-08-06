@@ -8,7 +8,6 @@ const menu = [
       { to: '/about/who-we-are', label: 'Who We Are' },
       { to: '/about/what-we-do', label: 'What We Do' },
       { to: '/about/how-we-grow', label: 'How We Grow' },
-      { to: '/about/founders-note', label: 'A Note From Our Founder' },
     ],
   },
   {
@@ -17,6 +16,7 @@ const menu = [
       { to: '/people-culture/leadership', label: 'Leadership' },
       { to: '/people-culture/our-culture', label: 'Our Culture' },
       { to: '/people-culture/join-us', label: 'Join Us' },
+      { to: '/about/founders-note', label: 'A Note From Our Founder' },
     ],
   },
   {

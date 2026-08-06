@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function CountUpStat({ value, suffix = '', label }) {
+export default function CountUpStat({ value, suffix = '', label, icon: Icon }) {
   const ref = useRef(null);
   const [display, setDisplay] = useState(0);
   const counted = useRef(false);
@@ -39,7 +39,8 @@ export default function CountUpStat({ value, suffix = '', label }) {
   }, [value]);
 
   return (
-    <div ref={ref}>
+    <div className="stat-card" ref={ref}>
+      {Icon && <span className="stat-icon"><Icon /></span>}
       <div className="stat-num">{display}{suffix}</div>
       <div className="stat-label">{label}</div>
     </div>

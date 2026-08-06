@@ -34,17 +34,11 @@ Running log of work on this project, most recent session first. Maintained autom
 
 **Still open** — see punch list below.
 
-**Git**: first commit made and pushed this session, once the homepage update pass below was verified.
+**Git**: first commit made and pushed this session.
 
----
+**Homepage: in progress, not yet finalized.** Several rounds of iteration with the user on content, animation, and layout are underway (new master content doc applied, then multiple rounds of visual/animation feedback). Not logging each round here — will write up a single clean summary once the homepage is actually approved, per the user's instruction not to clutter this log with in-progress iteration detail.
 
-### Homepage content + animation pass (same day, follow-up)
-
-- User pointed out real gaps in the first pass: no animation (site felt static), all interior pages using one flat layout when 2-3 richer layouts were wanted, and specifically that the current live site's blogs weren't found. Investigated further and found the blogs (7 real posts, at `/blogs/:slug`, not surfaced under the Resources/Blogs tab or `/insights` I'd checked before) plus richer case study data (category, sub-category, technologies used, real ROI figures) in the live site's JS bundle — corrected the record with the user rather than silently fixing.
-- User then supplied `ScaleIQ_Final_Website_Content.md` — new master content + animation spec for the homepage specifically, superseding the docx for this page. Rebuilt `Home.jsx` to match: new hero copy, section order changed (What it means → Impact → Our Companies now precedes How We Grow), two new sections ("Latest from ScaleIQ", "Driven by people who've lived inside this industry"), and the full animation spec — staggered hero load-in, scroll-reveal at 15% threshold (`useReveal.js` updated), staggered list reveals, contained parallax on the hero glow and Oges visual (`useParallax.js`, new), count-up stat animation (`CountUpStat.jsx`, now wired in and updated), custom hover states, and `prefers-reduced-motion` support throughout (`usePrefersReducedMotion.js`, new).
-- Expanded `AskScaleIQ.jsx`'s routing table to the new doc's exhaustive one-route-per-page table (21 entries).
-- Verified in-browser: content and section order confirmed correct via DOM/text extraction, no console/build errors, Ask box routing tested end-to-end. Note: full animation *playback* couldn't be visually confirmed in this session's automated browser pane (it wasn't actively compositing frames, a tool/environment limitation, not a code issue) — worth a manual look in a real browser tab.
-- Noted and acknowledged, not yet acted on: the docx's "in-house engineering practice" framing is confirmed wrong sitewide and will need correcting on every interior page still sourced from the docx, when we get to them.
+Noted and acknowledged, not yet acted on: the docx's "in-house engineering practice" framing is confirmed wrong sitewide and will need correcting on every interior page still sourced from the docx, when we get to them.
 
 ---
 

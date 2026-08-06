@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ListingTemplate from '../../components/templates/ListingTemplate';
+import ogesVisual from '../../assets/oges-visual.png';
 
 export default function OurCompanies() {
   return (
@@ -10,17 +11,20 @@ export default function OurCompanies() {
     >
       <div className="company-feature" style={{ marginBottom: '3rem' }}>
         <div>
-          <div className="company-tag">Oil &amp; Gas · Active since 2015</div>
+          <div className="company-tag">Oil &amp; Gas</div>
           <div className="company-name">Oges</div>
-          <p className="company-desc">Our first investment, Oges, has served the oil and gas industry since 2015, with active deployments at ONGC, Cairn, and OIL India, through OgesOne, WIPA, HVMS, and Udbhav.</p>
+          <p className="company-desc">Our first investment, Oges, builds software that keeps oil and gas operations running — trusted by public sector oil &amp; gas operators, drilling contractors, and service vendors across the industry, through OgesOne, WIPA, HVMS, and Udbhav.</p>
           <div className="company-products">
             <span className="prod-chip">OgesOne</span>
             <span className="prod-chip">WIPA</span>
             <span className="prod-chip">HVMS</span>
             <span className="prod-chip">Udbhav</span>
           </div>
+          <a href="https://oges.co" target="_blank" rel="noopener noreferrer" className="link-arrow">Visit oges.co ↗</a>
         </div>
-        <div className="company-visual">[NEEDS INPUT] Oges product photography / screenshot goes here</div>
+        <div className="company-visual">
+          <img src={ogesVisual} alt="Oges" />
+        </div>
       </div>
 
       <div style={{ maxWidth: 720 }}>
