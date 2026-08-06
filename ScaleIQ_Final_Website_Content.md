@@ -197,5 +197,53 @@ Headline: `The engine behind every company we *back*.` (reuse the homepage tease
 
 ---
 
+## PEOPLE & CULTURE (Leadership / Our Culture / Join Us) — FINALIZED
+
+**Group treated as one connected arc, same as About**: Leadership → Our Culture → Join Us. No "Continue to X" banners between them (tried on About, didn't work, dropped sitewide) — rely on the quick-links rail and hamburger nav for movement between pages instead.
+
+### Leadership
+
+Real photos already exist in the project at `src/assets/leadership/{rajeev,chitwan,amit,rajvardhan}.png` — use these, do not source or invent placeholders for these four.
+
+Short framing intro above the component: *"ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on."*
+
+**Component — spotlight circle, radial reveal (not left/right alternating — corrected decision, reasoning below):** one large central circle shows the current leader's photo (defaults to Rajeev Sonthalia, Founder & CEO). The other three leaders' circles are smaller and positioned radially around the central one, evenly spaced in an arc (not a left/right alternating sequence — with 3 secondary items, not 4, strict alternation produces an uneven 2-1 split; radial spacing has no such problem regardless of count, and it reuses the same orbital motif already planned for the How We Grow five-principle diagram, giving the site one consistent interactive signature instead of two unrelated effects). Reveal animation: the three secondary circles scale/fade in one at a time from their radial position, staggered (~150-200ms apart), on load or on scroll into view. Clicking a secondary circle morphs it into the central position (same shared-element morph as previously specced — will likely need Framer Motion), the previous central photo shrinks back out to its radial slot.
+
+**No bio paragraphs** — just name, title, and one short real credential line sourced from their actual public LinkedIn headline (not invented, not a summary):
+- **Rajeev Sonthalia** — Founder & CEO
+- **Chitwan Garg** — Chief Business Officer — *Former Country Manager, Digital & Integration at SLB*
+- **Amit Ranjan** — Chief Solutions Architect
+- **Rajvardhan Singh** — Corporate Development — *Former SLB Digital, Business Development*
+
+(Note: deliberately no city/country stated anywhere for any of the four — consistent with the standing rule to never state the India angle explicitly anywhere on the site. "SLB" carries the credibility without naming a place.)
+
+### Our Culture
+
+This page is allowed a deliberately warmer, more conversational tone than the rest of the site, everywhere else stays crisp and analytical for a CXO reader, this one page is for people evaluating whether they want to work here, and should feel human, not like an investment memo.
+
+**Headline:** The strength of a group, the speed of a small team.
+
+ScaleIQ works in an industry where mistakes are expensive and downtime is not an option. That shapes how we work more than any values poster could.
+
+- **Small, accountable teams.** Ownership stays close to the work, not passed up a chain.
+- **Depth over breadth.** We hire people who want to go deep into a hard problem, not skim across many easy ones.
+- **Movement across investing and engineering.** Our people aren't siloed into one side of what ScaleIQ does, that breadth keeps judgment sharp on both.
+
+*"Some of the best engineering talent in the world today isn't concentrated where people expect it to be. Part of what ScaleIQ is built to do is put that talent to work on problems that matter, for energy companies anywhere in the world."* — from the Founder's Note (different excerpt than the one used on Who We Are — deliberately, so nothing repeats).
+
+**Visual treatment, not just copy:** real candid team photography (once available) laid out as an organic scattered circle collage, overlapping, varied sizes, not a gridded headshot wall — reuses the circle motif from Leadership but loose and informal here instead of ordered. Photos get a gentle hover tilt. Warm-toned backgrounds using the site's existing off-white (`--off`), not new colors. If real quotes from actual team members become available, they're the single highest-value addition to this page, prioritize adding them over any further copy polish.
+
+### Join Us
+
+**Headline:** Work on problems that matter, wherever you are.
+
+ScaleIQ is a small team doing two demanding things at once, investing in energy-technology companies, and building the systems that run the energy industry. We look for people who already know energy, or want to.
+
+**Open roles:** `[NEEDS INPUT: current openings, or a standing "always hiring for X, Y" line]` — build the section structure now (ready to receive real listings), do not fabricate job postings.
+
+CTA: *Get in touch* → Contact Us
+
+---
+
 ## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
-A Note From Our Founder (full page — separate from the Who We Are teaser above) · Leadership · Our Culture · Join Us · Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
+A Note From Our Founder (full page — separate from the Who We Are teaser above) · Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies

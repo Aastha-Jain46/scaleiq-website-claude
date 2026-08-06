@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
 import QuickLinksRail from '../../components/QuickLinksRail';
-import ContinueBand from '../../components/ContinueBand';
 import Testimonial from '../../components/Testimonial';
 
 const sections = [
@@ -47,7 +46,6 @@ export default function WhatWeDo() {
           </section>
         </div>
       </div>
-      <ContinueBand to="/about/how-we-grow" label="Continue to How We Grow" />
     </>
   );
 }

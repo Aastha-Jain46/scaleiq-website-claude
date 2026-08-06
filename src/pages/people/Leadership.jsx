@@ -1,50 +1,28 @@
-import ContentTemplate from '../../components/templates/ContentTemplate';
+import useReveal from '../../hooks/useReveal';
+import PageHeader from '../../components/templates/PageHeader';
+import LeadershipSpotlight from '../../components/LeadershipSpotlight';
+import rajeevPhoto from '../../assets/leadership/rajeev.png';
+import chitwanPhoto from '../../assets/leadership/chitwan.png';
+import amitPhoto from '../../assets/leadership/amit.png';
+import rajvardhanPhoto from '../../assets/leadership/rajvardhan.png';
 
 const leaders = [
-  { name: 'Rajeev Sonthalia', role: 'Founder & Chief Executive Officer' },
-  { name: 'Chitwan Garg', role: 'Chief Business Officer' },
-  { name: 'Amit Ranjan', role: 'Chief Solutions Architect' },
-  { name: 'Rajvardhan Singh', role: 'Head, Corporate Development & Growth' },
-];
-
-const coreTeam = [
-  { name: 'Satya Prakash Gupta', role: 'Head – Technical Architecture & Engineering' },
-  { name: 'Sanskar Jain', role: 'Technical Operations & Delivery Manager' },
-  { name: 'Amit Bansal', role: 'Senior Software Engineer' },
-  { name: 'Anjani Kumar', role: 'Quality Assurance Engineer' },
-  { name: 'Bhaswati Deka', role: 'Talent & HR Manager' },
-  { name: 'Aastha Jain', role: 'Associate – Partnerships & Collaborations' },
+  { id: 'rajeev', name: 'Rajeev Sonthalia', title: 'Founder & CEO', credential: null, photo: rajeevPhoto },
+  { id: 'chitwan', name: 'Chitwan Garg', title: 'Chief Business Officer', credential: 'Former Country Manager, Digital & Integration at SLB', photo: chitwanPhoto },
+  { id: 'amit', name: 'Amit Ranjan', title: 'Chief Solutions Architect', credential: null, photo: amitPhoto },
+  { id: 'rajvardhan', name: 'Rajvardhan Singh', title: 'Corporate Development', credential: 'Former SLB Digital, Business Development', photo: rajvardhanPhoto },
 ];
 
 export default function Leadership() {
+  useReveal();
+
   return (
-    <ContentTemplate
-      eyebrow="People & Culture"
-      title="Leadership"
-      intro="ScaleIQ is led by a team with deep roots in energy technology, engineering delivery, and corporate growth."
-    >
-      <p>Between them, our leadership has spent years inside the industry we serve, not observing it from a distance, which shapes how we evaluate every investment and every engagement we take on.</p>
-
-      <div className="leader-grid">
-        {leaders.map((l) => (
-          <div className="leader-card" key={l.name}>
-            <div className="leader-name">{l.name}</div>
-            <div className="leader-role">{l.role}</div>
-          </div>
-        ))}
+    <>
+      <PageHeader eyebrow="People & Culture" title="Leadership" />
+      <div className="content-body wrap">
+        <p className="reveal">ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on.</p>
       </div>
-
-      <h2 className="section-h" style={{ fontSize: '1.2rem', marginTop: '2.5rem' }}>Our Core Team</h2>
-      <div className="leader-grid">
-        {coreTeam.map((l) => (
-          <div className="leader-card" key={l.name}>
-            <div className="leader-name">{l.name}</div>
-            <div className="leader-role">{l.role}</div>
-          </div>
-        ))}
-      </div>
-
-      <p style={{ marginTop: '1.75rem' }}>Each portfolio company retains its own leadership and its own decision-making. Our leadership team's role is to support that growth, not run it from a distance.</p>
-    </ContentTemplate>
+      <LeadershipSpotlight leaders={leaders} />
+    </>
   );
 }

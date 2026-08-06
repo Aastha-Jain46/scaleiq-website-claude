@@ -1,14 +1,22 @@
-import ContentTemplate from '../../components/templates/ContentTemplate';
+import { Link } from 'react-router-dom';
+import useReveal from '../../hooks/useReveal';
+import PageHeader from '../../components/templates/PageHeader';
 
 export default function JoinUs() {
+  useReveal();
+
   return (
-    <ContentTemplate eyebrow="People & Culture" title="Join Us">
-      <p>ScaleIQ is a small team doing two demanding things at once: investing in energy-technology companies, and building the systems that run the energy industry.</p>
-      <p>If you join us, you won't be boxed into one lane. Our engineers work on live client delivery and get pulled into portfolio company reviews. Our investment team works alongside engineering leads, not around them.</p>
-      <p>We look for people who already know energy, or want to. The industry has a steep learning curve, and we'd rather invest in that learning early than hire around it.</p>
-      <div className="content-note">
-        <strong>[NEEDS INPUT]</strong> Current open roles (or a standing "always hiring for X, Y" line) and an application link — kept short until that's confirmed rather than inventing openings.
+    <>
+      <PageHeader eyebrow="People & Culture" title="Work on problems that matter, wherever you are." />
+      <div className="content-body wrap">
+        <p className="reveal">ScaleIQ is a small team doing two demanding things at once, investing in energy-technology companies, and building the systems that run the energy industry. We look for people who already know energy, or want to.</p>
+
+        <div className="join-roles reveal">
+          <p>[NEEDS INPUT: current openings, or a standing "always hiring for X, Y" line]</p>
+        </div>
+
+        <Link to="/contact" className="btn-gold reveal">Get in touch</Link>
       </div>
-    </ContentTemplate>
+    </>
   );
 }

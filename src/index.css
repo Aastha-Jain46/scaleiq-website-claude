@@ -373,13 +373,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 .testimonial-attribution { font-size: 0.85rem; color: var(--ink-muted); }
 
-/* Continue band */
-.continue-band { border-top: 1px solid var(--line); padding: 2.75rem 0; text-align: center; }
-.continue-link { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--heading); font-weight: 700; font-size: 1.1rem; color: var(--ink); transition: color 0.25s ease, gap 0.25s ease; }
-.continue-link:hover { color: var(--gold); gap: 0.9rem; }
-.continue-arrow { color: var(--gold); font-size: 1.2rem; transition: transform 0.25s ease; }
-.continue-link:hover .continue-arrow { transform: translateX(4px); }
-
 .leader-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem; margin-top: 1rem; }
 .leader-card { border: 1px solid var(--line); border-radius: 8px; padding: 1.5rem 1.75rem; }
 .leader-name { font-family: var(--heading); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.25rem; }
@@ -465,6 +458,51 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 .reveal.in { opacity: 1; transform: translateY(0) scale(1); }
 
+/* LEADERSHIP — spotlight circle, radial reveal + morph-on-click */
+.spotlight { position: relative; width: 460px; height: 460px; margin: 3rem auto 4.5rem; }
+.spotlight-slot { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+.spotlight-circle {
+  position: absolute; border-radius: 50%; overflow: hidden; cursor: pointer; padding: 0; background: var(--off);
+  border: 3px solid var(--line); top: -42px; left: -42px; width: 84px; height: 84px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1), height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.8s cubic-bezier(0.16, 1, 0.3, 1), left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.spotlight-circle.active { width: 190px; height: 190px; top: -95px; left: -95px; border-color: var(--gold); cursor: default; box-shadow: 0 24px 56px rgba(26,24,21,0.16); }
+.spotlight-circle:not(.active):hover { border-color: var(--gold); }
+.spotlight-circle:not(.active):active { border-color: var(--gold); background: var(--gold-soft); }
+.spotlight-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.spotlight-pre-enter { opacity: 0; width: 20px !important; height: 20px !important; top: -10px !important; left: -10px !important; }
+.spotlight-info { position: absolute; top: 108px; left: 50%; transform: translateX(-50%); width: 260px; text-align: center; }
+.spotlight-name { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; color: var(--ink); }
+.spotlight-title { font-size: 0.88rem; color: var(--gold); margin-top: 0.2rem; }
+.spotlight-credential { font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.4rem; font-style: italic; }
+.spotlight-name-tag { position: absolute; top: 48px; left: 50%; transform: translateX(-50%); font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); white-space: nowrap; }
+@media (max-width: 560px) {
+  .spotlight { width: 320px; height: 320px; }
+  .spotlight-info { width: 200px; top: 92px; }
+}
+
+/* OUR CULTURE — warmer treatment: organic scattered photo collage */
+.culture-lead { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; color: var(--ink); line-height: 1.6; max-width: 620px; }
+.culture-points { display: flex; flex-direction: column; gap: 1.1rem; margin: 1.75rem 0; max-width: 620px; }
+.culture-point-title { font-family: var(--heading); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.25rem; }
+.culture-point p { margin: 0; }
+.collage { position: relative; height: 340px; max-width: 640px; margin: 2.5rem auto; }
+.collage-photo {
+  position: absolute; border-radius: 50%; overflow: hidden; border: 4px solid var(--paper);
+  box-shadow: 0 16px 36px rgba(26,24,21,0.1); background: var(--gold-soft);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  font-size: 0.6rem; color: var(--ink-muted); padding: 0.5rem; line-height: 1.3;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.collage-photo:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 5; }
+@media (max-width: 700px) { .collage { height: 460px; } }
+
+/* JOIN US */
+.join-roles { border: 1px dashed var(--gold); border-radius: 10px; padding: 2rem; text-align: center; margin: 2rem 0; background: var(--off); }
+.join-roles p { color: var(--ink-muted); font-size: 0.9rem; margin: 0; }
+
 /* About-section-only variety variants — alternate left/right instead of homepage's fade-up */
 .reveal-left { opacity: 0; transform: translateX(-52px); transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal-left.in { opacity: 1; transform: translateX(0); }
@@ -473,7 +511,7 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right, .hero-load-item, .company-feature, .btn-gold, .link-arrow, .latest-card, .ask-box,
-  .continue-link, .continue-arrow, .principle-strip-icon, .orbital-arm, .orbital-node {
+  .principle-strip-icon, .orbital-arm, .orbital-node {
     transition: none !important; animation: none !important;
   }
 }
