@@ -43,13 +43,15 @@ export default function HowWeGrow() {
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">
-          <section id="model" className="hub-section reveal-left">
+          <section id="model" className="hub-section reveal-left card-section">
             <div className="hub-eyebrow">Growth Model</div>
+            <h2>A buy-and-build model, built for <em>one industry</em>.</h2>
             <p>ScaleIQ follows a buy-and-build model built specifically for energy technology: we back companies with strong products and services and give them permanent capital and the resources to grow further. Companies keep their name, their leadership, and their independence — what they gain is what they couldn't build alone.</p>
           </section>
 
           <section id="look-for" className="hub-section reveal-right">
             <div className="hub-eyebrow">What We Look For</div>
+            <h2>Not every company is the right <em>fit</em>.</h2>
             <ul className="form-list">
               <li>Founder-led leadership</li>
               <li>An established product with paying customers</li>
@@ -59,16 +61,19 @@ export default function HowWeGrow() {
 
           <section id="principles" className="hub-section reveal-left">
             <div className="hub-eyebrow">Our Principles</div>
+            <h2>Five principles behind every <em>investment</em>.</h2>
             <PrincipleStrips principles={principles} activeIndex={activePrinciple} onToggle={setActivePrinciple} />
           </section>
 
           <section id="why-founders" className="hub-section reveal-right">
             <div className="hub-eyebrow">Why Founders Choose ScaleIQ</div>
+            <h2>What you gain, in <em>plain</em> terms.</h2>
             <StaggeredChecklist items={whyFounders} />
           </section>
 
           <section id="numbers" className="hub-section reveal-left">
             <div className="hub-eyebrow">The Numbers</div>
+            <h2>The scale behind the <em>model</em>.</h2>
             <div className="stat-row">
               <CountUpStat value={715} suffix="+" label="Global energy experts" icon={UsersIcon} />
               <CountUpStat value={250} suffix="+" label="Years of cumulative energy tech & leadership experience" icon={ClockIcon} />

@@ -28,21 +28,22 @@ export default function WhatWeDo() {
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">
-          <section id="back" className={`hub-section reveal-left${emphasis === 'back' ? ' emphasized' : ' de-emphasized'}`}>
+          <section id="back" className={`hub-section reveal-left card-section${emphasis === 'back' ? ' emphasized' : ' de-emphasized'}`}>
             <div className="hub-eyebrow">For Companies We Back</div>
+            <h2>Capital, without losing what you <em>built</em>.</h2>
             <p>If you've already built something real in energy technology, an established product, paying customers, a team that knows the problem cold, ScaleIQ gives you permanent capital and a wider network to grow further. You're not choosing between raising outside money and giving up control, or growing slowly on your own cash flow while competitors with deeper pockets move faster. That choice disappears.</p>
-            <Link to="/portfolio/our-companies" className="link-arrow">See our portfolio →</Link>
+            <Link to="/portfolio/our-companies" className="btn-gold">See our portfolio</Link>
           </section>
 
-          <section id="build-for" className={`hub-section reveal-right${emphasis === 'build-for' ? ' emphasized' : ' de-emphasized'}`}>
+          <section id="build-for" className={`hub-section reveal-right card-section${emphasis === 'build-for' ? ' emphasized' : ' de-emphasized'}`}>
             <div className="hub-eyebrow">For Companies We Build For</div>
+            <h2>Technology that already speaks your <em>language</em>.</h2>
             <p>If you're running an energy operation, an oil &amp; gas company, a GCC, an energy major, a renewables or utilities business, and you need technology that actually understands how your operations work, ScaleIQ delivers it through the companies we back. Teams that already live inside upstream, midstream, and downstream workflows, not a vendor learning your industry's constraints on your contract, on your timeline, at your expense.</p>
-            <Link to="/our-work/our-services" className="link-arrow">See our work →</Link>
+            <Link to="/our-work/our-services" className="btn-gold">See our work</Link>
           </section>
 
           <section id="standard" className="hub-section reveal-left">
-            <div className="hub-eyebrow">One Standard</div>
-            <p>Either way, the same standard applies. Real industry depth, not generalist guesswork learned on someone else's contract.</p>
+            <p className="pullout-line">Either way, the same standard applies. Real industry depth, not generalist guesswork learned on someone else's contract.</p>
           </section>
 
           <section id="proof" className="hub-section reveal-right">

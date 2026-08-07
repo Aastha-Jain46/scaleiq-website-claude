@@ -1,6 +1,6 @@
 // Full-width stacked strips — one row per principle, never a multi-column
 // grid (5 doesn't divide evenly). Teaser is always visible; "+" expands to
-// reveal the full paragraph. Synced with PrincipleOrbital via activeIndex.
+// reveal the full paragraph.
 export default function PrincipleStrips({ principles, activeIndex, onToggle }) {
   return (
     <div className="principle-strips">

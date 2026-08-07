@@ -26,26 +26,27 @@ export default function OurCulture() {
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title="Our Culture" />
+      <PageHeader eyebrow="People & Culture" title={<>The strength of a group, the speed of a <em>small team</em>.</>} />
       <div className="content-body wrap">
-        <p className="culture-lead reveal">The strength of a group, the speed of a small team.</p>
-        <p className="reveal">ScaleIQ works in an industry where mistakes are expensive and downtime is not an option. That shapes how we work more than any values poster could.</p>
+        <p className="reveal-left">ScaleIQ works in an industry where mistakes are expensive and downtime is not an option. That shapes how we work more than any values poster could.</p>
 
         <div className="culture-points">
           {points.map((p, i) => (
-            <div className="culture-point reveal" style={{ transitionDelay: `${i * 130}ms` }} key={p.title}>
+            <div className={`culture-point ${i % 2 === 0 ? 'reveal-left' : 'reveal-right'}`} style={{ transitionDelay: `${i * 100}ms` }} key={p.title}>
               <div className="culture-point-title">{p.title}</div>
               <p>{p.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="culture-photo-row reveal">
+        <h2 className="hub-section-title reveal-right">Life at <em>ScaleIQ</em></h2>
+        <div className="culture-photo-row">
           {photos.map((photo, i) => (
             <button
               type="button"
               key={photo.caption}
-              className={`culture-photo${activePhoto === i ? ' active' : ''}`}
+              className={`culture-photo reveal${activePhoto === i ? ' active' : ''}`}
+              style={{ transitionDelay: `${i * 90}ms` }}
               onClick={() => setActivePhoto((cur) => (cur === i ? null : i))}
               aria-label={photo.caption}
             >

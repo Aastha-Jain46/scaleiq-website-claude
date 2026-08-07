@@ -151,20 +151,36 @@ Subsections, in order:
 
 **Animation:** Fade-up per subsection on scroll. Quick-links rail highlight transitions smoothly (no snapping) as the active section changes.
 
-### What We Do
-Headline: `We help energy companies do more than survive. We help them *lead*.` (emphasis word: "lead")
+### What We Do — CORRECTED: bigger heading treatment, clearer filter mechanic
 
-- **For companies we back** — If you've already built something real in energy technology, an established product, paying customers, a team that knows the problem cold, ScaleIQ gives you permanent capital and a wider network to grow further. You're not choosing between raising outside money and giving up control, or growing slowly on your own cash flow while competitors with deeper pockets move faster. That choice disappears. → *See our portfolio*
-- **For companies we build for** — If you're running an energy operation, an oil & gas company, a GCC, an energy major, a renewables or utilities business, and you need technology that actually understands how your operations work, ScaleIQ delivers it through the companies we back. Teams that already live inside upstream, midstream, and downstream workflows, not a vendor learning your industry's constraints on your contract, on your timeline, at your expense. → *See our work*
-- **Either way, the same standard applies.** Real industry depth, not generalist guesswork learned on someone else's contract. (Closing line tying the two functions together — no company-specific proof needed here, see the no-Oges rule above.)
-- **Proof:** *"ScaleIQ Oges helped bring structure and visibility to complex operational workflows that were earlier managed through fragmented processes. The engagement enabled more disciplined, data-driven decision-making across teams and locations."* — VP Digital, National Energy Company. (Real client testimonial found on the live site — exception to the no-Oges rule since it's client-proof of the delivery function, not a company description; keep it, don't add further Oges detail around it.)
+**Headline, must render LARGE, exactly matching the homepage's h1 treatment (same font-size scale as the homepage hero, not the smaller page-title size used elsewhere)**: `We help energy companies do more than survive. We help them *lead*.` (emphasis word "lead" in gold italic, bold, same as every homepage emphasis word). This was too small/plain in the last build — it must look and feel like the homepage's headline, not a secondary page title.
 
-**Animation:** Fade-up per subsection. Testimonial gets a distinct, larger visual treatment (big italic serif type, centered, own quiet band), fading in with a slight scale-up as it enters view.
+**Filter mechanic, corrected to be clearer** (this replaces the vague toggle from before): two filter tabs, "For Portfolio Companies" and "For Clients." Selecting one shows that set of points, selecting the other swaps to its set — this is a real filter, not just an emphasis toggle. Below both filtered sets, one section stays visible regardless of which filter is selected, the point that's true either way.
 
-### How We Grow
-Headline: `The engine behind every company we *back*.` (reuse the homepage teaser headline as the full-page headline too, for consistency — emphasis word: "back")
+**"For Portfolio Companies" filter shows:**
+- Permanent capital, not a five-year exit clock.
+- Keep your name, your leadership, and your independence.
+- Access to group-wide business development and a network of peer companies.
+→ *See our portfolio*
 
-- Growth model paragraph (buy-and-build) — unchanged from earlier draft.
+**"For Clients" filter shows:**
+- Delivered by teams that already understand upstream, midstream, and downstream workflows.
+- Held to the same standard ScaleIQ holds its own portfolio companies to.
+- One relationship, not a fragmented vendor arrangement.
+→ *See our work*
+
+**Always visible below, regardless of filter selection ("Either way"):** Real industry depth, not generalist guesswork learned on someone else's contract.
+
+**Proof (stays below, unaffected by the filter):** *"ScaleIQ Oges helped bring structure and visibility to complex operational workflows that were earlier managed through fragmented processes. The engagement enabled more disciplined, data-driven decision-making across teams and locations."* — VP Digital, National Energy Company.
+
+**Animation:** filter switch animates as a smooth crossfade/slide between the two point-sets, not an instant swap. Testimonial gets a distinct, larger visual treatment (big italic serif type, centered, own quiet band), fading in with a slight scale-up as it enters view.
+
+### How We Grow — CORRECTED: bigger heading, stronger content
+
+**Headline, must render LARGE, exactly matching the homepage h1 scale (same correction as What We Do above — this was too small/quiet in the last build):** `The engine behind every company we *back*.` (emphasis word "back" in gold italic, bold).
+
+**Growth model paragraph — strengthened, don't use the shorter earlier version:** ScaleIQ follows a buy-and-build model built specifically for energy technology, we back companies with strong products and give them permanent capital and the resources to grow further. This isn't opportunistic dealmaking. It's a deliberate, repeatable model: find founder-led companies solving real problems in energy, back them for the long term rather than toward a five-year exit, and let each new company strengthen the network the next one joins. Companies keep their name, their leadership, and their independence throughout, what they gain is what they couldn't build alone.
+
 - **What we look for** — founder-led leadership, an established product with paying customers, ambition to grow further, not exit the industry.
 - **Five principles — THIRD AND FINAL CORRECTION: the orbital diagram is CUT, do not rebuild it.** It was attempted twice and failed both times (most recently: the central placeholder text overlapped illegibly with a principle label, and the connecting lines rendered as a chaotic radiating star instead of a clean orbit). Stop iterating on it — simplicity that renders correctly beats ambition that doesn't. Final version, strips only, no diagram:
   1. **Layout: full-width stacked strips, not a grid, and no circular graphic above them.** Five rows, each spanning the full content width, stacked vertically, one per principle. Never a multi-column card grid for this content — 5 items in a 2-column grid always produces an uneven last row.
@@ -201,17 +217,17 @@ Headline: `The engine behind every company we *back*.` (reuse the homepage tease
 
 **Group treated as one connected arc, same as About**: Leadership → Our Culture → Join Us. No "Continue to X" banners between them (tried on About, didn't work, dropped sitewide) — rely on the quick-links rail and hamburger nav for movement between pages instead.
 
-### Leadership — VERIFIED WORKING, needs more body content, not a mechanic rebuild
+### Leadership — FOURTH AND FINAL CORRECTION: the spotlight-circle/morph component is CUT, replace with the real site's actual simple pattern
 
-Real photos already exist in the project at `src/assets/leadership/{rajeev,chitwan,amit,rajvardhan}.png` — confirmed in place, use these.
+Checked scaleiqglobal.com/about/leadership directly. It's a plain, clean 4-column photo grid, no morphing, no spotlight interaction, and that's genuinely what's wanted here — stop building interactive cleverness onto this page, it doesn't need it.
 
-Short framing intro above the component: *"ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on."*
+**Layout:** four columns (photo, name, title), even width, aligned grid, same treatment for all four, no one photo larger or centered. Each card: photo on top, name in bold PT Serif below it, a thin horizontal divider line, then the title in small-caps letter-spaced grey text underneath. Real photos already exist at `src/assets/leadership/{rajeev,chitwan,amit,rajvardhan}.png` — use these.
 
-**Component — spotlight circle, radial reveal:** one large central circle shows the current leader's photo (defaults to Rajeev Sonthalia, Founder & CEO), three smaller circles positioned radially around it. **This mechanic was checked directly in a real browser and confirmed working correctly** — clicking a circle morphs it to center and the correct name/title/credential line displays. Do not rebuild this, it's fine as-is. (Note: the "shared orbital motif with How We Grow" reasoning is no longer relevant — How We Grow's orbital diagram was cut entirely after failing twice; Leadership's own radial mechanic is independent and stays exactly as built.)
+**Animation:** staggered fade-up reveal on scroll, one column after another (this is what the real site does — confirmed directly), not simultaneous, not a click-to-morph interaction. A subtle hover lift on each card is fine for polish, nothing more elaborate than that.
 
-**The actual remaining problem: the page has nothing on it besides the intro line and the component, which reads as empty.** Fix with two additions:
-1. All four circles show name + title visible at rest, not just the currently-centered one — right now the three non-center circles show only a bare name with no title, fix that.
-2. Add a closing section below the component, real content, not filler, adapted from Constellation Software's actual three-pillar philosophy (found directly on csisoftware.com, genuinely strong material):
+Short framing intro above the grid stays: *"ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on."*
+
+Below the grid, add a real closing section (not filler), adapted from Constellation Software's actual three-pillar philosophy (found directly on csisoftware.com, genuinely strong material):
 
 **Our Approach to Leadership**
 - **Autonomous Leadership** — Every company we back keeps its own leadership team, empowered to make decisions closest to the market they serve, not managed from a distance.
@@ -278,7 +294,7 @@ This isn't a project to grow and exit. It's the work worth spending the next cha
 
 — Rajeev Sonthalia, Founder & CEO"
 
-**Layout:** full-bleed, generous margins. The closing line ("This isn't a project to grow and exit...") gets a large pull-quote treatment, fading in with visual weight as it scrolls into view — that's the emotional peak of the letter. Rajeev's existing photo (`src/assets/leadership/rajeev.png`) sits beside the signature line at the bottom, not the top — the words should carry the page, not the photo. No forced interactivity on this page, a letter doesn't need a gimmick, keep it calm.
+**Layout — CORRECTED, add a closing CTA, page felt like it just stopped before:** full-bleed, generous margins. The closing line ("This isn't a project to grow and exit...") gets a large pull-quote treatment, fading in with visual weight as it scrolls into view — that's the emotional peak of the letter. Rajeev's existing photo (`src/assets/leadership/rajeev.png`) sits beside the signature line at the bottom, not the top. After the signature, add a real closing CTA band (this was missing before): *"Building something in energy technology yourself?"* → *Talk to us about joining ScaleIQ* (same destination as the homepage's closing CTA). This gives the letter a real ending that moves the reader forward instead of just trailing off. Still no forced mid-page interactivity, the letter itself stays calm, the CTA only appears after it's finished.
 
 ## SITEWIDE FINAL POLISH RULES (apply to all 7 pages above: Who We Are, What We Do, How We Grow, Founder's Note, Leadership, Our Culture, Join Us)
 
@@ -291,6 +307,9 @@ This isn't a project to grow and exit. It's the work worth spending the next cha
   - Founder's Note: deliberately no added interactivity.
 - **Content length**: every page needs real, substantial paragraphs — this was corrected once already on About and must not regress. Never let a section be just a heading and a link.
 - **Theme consistency**: fonts, colors, and spacing on all 7 pages inherit directly from the homepage's design tokens (PT Serif headlines with gold-italic emphasis words, DM Sans body, the established gold/ink/off-white palette) — no page-specific styling drift.
+- **Heading SIZE, not just font — this was a real problem across the whole About/People & Culture build and must be fixed everywhere, not page by page:** every main page headline (the sentence-style ones with a gold-italic emphasis word, e.g. "The engine behind every company we *back*") must render at the SAME large size as the homepage's h1 hero headline. Smaller "page title" or "section label" text should only be used for the small gold all-caps labels (like "GROWTH MODEL," "OUR PRINCIPLES"), never for the actual headline sentence itself. If a headline currently looks smaller/quieter than the homepage hero, that's the bug to fix.
+- **Overall feel must be an animated, dynamic website, not a formatted document.** Every page needs real motion: staggered fade-ups, hover states with actual transitions (not instant color swaps), and at least one genuinely interactive element per page (filters, toggles, the leadership grid's staggered reveal, expandable strips). A page with correct content but no motion should be treated as unfinished, not done.
+- **CTAs wherever a natural exit point exists** — don't let a page just end with a paragraph, close on a link or action.
 
 ## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
 Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
