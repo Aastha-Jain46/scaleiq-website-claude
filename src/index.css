@@ -325,15 +325,27 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .hub-section p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1rem; }
 .hub-section p:last-of-type { margin-bottom: 0; }
 .hub-section .link-arrow { display: inline-block; margin-top: 0.5rem; }
-.hub-section { transition: opacity 0.4s ease; }
-.hub-section.de-emphasized { opacity: 0.5; }
-.hub-section.emphasized { opacity: 1; }
 .hub-section.card-section, .card-section {
   background: var(--off); border-top: 3px solid var(--gold) !important; border-radius: 10px; padding: 2.25rem 2.5rem !important;
   transition: opacity 0.4s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 .card-section:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(26,24,21,0.08); }
 .card-section h2 { font-family: var(--heading); font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 1.75rem); margin-bottom: 1.25rem; }
+
+/* WHAT WE DO — comparison cards, deliberately different visual language from card-section */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.compare-grid:has(.filtered-hidden) { grid-template-columns: 1fr; }
+.compare-card {
+  position: relative; border: 1px solid var(--line); border-radius: 12px; padding: 2rem;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+.compare-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gold); }
+.compare-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 20px 44px rgba(26,24,21,0.1); }
+.compare-card h3 { font-family: var(--heading); font-weight: 700; font-size: 1.25rem; margin-bottom: 0.9rem; line-height: 1.3; }
+.compare-card p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1.5rem; }
+.filtered-hidden { display: none; }
+@media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
 .pullout-line {
   font-family: var(--heading); font-style: italic; font-weight: 700; font-size: 1.25rem; color: var(--ink);
   line-height: 1.5; text-align: center; max-width: 560px; margin: 0 auto !important;
@@ -413,20 +425,13 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .leader-name { font-family: var(--heading); font-weight: 700; font-size: 1.02rem; margin-bottom: 0.3rem; }
 .leader-role { font-size: 0.82rem; color: var(--gold); line-height: 1.35; }
 
-.core-team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin: 2rem 0; }
-.core-team-card {
-  border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; display: flex; align-items: center; gap: 0.9rem;
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-.core-team-card:hover { border-color: var(--gold); transform: translateX(4px); }
-.core-team-avatar {
-  width: 46px; height: 46px; border-radius: 50%; background: var(--gold-soft); color: var(--gold);
-  display: flex; align-items: center; justify-content: center; font-family: var(--heading); font-weight: 700;
-  font-size: 0.95rem; flex-shrink: 0;
-}
-.core-team-name { font-family: var(--heading); font-weight: 700; font-size: 0.92rem; }
-.core-team-role { font-size: 0.78rem; color: var(--ink-muted); margin-top: 0.15rem; }
-@media (max-width: 900px) { .leader-grid { grid-template-columns: repeat(2, 1fr); } .core-team-grid { grid-template-columns: 1fr; } }
+/* Larger variant — Leadership page specifically asked for bigger cards */
+.leader-card-lg { padding: 2.5rem 1.75rem; }
+.leader-card-lg img { width: 128px; height: 128px; border-width: 3px; margin-bottom: 1.5rem; }
+.leader-card-lg .leader-name { font-size: 1.15rem; }
+.leader-card-lg .leader-role { font-size: 0.88rem; }
+.leader-card-lg:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 28px 56px rgba(26,24,21,0.14); }
+@media (max-width: 900px) { .leader-grid { grid-template-columns: repeat(2, 1fr); } }
 
 .numbered-list { max-width: 720px; }
 .numbered-item { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
@@ -537,29 +542,25 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
   .spotlight-info { width: 200px; top: 92px; }
 }
 
-/* OUR CULTURE — warmth from tone/photography, layout stays as disciplined as the rest of the site */
-.culture-lead { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; color: var(--ink); line-height: 1.6; max-width: 620px; }
-.culture-points { display: flex; flex-direction: column; gap: 1.1rem; margin: 1.75rem 0; max-width: 620px; }
-.culture-point-title { font-family: var(--heading); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.25rem; }
-.culture-point p { margin: 0; }
+/* OUR CULTURE */
+.culture-steps { margin: 2rem 0; }
 
-/* Evenly-spaced, aligned photo row — same sizing/alignment discipline as the Leadership circles */
-.culture-photo-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem; margin: 2.5rem 0; padding: 0; }
-.culture-photo {
-  position: relative; width: 130px; height: 130px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
-  border: 3px solid var(--paper); box-shadow: 0 10px 24px rgba(26,24,21,0.09); background: var(--off);
-  padding: 0; cursor: pointer; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+/* Moving photo carousel — captions always visible below, not hover-only */
+.culture-carousel { overflow: hidden; margin: 2rem 0 2.5rem; position: relative; }
+.culture-carousel::before, .culture-carousel::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 70px; z-index: 2; pointer-events: none;
 }
-.culture-photo:hover, .culture-photo.active { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(26,24,21,0.16); }
-.culture-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-.culture-photo:hover img { transform: scale(1.08); }
-.culture-photo-caption {
-  position: absolute; inset: 0; background: rgba(26,24,21,0.74); color: white; display: flex;
-  align-items: center; justify-content: center; text-align: center; font-size: 0.72rem; font-weight: 600;
-  padding: 0.9rem; line-height: 1.3; opacity: 0; transition: opacity 0.3s ease;
-}
-.culture-photo:hover .culture-photo-caption, .culture-photo.active .culture-photo-caption { opacity: 1; }
-@media (max-width: 560px) { .culture-photo { width: 104px; height: 104px; } }
+.culture-carousel::before { left: 0; background: linear-gradient(to right, var(--paper), transparent); }
+.culture-carousel::after { right: 0; background: linear-gradient(to left, var(--paper), transparent); }
+.culture-carousel-track { display: flex; gap: 1.5rem; width: max-content; animation: cultureMarquee 34s linear infinite; }
+.culture-carousel:hover .culture-carousel-track { animation-play-state: paused; }
+@keyframes cultureMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.culture-carousel-item { width: 220px; flex-shrink: 0; }
+.culture-carousel-photo { width: 220px; height: 160px; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 28px rgba(26,24,21,0.1); }
+.culture-carousel-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+.culture-carousel-item:hover .culture-carousel-photo img { transform: scale(1.08); }
+.culture-carousel-caption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 0.75rem; text-align: center; }
+@media (max-width: 560px) { .culture-carousel-item, .culture-carousel-photo { width: 170px; } .culture-carousel-photo { height: 124px; } }
 
 /* JOIN US — honest, designed empty state per role category */
 .empty-roles { border-left: 3px solid var(--gold); border-radius: 8px; padding: 1.75rem 2rem; margin: 0 0 2rem; background: var(--off); }
@@ -574,7 +575,7 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right, .hero-load-item, .company-feature, .btn-gold, .link-arrow, .latest-card, .ask-box,
-  .principle-strip-icon, .spotlight-slot, .spotlight-circle {
+  .principle-strip-icon, .culture-carousel-track {
     transition: none !important; animation: none !important;
   }
 }

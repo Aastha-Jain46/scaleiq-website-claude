@@ -13,24 +13,11 @@ const leaders = [
   { name: 'Rajvardhan Singh', title: 'Head, Corporate Development & Growth', photo: rajvardhanPhoto },
 ];
 
-const coreTeam = [
-  { name: 'Satya Prakash Gupta', role: 'Head – Technical Architecture & Engineering' },
-  { name: 'Sanskar Jain', role: 'Technical Operations & Delivery Manager' },
-  { name: 'Amit Bansal', role: 'Senior Software Engineer' },
-  { name: 'Anjani Kumar', role: 'Quality Assurance Engineer' },
-  { name: 'Bhaswati Deka', role: 'Talent & HR Manager' },
-  { name: 'Aastha Jain', role: 'Associate – Partnerships & Collaborations' },
-];
-
 const approach = [
   { title: 'Autonomous Leadership', body: 'Every company we back keeps its own leadership team, empowered to make decisions closest to the market they serve, not managed from a distance.' },
   { title: 'Investment in Talent', body: 'People across ScaleIQ and its portfolio companies learn from each other in real time, not siloed into separate organizations that never compare notes.' },
   { title: 'Operational Resilience', body: 'Built by staying close to customers and sharing what works across every company, not by chasing trends.' },
 ];
-
-function initials(name) {
-  return name.split(' ').map((p) => p[0]).slice(0, 2).join('');
-}
 
 export default function Leadership() {
   useReveal();
@@ -41,25 +28,12 @@ export default function Leadership() {
       <div className="content-body wrap">
         <p className="reveal">ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on.</p>
 
-        <div className="leader-grid reveal-left">
-          {leaders.map((l) => (
-            <div className="leader-card" key={l.name}>
+        <div className="leader-grid leader-grid-lg">
+          {leaders.map((l, i) => (
+            <div className="leader-card leader-card-lg reveal" style={{ transitionDelay: `${i * 120}ms` }} key={l.name}>
               <img src={l.photo} alt={l.name} />
               <div className="leader-name">{l.name}</div>
               <div className="leader-role">{l.title}</div>
-            </div>
-          ))}
-        </div>
-
-        <h2 className="hub-section-title reveal-right">Our Core Team</h2>
-        <div className="core-team-grid reveal-right">
-          {coreTeam.map((m) => (
-            <div className="core-team-card" key={m.name}>
-              <span className="core-team-avatar">{initials(m.name)}</span>
-              <div>
-                <div className="core-team-name">{m.name}</div>
-                <div className="core-team-role">{m.role}</div>
-              </div>
             </div>
           ))}
         </div>

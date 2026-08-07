@@ -7,6 +7,8 @@ export default function QuickLinksRail({ sections }) {
 
   useEffect(() => {
     const els = sections.map((s) => document.getElementById(s.id)).filter(Boolean);
+    const lastId = sections[sections.length - 1]?.id;
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,7 +18,21 @@ export default function QuickLinksRail({ sections }) {
       { rootMargin: '-35% 0px -55% 0px', threshold: 0 }
     );
     els.forEach((el) => obs.observe(el));
-    return () => obs.disconnect();
+
+    // Short final sections can end before ever crossing the observer's
+    // detection band, so the rail never highlights the last item — force it
+    // active once the page is scrolled essentially to the bottom.
+    const onScroll = () => {
+      const nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (nearBottom && lastId) setActive(lastId);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      obs.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, [sections]);
 
   const handleClick = (id) => (e) => {
