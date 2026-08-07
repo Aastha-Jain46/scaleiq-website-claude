@@ -1,29 +1,44 @@
 import { Link } from 'react-router-dom';
 import ListingTemplate from '../../components/templates/ListingTemplate';
+import { blogs } from '../../content/blogs';
+
+function ClockIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
 
 export default function Blogs() {
   return (
     <ListingTemplate
       eyebrow="Resources"
       title="Blogs"
-      intro="Perspectives from inside ScaleIQ, on digital transformation, energy technology, and what it takes to scale a company in this industry."
+      intro="Perspectives from inside ScaleIQ, on digital transformation, energy technology, and what it takes to run complex operations well."
     >
-      <div className="listing-grid">
-        <Link to="/resources/blogs/why-digital-transformation-fails" className="listing-card">
-          <span className="card-tag">Rajeev Sonthalia</span>
-          <h3>Why Digital Transformation Fails to Deliver Expected Outcomes in Complex Operations</h3>
-          <p>Read the full piece →</p>
-        </Link>
-        <div className="listing-card">
-          <span className="card-tag">Coming soon</span>
-          <h3 style={{ color: 'var(--ink-muted)' }}>[NEEDS INPUT] Blog #2</h3>
-          <p>Title only so far — source notes or a transcript are needed to draft this in the same voice as Blog #1.</p>
-        </div>
-        <div className="listing-card">
-          <span className="card-tag">Coming soon</span>
-          <h3 style={{ color: 'var(--ink-muted)' }}>[NEEDS INPUT] Blog #3</h3>
-          <p>Title only so far — source notes or a transcript are needed to draft this in the same voice as Blog #1.</p>
-        </div>
+      <div className="blog-list">
+        {blogs.map((b, i) => (
+          <Link to={`/resources/blogs/${b.slug}`} className="blog-card" key={b.slug}>
+            <div className="blog-card-thumb">
+              <img src={b.image} alt={b.title} loading={i < 2 ? 'eager' : 'lazy'} />
+            </div>
+            <div className="blog-card-divider" />
+            <div className="blog-card-body">
+              <div className="blog-card-meta">
+                <span className="blog-card-meta-item"><ClockIcon /> {b.readTime}</span>
+                <span className="dot">·</span>
+                <span>{b.date}</span>
+                <span className="dot">·</span>
+                <span>{b.author} | ScaleIQ</span>
+              </div>
+              <h3>{b.title}</h3>
+              <p>{b.summary}</p>
+              <span className="blog-card-cta">Read Full Blog →</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </ListingTemplate>
   );

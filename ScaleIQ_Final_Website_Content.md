@@ -311,5 +311,135 @@ This isn't a project to grow and exit. It's the work worth spending the next cha
 - **Overall feel must be an animated, dynamic website, not a formatted document.** Every page needs real motion: staggered fade-ups, hover states with actual transitions (not instant color swaps), and at least one genuinely interactive element per page (filters, toggles, the leadership grid's staggered reveal, expandable strips). A page with correct content but no motion should be treated as unfinished, not done.
 - **CTAs wherever a natural exit point exists** — don't let a page just end with a paragraph, close on a link or action.
 
+## BLOGS — FINALIZED
+
+**Source and approach:** this section replicates the real live scaleiqglobal.com Blogs section exactly — same layout, same 7 blogs, same wordings verbatim (real content, not drafted from scratch; pulled from `Blogs - ScaleIQ - March, 2026.docx` in this folder and cross-checked against the live site's first 4 articles word-for-word match).
+
+### Route / navigation structure
+
+- Lives at `/resources/case-studies` — **same route as Case Studies**, switched via a client-side tab toggle at the top of the page: **"Case Studies" | "Blogs"**. This is not two separate top-level pages; it is one page, two tabs. (Matches the real site's `/case-studies` route pattern exactly.)
+- Individual blog articles route to `/resources/blogs/{slug}` (matches `App.jsx`'s existing pattern; the one route already wired, `/resources/blogs/why-digital-transformation-fails`, is Blog 1 below — add the other 6 the same way).
+- Menu entry stays "Resources → Blogs" per the existing site architecture (Section 3 of the Master Brief) — the tab toggle is what the visitor sees once they land, not a second nav item.
+
+### Listing page (Blogs tab) — card layout, top to bottom per card
+
+1. Thumbnail image (abstract/data-visualization style photography, matching the real site's tone — dashboards, field ops, control-room imagery; not literal stock-photo people shots)
+2. Meta line: `⏱ {read time} · {date} · {author} | ScaleIQ`
+3. Title (bold, one line/wraps to two)
+4. 2–3 line teaser/summary
+5. "Read Full Blog →" button (gold on hover/active, matching the site's black→gold interaction pattern seen throughout)
+
+### Article page layout
+
+- Category tag (small, gold, all-caps) at top
+- Title (large, PT Serif bold — must match homepage h1 size per the sitewide heading rule)
+- Hook line — a short, punchy 1–3 sentence opener, distinct from the intro paragraph, set in a slightly larger/lighter treatment to work as a scroll-stopper
+- Byline row: author name + "| ScaleIQ" + date + read time
+- **"IN THIS BLOG" table-of-contents sidebar** — same structural pattern as the About pages' quick-links rail (sticky, scrollspy-highlighted section jump-links), listing each H2 section title in the article
+- Body: Introduction → 5–7 short labeled sections → Conclusion. Each section is a few short paragraphs, never a wall of text — matches the real site's clipped, declarative sentence rhythm.
+- Some articles reference each other inline (e.g., Blog 2 references Blog 1, Blog 3 references Blogs 1 & 2) — **keep these as real internal links** ("→ Read: [Blog title]") where the docx marks "(link to Blog X)". This is a genuine content pattern from the source and doubles as internal linking/SEO value plus a natural "keep reading" mechanic — don't drop it.
+- End of article: closing CTA band, same pattern as every other page — *"Facing something similar in your operations?"* → link to Contact/Our Services.
+
+### Byline decision (confirmed with user)
+
+Bylines stay **exactly as the real site has them** — mixed authorship, not unified under the founder:
+- Blogs 1, 2, 3, 4, 7 → **Rajeev Sonthalia | ScaleIQ**
+- Blogs 5, 6 → **Aastha Jain | ScaleIQ**
+
+### The 7 blogs — final, real content, verbatim from source
+
+---
+
+**BLOG 1**
+Category: Industry Insights
+Slug: `/resources/blogs/why-digital-transformation-fails`
+Title: **Why Digital Transformation Fails to Deliver Expected Outcomes in Complex Operations**
+Meta: Rajeev Sonthalia | ScaleIQ · 25 February 2026 · 4 min read
+Hook: "You've invested in digital systems. You have dashboards, reports, and more data than ever before. So why does it still feel like you don't have complete clarity when it matters most?"
+
+Body sections: Introduction → The Problem Is Not the Absence of Technology → Where Most Digital Efforts Lose Their Impact → When Data Exists but Clarity Does Not → The Impact Builds Gradually, Then Becomes Visible → Why Adding More Systems Does Not Solve the Problem → What Needs to Change → From Data Availability to Meaningful Insight → Enabling a More Connected Approach → Conclusion.
+
+Closing line: "If digital transformation is not delivering the expected results, the issue is rarely the absence of investment or intent. It is the gap between isolated capability and connected execution."
+
+*(Full body text confirmed verbatim against the live site — already fully extracted; use the docx as the copy-paste source when building, this entry is the index record, not a duplicate copy.)*
+
+---
+
+**BLOG 2**
+Category: Industry Insights
+Slug: `/resources/blogs/operating-models-struggling`
+Title: **The Gap Between How Operations Evolve and How They Are Managed**
+Meta: Rajeev Sonthalia | ScaleIQ · 28 February 2026 · 6 min read
+Summary: "Operations have evolved in scale, distribution, and complexity, but in many cases the way they are managed has not kept pace with this shift."
+Hook: "Operations today are not failing because of a lack of systems. They are struggling because the way they are structured no longer reflects how they actually function. That gap is becoming harder to ignore."
+
+Body sections: Introduction → The Nature of Operations Has Changed → Operating Models Have Not Evolved at the Same Pace → What Most Organizations Underestimate → Where the Misalignment Becomes Visible (→ links to Blog 1) → Complexity Is No Longer Predictable → The Limitation of Layered Solutions → What Needs to Change → Moving Towards More Adaptive Operations (→ links to Blog 3) → Enabling the Next Phase of Operations → Conclusion.
+
+---
+
+**BLOG 3**
+Category: Operational Challenges
+Slug: `/resources/blogs/decisions-lose-clarity`
+Title: **How Decision Context Breaks Down Across Teams**
+Meta: Rajeev Sonthalia | ScaleIQ · 5 March 2026 · 6 min read
+Summary: "Decisions do not lose value when they are made. They lose it as they move across teams, where context is gradually reconstructed instead of carried forward."
+Hook: "A decision is rarely wrong when it is made. It is made with context, experience, and intent. The real problem begins after that. As the decision moves across teams, systems, and layers, something subtle changes. The decision remains the same on paper, but the understanding behind it begins to shift. And that is where alignment starts to break."
+
+Body sections: Introduction → Context Does Not Travel, It Gets Rebuilt → Meaning Changes Without Anyone Noticing (→ links to Blog 1) → The Distance Between Decision and Execution Is Increasing → Why This Becomes More Critical in Complex Operations (→ links to Blog 2) → What Needs to Change → From Information Flow to Context Flow → Conclusion.
+
+---
+
+**BLOG 4**
+Category: Industry Insights
+Slug: `/resources/blogs/oil-gas-digital-investment`
+Title: **Why Oil and Gas Operations Continue to Struggle Despite Heavy Digital Investment**
+Meta: Rajeev Sonthalia | ScaleIQ · 12 March 2026 · 5 min read
+Summary: "Despite significant investments in digital initiatives across upstream, midstream, and downstream operations, many organizations continue to face the same operational challenges. The reasons are deeper than technology."
+Hook: "Over the last decade, the oil and gas industry has invested heavily in digital systems. From drilling optimization to production monitoring, the intent has been clear. Yet across many operations, the same challenges continue to surface. So the question is not whether investment has been made. The question is why the outcomes still feel limited."
+
+Body sections: Introduction → The Challenge Is Not Within Functions, But Between Them → Alignment Requires More Than Visibility (→ links to Blog 1) → Why Delays Often Originate Before Execution (→ links to Blog 3) → The Effect of Scale and Distribution → Why Incremental Improvements Do Not Resolve This → What Differentiates More Aligned Operations → From Functional Efficiency to Operational Alignment → Conclusion.
+
+---
+
+**BLOG 5**
+Category: Industry Insights
+Slug: `/resources/blogs/nature-of-work-changing` *(new slug — not yet confirmed on live site, follow the same short-kebab-slug pattern as blogs 1–4)*
+Title: **How the Nature of Work in Oil and Gas Is Quietly Changing**
+Meta: Aastha Jain | ScaleIQ · 19 March 2026 · 6 min read
+Summary: "The oil and gas industry is not just changing at a strategic level. The nature of day-to-day work across teams is shifting in subtle but important ways."
+Hook: "When we talk about change in oil and gas, we usually focus on big things. Energy transition. New technologies. Market shifts. But there is another change happening at the same time. It is not loud. It is not sudden. But it is affecting how work actually gets done every day. And most people only notice it when things start to feel more complicated than before."
+
+Body sections: Introduction → Work Is No Longer Staying Within One Function → More Information, But More Effort to Use It → Decisions Are Becoming More Dependent on Coordination (→ links to Blog 3) → Small Delays Are Becoming Part of Daily Work → Why This Shift Feels Subtle but Real → Where This Change Is Coming From → What This Means in Practice → Conclusion.
+
+---
+
+**BLOG 6**
+Category: Industry Insights
+Slug: `/resources/blogs/standardization-challenge` *(new slug — not yet confirmed on live site, follow the same pattern)*
+Title: **Why Standardization Remains a Challenge in Oil and Gas Operations**
+Meta: Aastha Jain | ScaleIQ · 18 March 2026 · 5 min read
+Summary: "Standardization is often seen as a way to improve efficiency in operations. But in oil and gas environments, applying standard processes is not always as straightforward as it seems."
+Hook: "Standardization sounds simple. Define a process. Apply it everywhere. Improve consistency. But in oil and gas operations, things rarely work that way. What works well in one location does not always fit another. And over time, the gap between 'standard' and 'actual' begins to grow."
+
+Body sections: Introduction → No Two Operating Conditions Are Exactly the Same → Standard Processes Meet Practical Constraints → Variation Is Not Always a Problem → Where Standardization Starts to Break → The Hidden Impact on Coordination (→ links to Blog 3) → Why This Is Difficult to Fix → What Needs to Be Looked At Differently → Conclusion.
+
+---
+
+**BLOG 7**
+Category: Industry Insights
+Slug: `/resources/blogs/gcc-integration` *(new slug — not yet confirmed on live site, follow the same pattern)*
+Title: **Why Most GCCs Fail to Become True Extensions of Global Operations**
+Meta: Rajeev Sonthalia | ScaleIQ · 19 March 2026 · 4 min read
+Summary: "Global Capability Centers are often set up with the intent to scale capability and efficiency. However, many fail to evolve beyond support functions, limiting their impact on core operations."
+Hook: "Global Capability Centers are no longer new. Most large organizations have already invested in building them. The intent is clear. Access talent, scale capabilities, and support global operations. Yet in many cases, GCCs remain underutilized. They exist. They function. But they do not fully integrate into how the organization actually operates."
+
+Body sections: Introduction → The Intent Behind GCCs Has Changed → Where the Disconnect Begins → Execution Without Full Context → Why Integration Is More Difficult Than It Appears → The Role of Operating Models → From Support Function to Integrated Capability → What Organizations Often Overlook (→ links to Blog 1) → Enabling a More Integrated GCC Model → Conclusion.
+
+---
+
+**Note for Claude Code:** the full verbatim body text for all 7 blogs (every paragraph, not just section headers) lives in `Blogs - ScaleIQ - March, 2026.docx` in this folder — read that file directly when building each article page rather than re-typing from this summary, to guarantee an exact match with zero drift or paraphrasing.
+
 ## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
-Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
+Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Contact Us · For Investors · For Partners · For Portfolio Companies
+
+*(Blogs is now FINALIZED above — removed from this pending list. Case Studies still pending — the 17 real case studies were fully extracted from the live site this session and are ready to write up next, using the same "same layout, same content" approach, whenever you want to move to that page.)*

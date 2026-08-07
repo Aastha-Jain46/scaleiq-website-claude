@@ -20,8 +20,9 @@ import WhomWeServe from './pages/work/WhomWeServe';
 import OurServices from './pages/work/OurServices';
 
 import CaseStudies from './pages/resources/CaseStudies';
+import CaseStudyDetail from './pages/resources/CaseStudyDetail';
 import Blogs from './pages/resources/Blogs';
-import BlogPost from './pages/resources/BlogPost';
+import BlogArticle from './pages/resources/BlogArticle';
 
 import ContactUs from './pages/contact/ContactUs';
 import ForInvestors from './pages/contact/ForInvestors';
@@ -55,8 +56,9 @@ function App() {
           <Route path="/our-work/our-services" element={<OurServices />} />
 
           <Route path="/resources/case-studies" element={<CaseStudies />} />
+          <Route path="/resources/case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="/resources/blogs" element={<Blogs />} />
-          <Route path="/resources/blogs/why-digital-transformation-fails" element={<BlogPost />} />
+          <Route path="/resources/blogs/:slug" element={<BlogArticle />} />
 
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/contact/investors" element={<ForInvestors />} />

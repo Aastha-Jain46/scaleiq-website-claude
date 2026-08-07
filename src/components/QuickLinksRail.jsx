@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 // Sticky scrollspy quick-links rail, shared by all "hub" pages (Who We Are,
 // What We Do, How We Grow). Collapses to a horizontal chip row on mobile via CSS.
-export default function QuickLinksRail({ sections }) {
+export default function QuickLinksRail({ sections, title }) {
   const [active, setActive] = useState(sections[0]?.id);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function QuickLinksRail({ sections }) {
 
   return (
     <nav className="hub-rail" aria-label="Quick links">
+      {title && <div className="hub-rail-title">{title}</div>}
       {sections.map((s) => (
         <a
           key={s.id}
