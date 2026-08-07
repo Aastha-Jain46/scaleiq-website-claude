@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
@@ -13,20 +14,27 @@ const sections = [
 
 export default function WhatWeDo() {
   useReveal();
+  const [emphasis, setEmphasis] = useState('back');
 
   return (
     <>
       <PageHeader eyebrow="About" title={<>We help energy companies do more than survive. We help them <em>lead</em>.</>} />
+      <div className="wrap">
+        <div className="toggle-row reveal">
+          <button type="button" className={`toggle-btn${emphasis === 'back' ? ' active' : ''}`} onClick={() => setEmphasis('back')}>For Portfolio Companies</button>
+          <button type="button" className={`toggle-btn${emphasis === 'build-for' ? ' active' : ''}`} onClick={() => setEmphasis('build-for')}>For Clients</button>
+        </div>
+      </div>
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">
-          <section id="back" className="hub-section reveal-left">
+          <section id="back" className={`hub-section reveal-left${emphasis === 'back' ? ' emphasized' : ' de-emphasized'}`}>
             <div className="hub-eyebrow">For Companies We Back</div>
             <p>If you've already built something real in energy technology, an established product, paying customers, a team that knows the problem cold, ScaleIQ gives you permanent capital and a wider network to grow further. You're not choosing between raising outside money and giving up control, or growing slowly on your own cash flow while competitors with deeper pockets move faster. That choice disappears.</p>
             <Link to="/portfolio/our-companies" className="link-arrow">See our portfolio →</Link>
           </section>
 
-          <section id="build-for" className="hub-section reveal-right">
+          <section id="build-for" className={`hub-section reveal-right${emphasis === 'build-for' ? ' emphasized' : ' de-emphasized'}`}>
             <div className="hub-eyebrow">For Companies We Build For</div>
             <p>If you're running an energy operation, an oil &amp; gas company, a GCC, an energy major, a renewables or utilities business, and you need technology that actually understands how your operations work, ScaleIQ delivers it through the companies we back. Teams that already live inside upstream, midstream, and downstream workflows, not a vendor learning your industry's constraints on your contract, on your timeline, at your expense.</p>
             <Link to="/our-work/our-services" className="link-arrow">See our work →</Link>

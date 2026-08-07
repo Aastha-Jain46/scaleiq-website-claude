@@ -30,7 +30,6 @@ export default function LeadershipSpotlight({ leaders }) {
         <div className="spotlight-info">
           <div className="spotlight-name">{active.name}</div>
           <div className="spotlight-title">{active.title}</div>
-          {active.credential && <div className="spotlight-credential">{active.credential}</div>}
         </div>
       </div>
 
@@ -49,7 +48,10 @@ export default function LeadershipSpotlight({ leaders }) {
             >
               <img src={leader.photo} alt={leader.name} />
             </button>
-            <span className="spotlight-name-tag">{leader.name}</span>
+            <span className="spotlight-name-tag">
+              <span className="spotlight-tag-name">{leader.name}</span>
+              <span className="spotlight-tag-title">{leader.title}</span>
+            </span>
           </div>
         );
       })}

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
 import QuickLinksRail from '../../components/QuickLinksRail';
-import PrincipleOrbital from '../../components/PrincipleOrbital';
 import PrincipleStrips from '../../components/PrincipleStrips';
 import StaggeredChecklist from '../../components/StaggeredChecklist';
 import CountUpStat from '../../components/CountUpStat';
@@ -60,7 +59,6 @@ export default function HowWeGrow() {
 
           <section id="principles" className="hub-section reveal-left">
             <div className="hub-eyebrow">Our Principles</div>
-            <PrincipleOrbital principles={principles} activeIndex={activePrinciple} />
             <PrincipleStrips principles={principles} activeIndex={activePrinciple} onToggle={setActivePrinciple} />
           </section>
 
@@ -76,9 +74,6 @@ export default function HowWeGrow() {
               <CountUpStat value={250} suffix="+" label="Years of cumulative energy tech & leadership experience" icon={ClockIcon} />
               <CountUpStat value={378} suffix="+" label="Projects delivered" icon={RocketIcon} />
               <CountUpStat value={171} suffix="+" label="Customers in energy and associated companies" icon={BuildingIcon} />
-            </div>
-            <div className="content-note" style={{ marginTop: '1.5rem' }}>
-              <strong>[NEEDS INPUT: testimonial or founder quote]</strong> — we only have one real testimonial in our source material, and it's already correctly placed on What We Do. Not inventing a second one here.
             </div>
           </section>
         </div>

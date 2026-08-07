@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
 import Testimonial from '../../components/Testimonial';
@@ -8,20 +9,20 @@ const points = [
   { title: 'Movement across investing and engineering.', body: "Our people aren't siloed into one side of what ScaleIQ does, that breadth keeps judgment sharp on both." },
 ];
 
-// Real candid team photography isn't available yet — placeholders scattered
-// as an organic collage (varied size/position/rotation), ready to swap for
-// real photos without restructuring.
-const collagePlaceholders = [
-  { top: '2%', left: '4%', size: 130, rotate: -6 },
-  { top: '10%', left: '32%', size: 92, rotate: 4 },
-  { top: '0%', left: '58%', size: 108, rotate: -3 },
-  { top: '40%', left: '2%', size: 96, rotate: 5 },
-  { top: '48%', left: '38%', size: 140, rotate: -4 },
-  { top: '42%', left: '68%', size: 100, rotate: 6 },
+// Real, royalty-free stock photography (Unsplash) standing in for team
+// photos until real ones exist — swap the src values later, layout stays.
+const photos = [
+  { src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Working sessions, not status meetings' },
+  { src: 'https://images.unsplash.com/photo-1622675363311-3e1904dc1885?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Decisions made close to the work' },
+  { src: 'https://images.unsplash.com/photo-1644778055925-cf45809c2c17?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Time in the field, not just the office' },
+  { src: 'https://images.unsplash.com/photo-1572021335469-31706a17aaef?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Small teams, real ownership' },
+  { src: 'https://images.unsplash.com/photo-1652303518379-c0ef1c9fb2b1?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Where the operations actually run' },
+  { src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop&auto=format&q=80', caption: 'Depth over decks' },
 ];
 
 export default function OurCulture() {
   useReveal();
+  const [activePhoto, setActivePhoto] = useState(null);
 
   return (
     <>
@@ -39,15 +40,18 @@ export default function OurCulture() {
           ))}
         </div>
 
-        <div className="collage reveal">
-          {collagePlaceholders.map((c, i) => (
-            <div
-              key={i}
-              className="collage-photo"
-              style={{ top: c.top, left: c.left, width: c.size, height: c.size, transform: `rotate(${c.rotate}deg)` }}
+        <div className="culture-photo-row reveal">
+          {photos.map((photo, i) => (
+            <button
+              type="button"
+              key={photo.caption}
+              className={`culture-photo${activePhoto === i ? ' active' : ''}`}
+              onClick={() => setActivePhoto((cur) => (cur === i ? null : i))}
+              aria-label={photo.caption}
             >
-              [NEEDS INPUT: team photo]
-            </div>
+              <img src={photo.src} alt="" />
+              <span className="culture-photo-caption">{photo.caption}</span>
+            </button>
           ))}
         </div>
 

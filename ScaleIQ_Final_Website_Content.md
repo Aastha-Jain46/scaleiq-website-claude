@@ -166,10 +166,10 @@ Headline: `The engine behind every company we *back*.` (reuse the homepage tease
 
 - Growth model paragraph (buy-and-build) — unchanged from earlier draft.
 - **What we look for** — founder-led leadership, an established product with paying customers, ambition to grow further, not exit the industry.
-- **Five principles — SECOND CORRECTION, read carefully, this supersedes the "orbital + stepper only" note above in one respect:** keep the "+"-expand interaction itself (the user has confirmed she likes this interaction pattern from reference screenshots already shown) — the actual mistakes were (a) laying it out as a 2-2-1 grid of cards, which misaligns badly since 5 doesn't divide evenly into a 2-column grid, and (b) hiding ALL text behind the "+" with nothing visible by default. Both are fixed as follows:
-  1. **Layout: full-width stacked strips, not a grid.** Five rows, each spanning the full content width, stacked vertically, one per principle. Never a multi-column card grid for this content — 5 items in a 2-column grid always produces an uneven last row, which is the alignment bug that was actually spotted. A single-column stacked list has no such problem regardless of item count.
-  2. **Each strip shows a short 1-line teaser by default (always visible, never blank), with the "+" expanding to reveal the full paragraph.** This keeps the interaction the user likes while guaranteeing there's always real, substantial text visible without any click — nothing should ever render as just a title and a plus sign with zero content, that was the actual defect, not the interaction pattern itself.
-  3. **Orbital header graphic stays**, sitting above the strip list: a central circular image (real photography still a gap — mark as `[NEEDS INPUT: central image, energy/industrial photography]`, placeholder only, do not invent), with the five principle names arranged around it in a circle, connected by thin dotted arcs to small nodes, in the site's gold/ink/off-white palette (not the old site's dark navy). **Sync it to the strip list**: expanding a strip smoothly rotates the orbital diagram so that principle's node moves to the highlighted/top position, tying the two elements into one interactive piece rather than two separate decorations.
+- **Five principles — THIRD AND FINAL CORRECTION: the orbital diagram is CUT, do not rebuild it.** It was attempted twice and failed both times (most recently: the central placeholder text overlapped illegibly with a principle label, and the connecting lines rendered as a chaotic radiating star instead of a clean orbit). Stop iterating on it — simplicity that renders correctly beats ambition that doesn't. Final version, strips only, no diagram:
+  1. **Layout: full-width stacked strips, not a grid, and no circular graphic above them.** Five rows, each spanning the full content width, stacked vertically, one per principle. Never a multi-column card grid for this content — 5 items in a 2-column grid always produces an uneven last row.
+  2. **Each strip shows a short 1-line teaser by default (always visible, never blank), with the "+" expanding to reveal the full paragraph.** This part worked correctly before and stays exactly as it was — nothing should ever render as just a title and a plus sign with zero content.
+  3. No image, no orbital graphic, no sync animation. A clean, well-executed stacked list is a better page than a broken diagram — this is the final call.
   One-line teasers (always visible, write these — don't leave Claude Code to invent them):
   1. Domain Driven — *"Shaped by real operators, not abstract best practices."*
   2. Focused High-Impact AI — *"AI tied to outcomes, not experiments that never ship."*
@@ -201,19 +201,30 @@ Headline: `The engine behind every company we *back*.` (reuse the homepage tease
 
 **Group treated as one connected arc, same as About**: Leadership → Our Culture → Join Us. No "Continue to X" banners between them (tried on About, didn't work, dropped sitewide) — rely on the quick-links rail and hamburger nav for movement between pages instead.
 
-### Leadership
+### Leadership — VERIFIED WORKING, needs more body content, not a mechanic rebuild
 
-Real photos already exist in the project at `src/assets/leadership/{rajeev,chitwan,amit,rajvardhan}.png` — use these, do not source or invent placeholders for these four.
+Real photos already exist in the project at `src/assets/leadership/{rajeev,chitwan,amit,rajvardhan}.png` — confirmed in place, use these.
 
 Short framing intro above the component: *"ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on."*
 
-**Component — spotlight circle, radial reveal (not left/right alternating — corrected decision, reasoning below):** one large central circle shows the current leader's photo (defaults to Rajeev Sonthalia, Founder & CEO). The other three leaders' circles are smaller and positioned radially around the central one, evenly spaced in an arc (not a left/right alternating sequence — with 3 secondary items, not 4, strict alternation produces an uneven 2-1 split; radial spacing has no such problem regardless of count, and it reuses the same orbital motif already planned for the How We Grow five-principle diagram, giving the site one consistent interactive signature instead of two unrelated effects). Reveal animation: the three secondary circles scale/fade in one at a time from their radial position, staggered (~150-200ms apart), on load or on scroll into view. Clicking a secondary circle morphs it into the central position (same shared-element morph as previously specced — will likely need Framer Motion), the previous central photo shrinks back out to its radial slot.
+**Component — spotlight circle, radial reveal:** one large central circle shows the current leader's photo (defaults to Rajeev Sonthalia, Founder & CEO), three smaller circles positioned radially around it. **This mechanic was checked directly in a real browser and confirmed working correctly** — clicking a circle morphs it to center and the correct name/title/credential line displays. Do not rebuild this, it's fine as-is. (Note: the "shared orbital motif with How We Grow" reasoning is no longer relevant — How We Grow's orbital diagram was cut entirely after failing twice; Leadership's own radial mechanic is independent and stays exactly as built.)
 
-**No bio paragraphs** — just name, title, and one short real credential line sourced from their actual public LinkedIn headline (not invented, not a summary):
+**The actual remaining problem: the page has nothing on it besides the intro line and the component, which reads as empty.** Fix with two additions:
+1. All four circles show name + title visible at rest, not just the currently-centered one — right now the three non-center circles show only a bare name with no title, fix that.
+2. Add a closing section below the component, real content, not filler, adapted from Constellation Software's actual three-pillar philosophy (found directly on csisoftware.com, genuinely strong material):
+
+**Our Approach to Leadership**
+- **Autonomous Leadership** — Every company we back keeps its own leadership team, empowered to make decisions closest to the market they serve, not managed from a distance.
+- **Investment in Talent** — People across ScaleIQ and its portfolio companies learn from each other in real time, not siloed into separate organizations that never compare notes.
+- **Operational Resilience** — Built by staying close to customers and sharing what works across every company, not by chasing trends.
+
+**CORRECTED — designation only, no credential/experience lines at all.** Just name and title, nothing else under any of the four:
 - **Rajeev Sonthalia** — Founder & CEO
-- **Chitwan Garg** — Chief Business Officer — *Former Country Manager, Digital & Integration at SLB*
+- **Chitwan Garg** — Chief Business Officer
 - **Amit Ranjan** — Chief Solutions Architect
-- **Rajvardhan Singh** — Corporate Development — *Former SLB Digital, Business Development*
+- **Rajvardhan Singh** — Corporate Development
+
+(The "Former SLB..." lines from the earlier draft are dropped per direct instruction — designation only on this page. The Schlumberger background can still live in the "Our Approach to Leadership" closing section below in general terms if useful, but not as a per-person tag.)
 
 (Note: deliberately no city/country stated anywhere for any of the four — consistent with the standing rule to never state the India angle explicitly anywhere on the site. "SLB" carries the credibility without naming a place.)
 
@@ -231,7 +242,11 @@ ScaleIQ works in an industry where mistakes are expensive and downtime is not an
 
 *"Some of the best engineering talent in the world today isn't concentrated where people expect it to be. Part of what ScaleIQ is built to do is put that talent to work on problems that matter, for energy companies anywhere in the world."* — from the Founder's Note (different excerpt than the one used on Who We Are — deliberately, so nothing repeats).
 
-**Visual treatment, not just copy:** real candid team photography (once available) laid out as an organic scattered circle collage, overlapping, varied sizes, not a gridded headshot wall — reuses the circle motif from Leadership but loose and informal here instead of ordered. Photos get a gentle hover tilt. Warm-toned backgrounds using the site's existing off-white (`--off`), not new colors. If real quotes from actual team members become available, they're the single highest-value addition to this page, prioritize adding them over any further copy polish.
+**Visual treatment — SECOND CORRECTION: drop the "organic scattered collage" idea entirely.** It was a sudden departure from the rest of the site's neat, aligned, minimal visual language, and it doesn't fit. The whole site is clean and orderly (even the Leadership circles, which are interactive, are still evenly spaced and aligned, never scattered or overlapping) — Our Culture should not introduce a different, looser visual language just because it's the "warm" page. Warmth comes from tone and photography content, not from breaking the site's layout discipline.
+
+**Corrected layout:** a single evenly-spaced row (or clean two-row grid on smaller screens) of same-size circular photos, same sizing/alignment logic as the Leadership circles, consistent spacing, no overlap, no varied sizes. Interactivity comes from hover/click, not from the layout being loose: each circle lifts slightly and reveals a short caption on hover, same restrained interaction style used elsewhere on the site (card hovers, button hovers).
+
+**Imagery:** since we have zero real team photos, use royalty-free stock photography now (energy-industry-appropriate: engineers/teams collaborating, offices, field/industrial settings — avoid anything that reads as a specific named location or generic/cheesy stock), sourced from a free library such as Unsplash. This is real, visible, swappable-later imagery, not a debug placeholder. Warm-toned backgrounds using the site's existing off-white (`--off`), not new colors — the warmth is in the content and tone, the structure stays as disciplined as every other page.
 
 ### Join Us
 
@@ -245,5 +260,37 @@ CTA: *Get in touch* → Contact Us
 
 ---
 
+## A NOTE FROM OUR FOUNDER — FINALIZED (7th page of the About/People & Culture group)
+
+Full letter, real name filled in (Rajeev Sonthalia):
+
+"Three decades inside the energy industry teaches you where the real gaps are. Much of that time was spent in global technology leadership at SLB, working closely with operators of every size, from the largest majors to companies running on a fraction of their resources.
+
+The pattern was consistent everywhere: energy companies, especially the smaller and mid-sized ones, are working hard to modernize with far less support than other industries take for granted. Teams work in silos. Budgets are stretched thin. The same digital problems get solved independently, again and again, by companies who could have shared the effort.
+
+At the same time, digital technology and AI are reshaping every industry at a pace few could have predicted even five years ago. Energy cannot sit this out. Too much depends on this industry running well, efficiently, and safely, for that gap to be ignored.
+
+ScaleIQ exists to close it: real engineering resources for energy companies that have never had easy access to them, and real proof of what digital transformation returns, not just promises about what it could return.
+
+There's a second belief behind this platform. Some of the best engineering talent in the world today isn't concentrated where people expect it to be. Part of what ScaleIQ is built to do is put that talent to work on problems that matter, for energy companies anywhere in the world.
+
+This isn't a project to grow and exit. It's the work worth spending the next chapter on.
+
+— Rajeev Sonthalia, Founder & CEO"
+
+**Layout:** full-bleed, generous margins. The closing line ("This isn't a project to grow and exit...") gets a large pull-quote treatment, fading in with visual weight as it scrolls into view — that's the emotional peak of the letter. Rajeev's existing photo (`src/assets/leadership/rajeev.png`) sits beside the signature line at the bottom, not the top — the words should carry the page, not the photo. No forced interactivity on this page, a letter doesn't need a gimmick, keep it calm.
+
+## SITEWIDE FINAL POLISH RULES (apply to all 7 pages above: Who We Are, What We Do, How We Grow, Founder's Note, Leadership, Our Culture, Join Us)
+
+- **No visible bracketed placeholder text on the live site.** Anywhere content is genuinely still missing (team photos, open roles, etc.), replace `[NEEDS INPUT: ...]` style text with an actual tasteful design treatment — a soft-toned generic circle/pattern for missing photos, an honest "no current openings in this category right now" state for Join Us, not raw bracket text. The gap stays real and unfilled, but it should look designed, not like an unfinished build note. Do NOT invent specific facts (a bio detail, a quote, a role) to fill these gaps — visually complete, factually honest, both at once.
+- **Interactive element per page**, not just scroll animation:
+  - What We Do: a two-way toggle at the top, "For Portfolio Companies" / "For Clients," switching emphasis between the two content blocks.
+  - Join Us: a role-category filter (Engineering / Business Development / Corporate Development), structurally real even with no current listings — same interaction pattern as the homepage's portfolio filter.
+  - How We Grow (five strips) and Leadership (circle-morph) are already this — no change needed.
+  - Our Culture: the photo collage circles become clickable, revealing caption/context per photo once real photos exist.
+  - Founder's Note: deliberately no added interactivity.
+- **Content length**: every page needs real, substantial paragraphs — this was corrected once already on About and must not regress. Never let a section be just a heading and a link.
+- **Theme consistency**: fonts, colors, and spacing on all 7 pages inherit directly from the homepage's design tokens (PT Serif headlines with gold-italic emphasis words, DM Sans body, the established gold/ink/off-white palette) — no page-specific styling drift.
+
 ## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
-A Note From Our Founder (full page — separate from the Who We Are teaser above) · Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
+Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Blogs · Contact Us · For Investors · For Partners · For Portfolio Companies
