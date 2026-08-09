@@ -1,49 +1,69 @@
-import ListingTemplate from '../../components/templates/ListingTemplate';
+import { Link } from 'react-router-dom';
+import useReveal from '../../hooks/useReveal';
+import PageHeader from '../../components/templates/PageHeader';
+import SegmentExplorer from '../../components/SegmentExplorer';
+import { services } from '../../content/ourServices';
+import { caseStudies } from '../../content/caseStudies';
 
-// Service write-ups pulled from the current live site (scaleiqglobal.com),
-// condensed to the intro paragraph — see WhomWeServe.jsx for the same approach.
-const services = [
-  {
-    name: 'Application Development & Management',
-    body: 'Energy companies operate in complex, mission-critical environments where digital applications support daily operations and cannot tolerate disruption. ScaleIQ develops and modernizes enterprise applications designed for reliability, scalability, and long-term resilience.',
-  },
-  {
-    name: 'AI Enablement',
-    body: 'Energy companies are investing heavily in AI, but value only appears when models are operationalized, trusted, and tied to clear KPIs. ScaleIQ bridges the gap between experimental pilots and enterprise-scale production by converting models into repeatable financial and operational outcomes.',
-  },
-  {
-    name: 'Staff Augmentation',
-    body: 'Energy companies run complex technology and digital programs where timelines are tight and specialized technical expertise is difficult to hire quickly through traditional recruitment cycles. ScaleIQ provides experienced specialists who integrate quickly into existing teams and contribute from day one.',
-  },
-  {
-    name: 'Product Engineering',
-    body: 'Energy tech products must continuously evolve while maintaining reliability, scalability, and compatibility across diverse deployment environments. ScaleIQ provides product engineering services that accelerate innovation while ensuring robust performance and long-term platform stability.',
-  },
-  {
-    name: 'Professional Services',
-    body: 'Energy technology products are often deployed in complex, non-standard IT landscapes where standard configurations rarely suffice. ScaleIQ acts as a strategic force-multiplier, providing the domain-specific technical expertise required to navigate these complex environments.',
-  },
-  {
-    name: 'Technical Consulting',
-    body: 'Oil & gas companies operate specialized, tightly integrated technical environments where even small system changes can impact production, safety, and operational continuity. ScaleIQ bridges the gap between ambitious digital transformation initiatives and stable field operations.',
-  },
+const RELATED_SLUGS = ['ai-reservoir-modelling', 'upstream-command-control-center', 'hvms-heavy-vehicle-management'];
+
+const STATS = [
+  { num: '6 weeks → 3 days', label: 'Reservoir modeling turnaround, cut through AI-driven automation' },
+  { num: '100%', label: 'Real-time visibility delivered across 50+ upstream fields' },
+  { num: '918+', label: 'Employees mobilized into structured, technology-led innovation' },
 ];
 
 export default function OurServices() {
-  return (
-    <ListingTemplate
-      eyebrow="Our Work"
-      title="Our Services"
-      intro="ScaleIQ Operations works across the full energy technology stack, with the same engineering standard we bring to our own portfolio companies."
-    >
-      {services.map((s) => (
-        <div className="segment-block" key={s.name}>
-          <h3>{s.name}</h3>
-          <p>{s.body}</p>
-        </div>
-      ))}
+  useReveal();
+  const related = RELATED_SLUGS.map((slug) => caseStudies.find((c) => c.slug === slug)).filter(Boolean);
 
-      <p style={{ marginTop: '3rem', maxWidth: 680, color: 'var(--ink-soft)' }}>Whatever the engagement, from a short staff augmentation contract to a multi-year product build, you get engineers who already understand energy workflows, and a delivery standard shaped by running our own technology companies, not just servicing them.</p>
-    </ListingTemplate>
+  return (
+    <>
+      <PageHeader
+        eyebrow="Our Work — Our Services"
+        title={<>The full energy technology stack, one <em>standard</em>.</>}
+        intro="From application development to AI enablement, staff augmentation to technical consulting, ScaleIQ companies work across the full energy technology stack — holding every engagement to the same standard we hold our own portfolio companies to."
+        size="hero"
+      />
+
+      <div className="listing-body wrap">
+        <SegmentExplorer items={services} />
+
+        <div className="proof-stats reveal">
+          {STATS.map((s) => (
+            <div className="proof-stat" key={s.label}>
+              <span className="proof-stat-num">{s.num}</span>
+              <span className="proof-stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ maxWidth: 720 }} className="reveal">
+          <p style={{ color: 'var(--ink-soft)', lineHeight: 1.8 }}>Whatever the engagement, from a short staff augmentation contract to a multi-year product build, you work with engineers who already understand energy workflows, and a delivery standard shaped by running real technology companies in this industry, not just servicing them.</p>
+        </div>
+      </div>
+
+      <section className="related-cases">
+        <div className="wrap">
+          <div className="related-cases-heading reveal">
+            <h2 className="hub-section-title" style={{ fontSize: '1.5rem', margin: 0 }}>What this looks like in <em>practice</em></h2>
+            <Link to="/resources/case-studies" className="link-arrow">See all case studies →</Link>
+          </div>
+          <div className="listing-grid">
+            {related.map((c) => (
+              <Link to={`/resources/case-studies/${c.slug}`} className="listing-card reveal" key={c.slug}>
+                <div className="listing-card-thumb">
+                  <img src={c.image} alt={c.title} loading="lazy" />
+                </div>
+                <span className="card-tag">{c.category}</span>
+                <h3>{c.title}</h3>
+                <p>{c.body}</p>
+                <span className="listing-card-cta">Read Full Case Study →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

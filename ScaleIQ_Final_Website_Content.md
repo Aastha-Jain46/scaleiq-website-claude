@@ -439,7 +439,31 @@ Body sections: Introduction → The Intent Behind GCCs Has Changed → Where the
 
 **Note for Claude Code:** the full verbatim body text for all 7 blogs (every paragraph, not just section headers) lives in `Blogs - ScaleIQ - March, 2026.docx` in this folder — read that file directly when building each article page rather than re-typing from this summary, to guarantee an exact match with zero drift or paraphrasing.
 
-## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
-Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Contact Us · For Investors · For Partners · For Portfolio Companies
+## FOR PORTFOLIO COMPANIES (Contact group) — FINALIZED
 
-*(Blogs is now FINALIZED above — removed from this pending list. Case Studies still pending — the 17 real case studies were fully extracted from the live site this session and are ready to write up next, using the same "same layout, same content" approach, whenever you want to move to that page.)*
+**Purpose:** this is the page a founder/CEO of a real energy-technology company lands on when they're seriously considering being acquired by / joining ScaleIQ. It is the highest-stakes form on the site — the visitor is making a life decision about their company, not requesting a demo. Every requirement below exists to earn that person's trust before they submit anything.
+
+**Reference used:** Halma's "How We Grow" page (M&A section) — persuasive content plus named human contacts sit above the form, not a bare form on its own. Constellation Software's positioning language informed tone, not copied directly.
+
+### Requirements
+
+1. **Hero framing must speak directly to a founder making a decision**, not generic lead-gen language. Acknowledge this is a serious, confidential conversation about what's next for a company they built — not a sales inquiry.
+
+2. **Persuasive content block must appear before the form**, addressing the real hesitations a CEO has in this moment: will they lose control of how they run the business day to day, what happens to their team, is this conversation actually confidential right now. Answer these directly and specifically — do not gesture at them vaguely. Draw on the existing homepage "what it means to be a ScaleIQ company" points and the site's locked vocabulary (buy-and-build, permanent capital, buy-and-hold) so this page feels consistent with the rest of the site rather than repeating it — reframe the same truths from the seller's specific decision-making moment, not restate them.
+
+3. **A named human contact must appear alongside the form**, not just a generic inbox. Use Rajeev Sonthalia (Founder & CEO) with his real photo (`src/assets/leadership/rajeev.png`) and title — inquiries at this level should visibly go to the top of the company, not a form-to-database pipeline.
+
+4. **Confidentiality must be stated explicitly and visibly**, near the submit action, not buried in fine print. Use the phrase "a thoughtful and confidential discussion" — this is real language already used on ScaleIQ's current live site and is accurate.
+
+5. **Form fields, exactly these, no more:** Full Name*, Work Email*, Company Name*, Your Role/Title*, Company Website or LinkedIn, What does your company do? (short text), What's prompting this conversation? (short text, optional). Phone (optional). Do **not** ask for revenue, financials, or valuation expectations on this first-touch form — that belongs in a later real conversation, not here. Asking for it here reads as presumptuous and will cause serious prospects to bounce.
+
+6. **Visual execution:** a single, elegant, well-spaced panel — not a generic form-builder grid, not a multi-step wizard. Refined field styling, gold-accented focus states, calm and confident, matching the rest of the site's minimal aesthetic. This is a deliberate choice against adding another complex interactive mechanic, given how many custom interactive components on this site have had to be simplified or cut after not working well in practice (see Leadership page and How We Grow page history in this doc) — a clean static-feeling but well-crafted form is the right level of ambition here, not a new experiment.
+
+7. **Submission behavior — real gap, flagged, not invented:** whether this form should actually send an email on submit, and to which real inbox, is not yet decided. `contact@scaleiqglobal.com` is the real address currently live on ScaleIQ's existing site — confirm with the user whether the new site reuses this address or gets its own before wiring a live send. Until that's confirmed, build the form UI complete and functional up to a success/confirmation state, without assuming a specific backend email destination.
+
+8. **CTA/closing:** after successful submission, a calm confirmation state (not a redirect to a generic "thank you" page) — reassure the visitor their message reached a real person and roughly what happens next (e.g., "Rajeev will personally review this and follow up directly").
+
+## Pages still pending (not yet drafted here — still sourced from the docx, and still carrying the "in-house engineering" error)
+Portfolio Companies · Impact & Growth (full page) · Whom We Serve · Our Services · Case Studies · Contact Us · For Investors · For Partners
+
+*(Blogs and For Portfolio Companies [Contact group] are now FINALIZED above — removed from this pending list. Case Studies still pending — the 17 real case studies were fully extracted from the live site this session and are ready to write up next, using the same "same layout, same content" approach, whenever you want to move to that page.)*
