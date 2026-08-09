@@ -4,6 +4,22 @@ Running log of work on this project, most recent session first. Maintained autom
 
 ---
 
+## 2026-08-09 — 🔖 FIRST CUT, ready to show
+
+User confirmed this checkpoint is ready to show to leadership ("sir"). Tagged in git as `first-cut` at commit `f028f83` — see that tag/commit for the exact snapshot shown.
+
+**Pages built and approved since the 2026-08-06 homepage lock:**
+- **Blogs** — all 7 articles, real verbatim body text, real images, real cross-links between posts, gold byline/link theming.
+- **Case Studies** — standalone listing (category dropdown filter) + all 17 real case study detail pages, matching the live site's actual detail-page layout (hero, sticky scrollspy nav, Overview/Core Problem/Solution/Business Impact, Share/Print with dynamic PDF filename), themed to our fonts/colors instead of the real site's black band.
+- **Contact section, all 4 pages** — For Portfolio Companies (no named individual per latest direction, refined non-blunt tone), Contact Us, For Investors, For Partners — all rebuilt onto one shared homepage-styled panel component (retired the old generic `FormTemplate`/`ContactForm`).
+- **Whom We Serve / Our Services** — real content from the live site's bundle, interactive segment/service explorer (tabs + detail panel + real photography), real testimonial, related case studies.
+- **Our Companies** — general/scalable "portfolio" language (not locked to Oges as if it's the only company forever), real product showcase (OgesOne/WIPA/HVMS/Udbhav) via the same explorer component.
+- **Impact & Growth** — before/after comparison cards, industry impact by category (no individual case-study links, per latest direction), Growth Enablers grid modeled on Halma's "How We Grow" page structure.
+
+**Still open / known gaps** — see punch list below; nothing new resolved in this pass beyond what's listed above.
+
+---
+
 ## 2026-08-05
 
 **Infra audit (start of session)**
