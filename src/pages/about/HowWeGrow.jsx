@@ -39,7 +39,7 @@ export default function HowWeGrow() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title={<>The engine behind every company we <em>back</em>.</>} />
+      <PageHeader eyebrow="About" title={<>The engine behind every company we <em>back</em>.</>} size="hero" />
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">

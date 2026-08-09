@@ -24,7 +24,7 @@ export default function OurCulture() {
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title={<>The strength of a group, the speed of a <em>small team</em>.</>} />
+      <PageHeader eyebrow="People & Culture" title={<>The strength of a group, the speed of a <em>small team</em>.</>} size="hero" />
       <div className="content-body wrap">
         <p className="founder-opening-line reveal-left">ScaleIQ works in an industry where mistakes are expensive and downtime is not an option.</p>
         <p className="reveal-left">That reality shapes how we work more than any values poster could.</p>

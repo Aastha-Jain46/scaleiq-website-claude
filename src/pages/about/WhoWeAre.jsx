@@ -15,7 +15,7 @@ export default function WhoWeAre() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title={<>Energy keeps the world running. We make sure its technology never falls <em>behind</em>.</>} />
+      <PageHeader eyebrow="About" title={<>Energy keeps the world running. We make sure its technology never falls <em>behind</em>.</>} size="hero" />
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">

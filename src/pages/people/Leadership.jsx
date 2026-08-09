@@ -24,7 +24,7 @@ export default function Leadership() {
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title={<>Guided by <em>industry veterans</em>, not generalists learning as they go.</>} />
+      <PageHeader eyebrow="People & Culture" title={<>Guided by <em>industry veterans</em>, not generalists learning as they go.</>} size="hero" />
       <div className="content-body wrap">
         <p className="reveal">ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on.</p>
 

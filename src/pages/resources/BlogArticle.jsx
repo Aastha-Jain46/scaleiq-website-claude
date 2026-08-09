@@ -52,7 +52,7 @@ export default function BlogArticle() {
       </header>
 
       {blog.image && (
-        <div className="article-hero-image">
+        <div className="article-hero-image wrap">
           <img src={blog.image} alt={blog.title} />
         </div>
       )}

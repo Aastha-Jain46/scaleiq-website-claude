@@ -17,6 +17,7 @@ export default function Blogs() {
       eyebrow="Resources"
       title="Blogs"
       intro="Perspectives from inside ScaleIQ, on digital transformation, energy technology, and what it takes to run complex operations well."
+      size="hero"
     >
       <div className="blog-list">
         {blogs.map((b, i) => (

@@ -8,7 +8,7 @@ export default function FoundersNote() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title={<>A Note From Our <em>Founder</em></>} />
+      <PageHeader eyebrow="About" title={<>A Note From Our <em>Founder</em></>} size="hero" />
       <div className="founder-letter wrap">
         <p className="founder-opening-line reveal">Three decades inside the energy industry teaches you where the real gaps are.</p>
 

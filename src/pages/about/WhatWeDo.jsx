@@ -17,7 +17,7 @@ export default function WhatWeDo() {
 
   return (
     <>
-      <PageHeader eyebrow="About" title={<>We help energy companies do more than survive. We help them <em>lead</em>.</>} />
+      <PageHeader eyebrow="About" title={<>We help energy companies do more than survive. We help them <em>lead</em>.</>} size="hero" />
       <div className="hub-layout wrap">
         <QuickLinksRail sections={sections} />
         <div className="hub-sections">

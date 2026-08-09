@@ -38,7 +38,7 @@ export default function JoinUs() {
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title="Work on problems that matter, wherever you are." />
+      <PageHeader eyebrow="People & Culture" title="Work on problems that matter, wherever you are." size="hero" />
       <div className="content-body wrap">
         <p className="reveal">ScaleIQ is a small team doing two demanding things at once, investing in energy-technology companies, and building the systems that run the energy industry. We look for people who already know energy, or want to.</p>
 
