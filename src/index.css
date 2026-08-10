@@ -676,12 +676,13 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .form-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
 .site-form { display: flex; flex-direction: column; gap: 1.1rem; }
 .field label { display: block; font-size: 0.8rem; color: var(--ink-muted); margin-bottom: 0.4rem; }
-.field input, .field textarea {
+.field input, .field textarea, .field select {
   width: 100%; border: 1px solid var(--line); border-radius: 6px; padding: 0.8rem 1rem;
   font-size: 0.95rem; font-family: var(--body); color: var(--ink); background: var(--paper);
 }
+.field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238C8680' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 .field textarea { resize: vertical; min-height: 110px; }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+.field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
 .form-success { padding: 1.25rem; background: var(--off); border-radius: 8px; font-size: 0.92rem; color: var(--ink-soft); border-left: 3px solid var(--gold); }
 
 /* CONTACT PAGES — shared elegant single form panel, homepage-level heading

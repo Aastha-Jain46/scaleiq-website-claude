@@ -2,11 +2,16 @@ import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
 
+const INVESTOR_TYPES = ['', 'Venture Capital', 'Private Equity', 'Family Office', 'Institutional Investor', 'Angel Investor', 'Other'];
+
 const FIELDS = [
-  { name: 'name', label: 'Name', required: true },
-  { name: 'organization', label: 'Organization' },
-  { name: 'email', label: 'Email', type: 'email', required: true },
-  { name: 'message', label: 'What would you like to know?' },
+  { name: 'name', label: 'Full Name', required: true },
+  { name: 'email', label: 'Work Email', type: 'email', required: true },
+  { name: 'firm', label: 'Firm / Organization', required: true },
+  { name: 'role', label: 'Your Role / Title', required: true },
+  { name: 'investorType', label: 'Investor Type', type: 'select', required: true },
+  { name: 'link', label: 'Firm Website or LinkedIn', required: true },
+  { name: 'interest', label: "What's prompting your interest in ScaleIQ?" },
 ];
 
 export default function ForInvestors() {
@@ -18,6 +23,9 @@ export default function ForInvestors() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // No backend wired up yet — this needs a real notify-team /
+    // manual-verify / auto-send-on-approval flow, which is infrastructure
+    // beyond this static frontend. Flagged back to the user in chat.
     setSubmitted(true);
   };
 
@@ -25,35 +33,45 @@ export default function ForInvestors() {
     <>
       <PageHeader
         eyebrow="Contact — For Investors"
-        title={<>We invest like we intend to <em>stay</em>.</>}
-        intro="ScaleIQ Capital backs energy-technology companies for the long term through a buy-and-build model built on permanent capital, not a fund with a countdown clock. This page is for investors who want to understand that model directly."
+        title={<>The industry generalist capital keeps <em>underestimating</em>.</>}
+        intro="ScaleIQ is raising permanent capital to back and build energy-technology companies — an industry built on real infrastructure, not hype cycles. This page is for investors evaluating that opportunity directly."
         size="hero"
       />
 
       <div className="content-body wrap">
         <div className="hub-sections">
           <section className="hub-section reveal-left">
-            <h2>Why <em>permanent</em> capital?</h2>
-            <p>Energy technology rewards patience that most funds aren't built to offer. A five-year exit clock pushes portfolio companies toward decisions that optimize for a sale, not for the business. ScaleIQ Capital is structured around permanent capital specifically so the companies we back can make decisions on the timeline energy operations actually improve on: gradually, and for keeps, rather than on a schedule set by someone else's fund life.</p>
+            <h2>A market institutional capital has largely <em>ignored</em>.</h2>
+            <p>Energy technology sits at an odd intersection: the industry it serves is enormous and mission-critical, but the software built for it has mostly been left to legacy vendors, or ignored by generalist investors who don't understand the domain well enough to underwrite it confidently. That gap is the opportunity — a large, structurally underserved market with real, recurring demand, not a trend still waiting to prove itself.</p>
           </section>
 
           <section className="hub-section reveal-right">
-            <h2>What does <em>access</em> look like right now?</h2>
-            <p>Fund performance, portfolio reporting, and other investor materials are reserved for registered investors and will move to a dedicated investor portal as that capability comes online. Right now, the way in is a direct conversation. Tell us who you are and what you'd like to understand, and someone from the investment team will follow up personally.</p>
+            <h2>Buy-and-build, focused on <em>one</em> industry.</h2>
+            <p>ScaleIQ runs a buy-and-build model: back founder-led energy-technology companies with strong products and real customers, then compound their growth with permanent capital, shared infrastructure, and group-wide business development. It's the same playbook proven capital platforms use in other verticals — applied to an industry that hasn't had one built for it yet.</p>
+          </section>
+
+          <section className="hub-section reveal-left">
+            <h2>Traction you can <em>verify</em>, not project.</h2>
+            <p>This isn't a market-sizing slide with no execution behind it. ScaleIQ's first portfolio company, Oges, has delivered 378+ projects for real operators, drilling contractors, and service companies — work documented in 17 public case studies with measured outcomes, not marketing claims. 715+ energy-technology specialists and 171+ customers already sit inside the group.</p>
+          </section>
+
+          <section className="hub-section reveal-right">
+            <h2>Led by people who've <em>run</em> this industry.</h2>
+            <p>ScaleIQ is led by a founder with three decades inside global energy technology leadership at SLB, not a financial sponsor learning the industry through diligence calls. That's the same bar the rest of the leadership team is held to: real operating experience in energy, not adjacent-sector experience assumed to transfer.</p>
           </section>
         </div>
       </div>
 
       <section className="contact-panel-band">
         <div className="wrap">
-          <h2 className="hub-section-title contact-panel-heading reveal">Talk to Our <em>Investment Team</em></h2>
-          <p className="contact-panel-intro reveal">This goes directly to ScaleIQ Capital's investment team, not a distribution list. Tell us who you are and what you're looking to understand, and we'll follow up personally.</p>
+          <h2 className="hub-section-title contact-panel-heading reveal">Request the <em>Investor Deck</em></h2>
+          <p className="contact-panel-intro reveal">The deck is confidential and shared with verified investors only. Tell us who you are below — our team reviews every request personally.</p>
 
           <div className="contact-panel reveal">
             {submitted ? (
               <div className="contact-success">
-                <div className="contact-success-title">Message sent.</div>
-                <p>Thank you — this has been sent directly to ScaleIQ Capital's investment team. Someone will personally follow up with you, usually within a few business days.</p>
+                <div className="contact-success-title">Request received.</div>
+                <p>Thank you — your request has been sent for review. If approved, you'll receive the deck directly by email.</p>
               </div>
             ) : (
               <form className="site-form" onSubmit={handleSubmit}>
@@ -63,18 +81,35 @@ export default function ForInvestors() {
                       {field.label}
                       {!field.required && <span className="contact-optional"> (optional)</span>}
                     </label>
-                    <input
-                      id={field.name}
-                      type={field.type || 'text'}
-                      required={field.required}
-                      value={values[field.name] || ''}
-                      onChange={(e) => handleChange(field.name, e.target.value)}
-                    />
+                    {field.type === 'select' ? (
+                      <select
+                        id={field.name}
+                        required={field.required}
+                        value={values[field.name] || ''}
+                        onChange={(e) => handleChange(field.name, e.target.value)}
+                      >
+                        {INVESTOR_TYPES.map((opt) => (
+                          <option value={opt} key={opt || 'placeholder'}>{opt || 'Select one'}</option>
+                        ))}
+                      </select>
+                    ) : (
+                      <input
+                        id={field.name}
+                        type={field.type || 'text'}
+                        required={field.required}
+                        value={values[field.name] || ''}
+                        onChange={(e) => handleChange(field.name, e.target.value)}
+                      />
+                    )}
                   </div>
                 ))}
 
+                <p className="contact-trust-note">
+                  Requests are reviewed by ScaleIQ's team before the deck is sent — this isn't an instant download.
+                </p>
+
                 <button type="submit" className="btn-gold" style={{ alignSelf: 'flex-start', marginRight: 0 }}>
-                  Request Access
+                  Request the Investor Deck
                 </button>
               </form>
             )}
