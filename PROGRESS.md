@@ -4,6 +4,14 @@ Running log of work on this project, most recent session first. Maintained autom
 
 ---
 
+## 2026-08-10 (later same day) — Case-study CTA fix, corrected
+
+The first attempt at aligning "Read Full Case Study" CTAs (below, commit `305b474`) used `display:flex` + `margin-top:auto` on `.listing-card`. User caught that this had a side effect — it changed card heights/proportions, not just CTA position. Reverted that commit, then reapplied the fix a different way: `.listing-card` stays `display:block` (unchanged sizing), and `.listing-card-cta` is absolutely positioned at a fixed offset from the card's bottom edge instead. Same visual result (CTAs align within each row) with zero change to card height. Verified on Case Studies, Whom We Serve, and Our Services pages. Pushed as commit `a4524c3`.
+
+**Lesson for future sessions**: when a fix to one property (alignment) risks changing another (size/proportions) as a side effect, prefer a technique that only touches the property actually being asked about (here: `position: absolute`) over a structural layout change (`display: flex`), even if the flex approach is the more "normal" CSS pattern.
+
+---
+
 ## 2026-08-10 — 🔖 FIRST CUT, final updated
 
 User confirmed this checkpoint is ready to show to leadership ("sir"). Tagged in git as `first-cut` at commit `305b474` — the tag was moved forward from the original 2026-08-09 checkpoint (`f028f83`) to include the fixes below; see that tag/commit for the exact snapshot shown.
