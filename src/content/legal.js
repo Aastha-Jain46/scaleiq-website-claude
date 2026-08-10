@@ -9,7 +9,7 @@ export const legalContact = {
   email: 'contact@scaleiqglobal.com',
 };
 
-export const lastUpdated = 'March 2026';
+export const lastUpdated = 'August 2026';
 
 export const termsOfUse = {
   intro: [

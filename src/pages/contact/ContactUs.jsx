@@ -73,106 +73,104 @@ export default function ContactUs() {
         size="hero"
       />
 
-      <div className="content-body wrap">
-        <div className="hub-sections">
-          <section className="hub-section reveal-left">
-            <h2>Looking for something <em>specific</em>?</h2>
-            <p>A few kinds of conversations are common enough that we've given them their own page, each one goes straight to the right team instead of a general inbox.</p>
+      <div className="contact-split wrap">
+        <div className="contact-split-info">
+          <div className="contact-info reveal-left">
+            <div className="contact-info-item">
+              <div className="contact-info-icon"><EmailIcon /></div>
+              <div>
+                <h4>Email Us</h4>
+                <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a>
+              </div>
+            </div>
+            <div className="contact-info-item">
+              <div className="contact-info-icon"><PhoneIcon /></div>
+              <div>
+                <h4>Call Us</h4>
+                <a href="tel:+919821106466">(+91) 98211 06466</a>
+              </div>
+            </div>
+            <div className="contact-info-item">
+              <div className="contact-info-icon"><PinIcon /></div>
+              <div>
+                <h4>Global Headquarters</h4>
+                <a href="https://www.google.com/maps/search/?api=1&query=Tower+B+Pioneer+Urban+Square+Golf+Course+Ext+Rd+Sector+62+Gurugram+Haryana+122098" target="_blank" rel="noopener noreferrer">
+                  5th Floor, Tower B, Pioneer Urban Square,<br />Golf Course Ext Rd, Sector 62,<br />Gurugram, Haryana 122098
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="contact-split-divider reveal-left" />
+
+          <div className="reveal-left">
+            <h2 className="hub-section-title" style={{ fontSize: '1.3rem' }}>Looking for something <em>specific</em>?</h2>
+            <p style={{ color: 'var(--ink-soft)', marginBottom: '1rem' }}>A few kinds of conversations are common enough that we've given them their own page.</p>
             <ul className="form-list">
               <li>Considering ScaleIQ as a backer for your company — <Link to="/contact/portfolio-companies" className="link-arrow">For Portfolio Companies →</Link></li>
               <li>Interested in ScaleIQ Capital as an investor — <Link to="/contact/investors" className="link-arrow">For Investors →</Link></li>
               <li>An M&amp;A advisor, technology partner, or referral source — <Link to="/contact/partners" className="link-arrow">For Partners →</Link></li>
             </ul>
-          </section>
-        </div>
-      </div>
-
-      <section className="contact-panel-band">
-        <div className="wrap">
-          <h2 className="hub-section-title contact-panel-heading reveal">Send Us a <em>Message</em></h2>
-          <p className="contact-panel-intro reveal">We read every message ourselves and route it to the right person on the team. For most questions, expect a reply within one to two business days.</p>
-
-          <div className="contact-panel reveal">
-            <div className="contact-info">
-              <div className="contact-info-item">
-                <div className="contact-info-icon"><EmailIcon /></div>
-                <div>
-                  <h4>Email Us</h4>
-                  <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a>
-                </div>
-              </div>
-              <div className="contact-info-item">
-                <div className="contact-info-icon"><PhoneIcon /></div>
-                <div>
-                  <h4>Call Us</h4>
-                  <a href="tel:+919821106466">(+91) 98211 06466</a>
-                </div>
-              </div>
-              <div className="contact-info-item">
-                <div className="contact-info-icon"><PinIcon /></div>
-                <div>
-                  <h4>Global Headquarters</h4>
-                  <a href="https://www.google.com/maps/search/?api=1&query=Tower+B+Pioneer+Urban+Square+Golf+Course+Ext+Rd+Sector+62+Gurugram+Haryana+122098" target="_blank" rel="noopener noreferrer">
-                    5th Floor, Tower B, Pioneer Urban Square,<br />Golf Course Ext Rd, Sector 62,<br />Gurugram, Haryana 122098
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {status === 'sent' ? (
-              <div className="contact-success">
-                <div className="contact-success-title">Message sent.</div>
-                <p>Thank you — we've received your message and someone from the team will get back to you shortly.</p>
-              </div>
-            ) : (
-              <form className="site-form" onSubmit={handleSubmit}>
-                {FIELDS.map((field) => (
-                  <div key={field.name} className="field">
-                    <label htmlFor={field.name}>
-                      {field.label}
-                      {!field.required && <span className="contact-optional"> (optional)</span>}
-                    </label>
-                    {field.type === 'select' ? (
-                      <select id={field.name} value={values[field.name] || ''} onChange={(e) => handleChange(field.name, e.target.value)}>
-                        {PROJECT_TYPES.map((opt) => (
-                          <option value={opt} key={opt || 'placeholder'}>{opt || 'Select one'}</option>
-                        ))}
-                      </select>
-                    ) : field.type === 'textarea' ? (
-                      <textarea
-                        id={field.name}
-                        required={field.required}
-                        rows={5}
-                        value={values[field.name] || ''}
-                        onChange={(e) => handleChange(field.name, e.target.value)}
-                      />
-                    ) : (
-                      <input
-                        id={field.name}
-                        type={field.type || 'text'}
-                        required={field.required}
-                        value={values[field.name] || ''}
-                        onChange={(e) => handleChange(field.name, e.target.value)}
-                      />
-                    )}
-                  </div>
-                ))}
-
-                {status === 'error' && (
-                  <div className="contact-error">
-                    <div className="contact-error-title">Couldn't send that.</div>
-                    <p>Something went wrong on our end — please email us directly at <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a> instead.</p>
-                  </div>
-                )}
-
-                <button type="submit" className="btn-gold" disabled={status === 'sending'} style={{ alignSelf: 'flex-start', marginRight: 0 }}>
-                  {status === 'sending' ? 'Sending…' : 'Send Message'}
-                </button>
-              </form>
-            )}
           </div>
         </div>
-      </section>
+
+        <div className="contact-panel reveal-right">
+          <h2 className="hub-section-title" style={{ fontSize: '1.3rem', marginBottom: '0.5rem' }}>Send Us a <em>Message</em></h2>
+          <p style={{ color: 'var(--ink-soft)', fontSize: '0.9rem', marginBottom: '1.75rem' }}>We read every message ourselves. For most questions, expect a reply within one to two business days.</p>
+
+          {status === 'sent' ? (
+            <div className="contact-success">
+              <div className="contact-success-title">Message sent.</div>
+              <p>Thank you — we've received your message and someone from the team will get back to you shortly.</p>
+            </div>
+          ) : (
+            <form className="site-form" onSubmit={handleSubmit}>
+              {FIELDS.map((field) => (
+                <div key={field.name} className="field">
+                  <label htmlFor={field.name}>
+                    {field.label}
+                    {!field.required && <span className="contact-optional"> (optional)</span>}
+                  </label>
+                  {field.type === 'select' ? (
+                    <select id={field.name} value={values[field.name] || ''} onChange={(e) => handleChange(field.name, e.target.value)}>
+                      {PROJECT_TYPES.map((opt) => (
+                        <option value={opt} key={opt || 'placeholder'}>{opt || 'Select one'}</option>
+                      ))}
+                    </select>
+                  ) : field.type === 'textarea' ? (
+                    <textarea
+                      id={field.name}
+                      required={field.required}
+                      rows={5}
+                      value={values[field.name] || ''}
+                      onChange={(e) => handleChange(field.name, e.target.value)}
+                    />
+                  ) : (
+                    <input
+                      id={field.name}
+                      type={field.type || 'text'}
+                      required={field.required}
+                      value={values[field.name] || ''}
+                      onChange={(e) => handleChange(field.name, e.target.value)}
+                    />
+                  )}
+                </div>
+              ))}
+
+              {status === 'error' && (
+                <div className="contact-error">
+                  <div className="contact-error-title">Couldn't send that.</div>
+                  <p>Something went wrong on our end — please email us directly at <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a> instead.</p>
+                </div>
+              )}
+
+              <button type="submit" className="btn-gold" disabled={status === 'sending'} style={{ alignSelf: 'flex-start', marginRight: 0 }}>
+                {status === 'sending' ? 'Sending…' : 'Send Message'}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
     </>
   );
 }
