@@ -4,19 +4,25 @@ Running log of work on this project, most recent session first. Maintained autom
 
 ---
 
-## 2026-08-09 — 🔖 FIRST CUT, ready to show
+## 2026-08-10 — 🔖 FIRST CUT, final updated
 
-User confirmed this checkpoint is ready to show to leadership ("sir"). Tagged in git as `first-cut` at commit `f028f83` — see that tag/commit for the exact snapshot shown.
+User confirmed this checkpoint is ready to show to leadership ("sir"). Tagged in git as `first-cut` at commit `305b474` — the tag was moved forward from the original 2026-08-09 checkpoint (`f028f83`) to include the fixes below; see that tag/commit for the exact snapshot shown.
 
 **Pages built and approved since the 2026-08-06 homepage lock:**
 - **Blogs** — all 7 articles, real verbatim body text, real images, real cross-links between posts, gold byline/link theming.
 - **Case Studies** — standalone listing (category dropdown filter) + all 17 real case study detail pages, matching the live site's actual detail-page layout (hero, sticky scrollspy nav, Overview/Core Problem/Solution/Business Impact, Share/Print with dynamic PDF filename), themed to our fonts/colors instead of the real site's black band.
-- **Contact section, all 4 pages** — For Portfolio Companies (no named individual per latest direction, refined non-blunt tone), Contact Us, For Investors, For Partners — all rebuilt onto one shared homepage-styled panel component (retired the old generic `FormTemplate`/`ContactForm`).
+- **Contact section, all 4 pages** — For Portfolio Companies (no named individual per latest direction, refined non-blunt tone), Contact Us (real two-column layout matching the live site, real email/phone/Gurugram HQ address), For Investors (rebuilt as a fundraising pitch page, not investor-relations — real traction numbers, no fabricated financials, investor-deck request form), For Partners — all on one shared homepage-styled panel component.
 - **Whom We Serve / Our Services** — real content from the live site's bundle, interactive segment/service explorer (tabs + detail panel + real photography), real testimonial, related case studies.
 - **Our Companies** — general/scalable "portfolio" language (not locked to Oges as if it's the only company forever), real product showcase (OgesOne/WIPA/HVMS/Udbhav) via the same explorer component.
 - **Impact & Growth** — before/after comparison cards, industry impact by category (no individual case-study links, per latest direction), Growth Enablers grid modeled on Halma's "How We Grow" page structure.
+- **Legal** — Terms of Use and Privacy Statement now show the real, verbatim text from the live site (accordion sections), last-updated set to August 2026.
+- **Forms actually submit** — Contact Us, For Partners, For Portfolio Companies, and For Investors POST to a shared `FORM_ENDPOINT` config (`src/config/formEndpoint.js`) instead of only updating local state. Endpoint is still blank pending the user creating a Formspree/Web3Forms account for `contact@scaleiqglobal.com` — forms show an honest error state until it's set, not a fake success.
+- **Polish** — "Read Full Case Study" CTAs now align to the same height across every card grid sitewide (flexbox `margin-top: auto`, not per-card guesswork).
 
-**Still open / known gaps** — see punch list below; nothing new resolved in this pass beyond what's listed above.
+**Still open / known gaps:**
+- `FORM_ENDPOINT` needs a real Formspree/Web3Forms endpoint from the user before any form actually delivers email.
+- Investor deck: the manual-verify → approve → auto-send-on-approval workflow the user described is still not built (needs real backend/automation infrastructure, flagged separately — Formspree alone only gets the request into the team's inbox).
+- Investor deck PDF file itself — user will provide later, not yet in the project.
 
 ---
 
