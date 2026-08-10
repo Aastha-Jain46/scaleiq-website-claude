@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
+import { FORM_ENDPOINT } from '../../config/formEndpoint';
 
 const FIELDS = [
   { name: 'name', label: 'Name', required: true },
@@ -12,13 +13,27 @@ const FIELDS = [
 export default function ForPartners() {
   useReveal();
   const [values, setValues] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (name, value) => setValues((v) => ({ ...v, [name]: value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (!FORM_ENDPOINT) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sending');
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...values, _subject: 'New message — For Partners (scaleiqglobal.com)' }),
+      });
+      setStatus(res.ok ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -55,7 +70,7 @@ export default function ForPartners() {
           <p className="contact-panel-intro reveal">This goes directly to the team that evaluates partnerships. Tell us about the opportunity and we'll follow up personally.</p>
 
           <div className="contact-panel reveal">
-            {submitted ? (
+            {status === 'sent' ? (
               <div className="contact-success">
                 <div className="contact-success-title">Message sent.</div>
                 <p>Thank you — this has been sent directly to ScaleIQ's partnerships team. Someone will personally follow up with you, usually within a few business days.</p>
@@ -78,8 +93,15 @@ export default function ForPartners() {
                   </div>
                 ))}
 
-                <button type="submit" className="btn-gold" style={{ alignSelf: 'flex-start', marginRight: 0 }}>
-                  Start the Conversation
+                {status === 'error' && (
+                  <div className="contact-error">
+                    <div className="contact-error-title">Couldn't send that.</div>
+                    <p>Something went wrong on our end — please email us directly at <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a> instead.</p>
+                  </div>
+                )}
+
+                <button type="submit" className="btn-gold" disabled={status === 'sending'} style={{ alignSelf: 'flex-start', marginRight: 0 }}>
+                  {status === 'sending' ? 'Sending…' : 'Start the Conversation'}
                 </button>
               </form>
             )}

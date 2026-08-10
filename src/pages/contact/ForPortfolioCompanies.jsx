@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
+import { FORM_ENDPOINT } from '../../config/formEndpoint';
 
 const FIELDS = [
   { name: 'name', label: 'Full Name', required: true },
@@ -16,14 +17,27 @@ const FIELDS = [
 export default function ForPortfolioCompanies() {
   useReveal();
   const [values, setValues] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (name, value) => setValues((v) => ({ ...v, [name]: value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // No backend wired up yet — see the flag in the chat response for why.
-    setSubmitted(true);
+    if (!FORM_ENDPOINT) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sending');
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...values, _subject: 'New message — For Portfolio Companies (scaleiqglobal.com)' }),
+      });
+      setStatus(res.ok ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -61,7 +75,7 @@ export default function ForPortfolioCompanies() {
           <p className="contact-panel-intro reveal">This goes straight to ScaleIQ's leadership, not a shared inbox or a sales pipeline. Tell us a little about your company and what's prompting the conversation, and we'll take it from there.</p>
 
           <div className="contact-panel reveal">
-            {submitted ? (
+            {status === 'sent' ? (
               <div className="contact-success">
                 <div className="contact-success-title">Message sent.</div>
                 <p>Thank you — this has been sent directly to ScaleIQ's leadership team. Someone senior will personally review it and follow up with you directly, usually within a few business days.</p>
@@ -88,8 +102,15 @@ export default function ForPortfolioCompanies() {
                   Submitting this starts a thoughtful and confidential discussion. Nothing more, and nothing shared beyond it.
                 </p>
 
-                <button type="submit" className="btn-gold" style={{ alignSelf: 'flex-start', marginRight: 0 }}>
-                  Start the Conversation
+                {status === 'error' && (
+                  <div className="contact-error">
+                    <div className="contact-error-title">Couldn't send that.</div>
+                    <p>Something went wrong on our end — please email us directly at <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a> instead.</p>
+                  </div>
+                )}
+
+                <button type="submit" className="btn-gold" disabled={status === 'sending'} style={{ alignSelf: 'flex-start', marginRight: 0 }}>
+                  {status === 'sending' ? 'Sending…' : 'Start the Conversation'}
                 </button>
               </form>
             )}

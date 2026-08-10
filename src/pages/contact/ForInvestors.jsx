@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useReveal from '../../hooks/useReveal';
 import PageHeader from '../../components/templates/PageHeader';
+import { FORM_ENDPOINT } from '../../config/formEndpoint';
 
 const INVESTOR_TYPES = ['', 'Venture Capital', 'Private Equity', 'Family Office', 'Institutional Investor', 'Angel Investor', 'Other'];
 
@@ -17,16 +18,30 @@ const FIELDS = [
 export default function ForInvestors() {
   useReveal();
   const [values, setValues] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
 
   const handleChange = (name, value) => setValues((v) => ({ ...v, [name]: value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // No backend wired up yet — this needs a real notify-team /
-    // manual-verify / auto-send-on-approval flow, which is infrastructure
-    // beyond this static frontend. Flagged back to the user in chat.
-    setSubmitted(true);
+    // This delivers the request to the team's inbox — the manual-verify /
+    // auto-send-deck-on-approval half of the flow is still not wired up
+    // (needs real infrastructure, flagged separately in chat).
+    if (!FORM_ENDPOINT) {
+      setStatus('error');
+      return;
+    }
+    setStatus('sending');
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ ...values, _subject: 'Investor deck request (scaleiqglobal.com)' }),
+      });
+      setStatus(res.ok ? 'sent' : 'error');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -68,7 +83,7 @@ export default function ForInvestors() {
           <p className="contact-panel-intro reveal">The deck is confidential and shared with verified investors only. Tell us who you are below — our team reviews every request personally.</p>
 
           <div className="contact-panel reveal">
-            {submitted ? (
+            {status === 'sent' ? (
               <div className="contact-success">
                 <div className="contact-success-title">Request received.</div>
                 <p>Thank you — your request has been sent for review. If approved, you'll receive the deck directly by email.</p>
@@ -108,8 +123,15 @@ export default function ForInvestors() {
                   Requests are reviewed by ScaleIQ's team before the deck is sent — this isn't an instant download.
                 </p>
 
-                <button type="submit" className="btn-gold" style={{ alignSelf: 'flex-start', marginRight: 0 }}>
-                  Request the Investor Deck
+                {status === 'error' && (
+                  <div className="contact-error">
+                    <div className="contact-error-title">Couldn't send that.</div>
+                    <p>Something went wrong on our end — please email us directly at <a href="mailto:contact@scaleiqglobal.com">contact@scaleiqglobal.com</a> instead.</p>
+                  </div>
+                )}
+
+                <button type="submit" className="btn-gold" disabled={status === 'sending'} style={{ alignSelf: 'flex-start', marginRight: 0 }}>
+                  {status === 'sending' ? 'Sending…' : 'Request the Investor Deck'}
                 </button>
               </form>
             )}

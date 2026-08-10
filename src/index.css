@@ -698,6 +698,16 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .contact-trust-note { font-size: 0.85rem; color: var(--ink-muted); font-style: italic; line-height: 1.6; margin: 0.25rem 0 0.25rem; }
 .contact-success-title { font-family: var(--heading); font-weight: 700; font-size: 1.3rem; color: var(--ink); margin-bottom: 0.6rem; }
 .contact-success p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.75; margin: 0; }
+.contact-error-title { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.6rem; }
+.contact-error p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; margin: 0; }
+.contact-error a { color: var(--gold); }
+.contact-error a:hover { text-decoration: underline; }
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
+.contact-info-item { display: flex; align-items: flex-start; gap: 1rem; }
+.contact-info-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--gold-soft); display: flex; align-items: center; justify-content: center; color: var(--gold); flex-shrink: 0; }
+.contact-info-item h4 { font-family: var(--heading); font-weight: 700; font-size: 0.92rem; color: var(--ink); margin-bottom: 0.25rem; }
+.contact-info-item p, .contact-info-item a { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6; }
+.contact-info-item a:hover { color: var(--gold); }
 @media (max-width: 560px) {
   .contact-panel { padding: 2rem 1.5rem; }
 }
@@ -807,3 +817,39 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
     grid-template-columns: 1fr;
   }
 }
+
+/* LEGAL pages (Terms of Use / Privacy Statement) — real content, accordion sections */
+.legal-body { padding: 4rem 0 6rem; max-width: 780px; }
+.legal-intro p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; }
+.legal-intro p:last-child { margin-bottom: 0; }
+.legal-accordion { margin: 3rem 0; border-top: 1px solid var(--line); }
+.legal-accordion details { border-bottom: 1px solid var(--line); }
+.legal-accordion summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 1.5rem 0; cursor: pointer; list-style: none; font-family: var(--heading);
+  font-weight: 700; font-size: 1.1rem; color: var(--ink); transition: color 0.2s ease;
+}
+.legal-accordion summary::-webkit-details-marker { display: none; }
+.legal-accordion summary:hover { color: var(--gold); }
+.legal-accordion-icon { position: relative; width: 16px; height: 16px; flex-shrink: 0; }
+.legal-accordion-icon::before, .legal-accordion-icon::after {
+  content: ''; position: absolute; background: var(--gold); border-radius: 1px; transition: transform 0.2s ease;
+}
+.legal-accordion-icon::before { top: 7px; left: 0; width: 16px; height: 2px; }
+.legal-accordion-icon::after { top: 0; left: 7px; width: 2px; height: 16px; }
+details[open] .legal-accordion-icon::after { transform: rotate(90deg) translateX(0); opacity: 0; }
+.legal-section-content { padding-bottom: 1.75rem; }
+.legal-section-content p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
+.legal-section-content p:last-child { margin-bottom: 0; }
+.legal-section-content h4 { font-family: var(--heading); font-weight: 700; font-size: 0.95rem; color: var(--ink); margin: 1.25rem 0 0.75rem; }
+.legal-section-content ul { list-style: none; margin-bottom: 1rem; }
+.legal-section-content li { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.7; padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+.legal-section-content li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+.legal-contact { margin-top: 1rem; }
+.legal-contact > p { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+.legal-contact-block { padding: 1.5rem 1.75rem; background: var(--off); border-left: 3px solid var(--gold); border-radius: 8px; }
+.legal-contact-name { font-family: var(--heading); font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.5rem; }
+.legal-contact-block p { font-size: 0.92rem; color: var(--ink-soft); margin: 0.25rem 0; }
+.legal-contact-block a { color: var(--gold); }
+.legal-contact-block a:hover { text-decoration: underline; }
+.legal-updated { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--ink-muted); letter-spacing: 0.04em; text-transform: uppercase; }
