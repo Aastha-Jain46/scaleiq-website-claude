@@ -1,4 +1,5 @@
 import PageHeader from '../components/templates/PageHeader';
+import useReveal from '../hooks/useReveal';
 import { termsOfUse, privacyPolicy, legalContact, lastUpdated } from '../content/legal';
 
 function Block({ block }) {
@@ -18,18 +19,19 @@ function Block({ block }) {
 
 export default function Legal({ title }) {
   const doc = title === 'Privacy Statement' ? privacyPolicy : termsOfUse;
+  useReveal([title]);
 
   return (
     <>
       <PageHeader eyebrow="Legal" title={title} size="hero" />
       <div className="legal-body wrap">
-        <div className="legal-intro">
+        <div className="legal-intro reveal">
           {doc.intro.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
 
-        <div className="legal-accordion">
+        <div className="legal-accordion reveal">
           {doc.sections.map((section) => (
             <details key={section.title}>
               <summary>

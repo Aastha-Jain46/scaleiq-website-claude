@@ -33,11 +33,11 @@ export default function OurCompanies() {
 
       <div className="reveal">
         <h2 className="hub-section-title" style={{ fontSize: '1.5rem' }}>What Oges has <em>built</em></h2>
-        <p style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem', maxWidth: 680 }}>Four products, each solving a specific operational problem rather than one platform trying to do everything.</p>
+        <p style={{ color: 'var(--ink-soft)', marginBottom: '0.5rem', maxWidth: 860 }}>Four products, each solving a specific operational problem rather than one platform trying to do everything.</p>
       </div>
       <SegmentExplorer items={products} />
 
-      <div style={{ maxWidth: 720, marginTop: '1rem' }} className="reveal">
+      <div style={{ maxWidth: 860, marginTop: '1rem' }} className="reveal">
         <h2 className="hub-section-title" style={{ fontSize: '1.5rem' }}>What changes, and what <em>doesn't</em></h2>
         <p style={{ color: 'var(--ink-soft)', marginBottom: '1.25rem', lineHeight: 1.8 }}>Growing an energy-technology company usually means choosing between two hard paths: raise outside capital and give up control, or grow slowly on your own cash flow while competitors with deeper pockets move faster.</p>
         <p style={{ color: 'var(--ink-soft)', marginBottom: '1.25rem', lineHeight: 1.8 }}>Joining the ScaleIQ portfolio removes that choice. Companies keep their name, their leadership, and their customers. What they gain is capital without a boardroom takeover, an engineering bench that already understands energy workflows, and — as the portfolio grows — a network of peer companies who've already solved the scaling problems the next one is facing.</p>

@@ -4,6 +4,21 @@ Running log of work on this project, most recent session first. Maintained autom
 
 ---
 
+## 2026-08-12 — Deployed for review; sitewide alignment fix, APPROVED
+
+Deployed the first-cut build to Vercel (free hobby project, connected to the GitHub repo) so the user could share a live link with the founder ("sir") instead of only localhost. Added `vercel.json` with an SPA rewrite rule so client-side routes don't 404 on direct load/refresh. Founder reviewed and approved the current state as a checkpoint, with two categories of follow-up: ~10% interactive/animation polish, ~40% content wording (content work explicitly parked for a later session).
+
+**Container-width correction, APPROVED:** Founder's first specific note — main content sat too narrow/centered on every page, with excess empty margins, unlike the old live site (scaleiqglobal.com, confirmed via direct inspection to use a 1280px container with ~32–48px side padding). Fixed:
+- `.wrap` (the shared page container, used everywhere): `1160px → 1320px` max-width.
+- Found and fixed a real bug this exposed: `.content-body`, `.founder-letter`, and `.legal-body` each combined the shared `.wrap` class (which centers at page-width via `margin: 0 auto`) *with their own narrower `max-width`* — this double-centered them, shifting their left edge inward from the page header above them on every page using those classes (Leadership, Our Culture, Founder's Note, Legal, Join Us, and all 3 "For X" contact pages). Fixed by moving the width cap onto direct-child paragraphs/sections instead, so text is capped for readability but stays left-aligned with the heading, exactly matching the old site's approach. Verified with exact pixel measurements (not just visual inspection) on every affected page.
+- Side effect caught and fixed: widening `.wrap` moved the hero's left edge close enough to the viewport edge that the opaque mobile-style nav panel sliced through the middle of the hero heading when opened. Fixed by darkening/blurring the nav backdrop overlay so background text reads as a soft blur, not a jarring mid-word cut.
+
+**Animation/dynamism pass — done but not yet confirmed by user:** Extended the existing scroll-reveal system (`useReveal` hook + `.reveal`/`.reveal-left`/`.reveal-right` classes) to the 3 pages that had none (Case Studies, Blogs, Legal). Along the way, found and fixed a real CSS specificity bug: several cards' existing hover-lift effects were being silently cancelled once their scroll-reveal animation completed (`.reveal.in`'s transform was winning the cascade over `.card:hover`'s transform at equal specificity) — fixed with explicit higher-specificity overrides. Also extended `useReveal` to accept an optional dependency array, since the Case Studies grid re-renders on category filter change and the observer needs to re-attach to newly filtered-in cards or they'd stay stuck at `opacity: 0`. **Not yet visually confirmed by the user** — could not get a live visual check in this session's browser pane (compositing wasn't active), verified by code logic and direct DOM measurement instead. Revisit page-by-page in a future session per user's request.
+
+Pushed this session's commit; not yet re-confirmed live on the Vercel URL after push.
+
+---
+
 ## 2026-08-10 (later same day) — Case-study CTA fix, corrected
 
 The first attempt at aligning "Read Full Case Study" CTAs (below, commit `305b474`) used `display:flex` + `margin-top:auto` on `.listing-card`. User caught that this had a side effect — it changed card heights/proportions, not just CTA position. Reverted that commit, then reapplied the fix a different way: `.listing-card` stays `display:block` (unchanged sizing), and `.listing-card-cta` is absolutely positioned at a fixed offset from the card's bottom edge instead. Same visual result (CTAs align within each row) with zero change to card height. Verified on Case Studies, Whom We Serve, and Our Services pages. Pushed as commit `a4524c3`.

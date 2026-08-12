@@ -14,7 +14,8 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
-.wrap { max-width: 1160px; margin: 0 auto; padding: 0 2.5rem; }
+.wrap { max-width: 1320px; margin: 0 auto; padding: 0 2.5rem; }
+@media (max-width: 640px) { .wrap { padding: 0 1.25rem; } }
 
 /* NAV — logo + hamburger only, nothing else visible */
 nav.site-nav {
@@ -32,8 +33,9 @@ nav.site-nav {
 
 /* SLIDE-IN MENU PANEL — opens from the LEFT */
 .menu-overlay {
-  position: fixed; inset: 0; background: rgba(26,24,21,0.25);
-  opacity: 0; pointer-events: none; transition: opacity 0.25s ease; z-index: 90;
+  position: fixed; inset: 0; background: rgba(26,24,21,0.5);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none; transition: opacity 0.3s ease; z-index: 90;
 }
 .menu-overlay.open { opacity: 1; pointer-events: auto; }
 .menu-panel {
@@ -212,7 +214,8 @@ h2.section-h {
 
 /* CATEGORY IMPACT — Impact & Growth page, real category summaries without individual case-study links */
 .category-impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.category-impact-card { border: 1px solid var(--line); border-radius: 12px; padding: 1.75rem; }
+.category-impact-card { border: 1px solid var(--line); border-radius: 12px; padding: 1.75rem; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
+.category-impact-card:hover { border-color: var(--gold); box-shadow: 0 18px 36px rgba(26,24,21,0.08); transform: translateY(-6px); }
 .category-impact-card .card-tag { margin-bottom: 0.9rem; }
 .category-impact-card p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 1.1rem; }
 .category-impact-count { font-size: 0.8rem; color: var(--gold); font-weight: 600; }
@@ -304,8 +307,14 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .page-h1-hero { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.15; letter-spacing: -0.01em; max-width: 900px; }
 .page-intro { font-size: 1.05rem; color: var(--ink-soft); max-width: 620px; }
 
-/* CONTENT template — About, Founder's Note, Culture, Leadership */
-.content-body { padding: 4rem 0 6rem; max-width: 720px; }
+/* CONTENT template — About, Founder's Note, Culture, Leadership
+   Note: max-width lives on direct-child paragraphs, not on .content-body
+   itself — .content-body also carries the .wrap class (centered, page-width),
+   so giving it its own narrower max-width would double-center it and shift
+   its left edge inward from the page header above it. Grids/cards stay
+   full-width; only free-floating paragraphs get a readable line length. */
+.content-body { padding: 4rem 0 6rem; }
+.content-body > p { max-width: 860px; }
 .content-body p { font-size: 1rem; color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.8; }
 .content-body p:last-child { margin-bottom: 0; }
 .content-note {
@@ -323,8 +332,10 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .approach-item h3 { font-family: var(--heading); font-weight: 700; font-size: 1.05rem; margin-bottom: 0.6rem; }
 .approach-item p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 @media (max-width: 820px) { .approach-grid { grid-template-columns: 1fr; } }
-/* FOUNDER'S NOTE — calm, full-bleed letter; closing line as pull-quote, photo beside signature at the bottom */
-.founder-letter { max-width: 720px; margin: 0 auto; padding: 3rem 0 6rem; }
+/* FOUNDER'S NOTE — calm, full-bleed letter; closing line as pull-quote, photo beside signature at the bottom.
+   max-width lives on direct children, not on .founder-letter itself (see .content-body comment above — same double-centering trap). */
+.founder-letter { padding: 3rem 0 6rem; }
+.founder-letter > * { max-width: 820px; }
 .founder-letter p { font-size: 1.05rem; color: var(--ink-soft); line-height: 1.85; margin-bottom: 1.5rem; }
 .founder-closing-quote {
   font-family: var(--heading); font-style: italic; font-weight: 700; font-size: 1.5rem; color: var(--ink) !important;
@@ -349,7 +360,7 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 .hub-rail-link:hover { color: var(--ink); }
 .hub-rail-link.active { color: var(--gold); border-left-color: var(--gold); font-weight: 600; }
-.hub-sections { max-width: 700px; }
+.hub-sections { max-width: 860px; }
 .hub-section { padding: 2.75rem 0; border-top: 1px solid var(--line); }
 .hub-section:first-child { border-top: none; padding-top: 0; }
 .hub-eyebrow { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
@@ -466,7 +477,7 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .leader-card-lg:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 28px 56px rgba(26,24,21,0.14); }
 @media (max-width: 900px) { .leader-grid { grid-template-columns: repeat(2, 1fr); } }
 
-.numbered-list { max-width: 720px; }
+.numbered-list { max-width: 780px; }
 .numbered-item { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
 .numbered-item:first-child { border-top: none; padding-top: 0; }
 .numbered-item .n { font-family: var(--heading); font-weight: 700; font-size: 1.4rem; color: var(--gold-soft); flex-shrink: 0; width: 2.5rem; }
@@ -754,6 +765,13 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+/* Once a card has finished revealing, let its own hover-lift transform win again
+   (higher specificity than .reveal.in, so the hover state isn't stuck at rest). */
+.listing-card.reveal:hover, .blog-card.reveal:hover { transform: translateY(-3px); }
+.impact-card.reveal:hover { transform: translateY(-6px); }
+.leader-card-lg.reveal:hover { transform: translateY(-10px) scale(1.02); }
+.category-impact-card.reveal:hover { transform: translateY(-6px); }
+.industry-chip.reveal:hover { transform: translateX(6px); }
 
 /* LEADERSHIP — spotlight circle, radial reveal + morph-on-click */
 .spotlight { position: relative; width: 460px; height: 460px; margin: 3rem auto 4.5rem; }
@@ -814,6 +832,8 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .reveal-left.in { opacity: 1; transform: translateX(0); }
 .reveal-right { opacity: 0; transform: translateX(52px); transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1); }
 .reveal-right.in { opacity: 1; transform: translateX(0); }
+.card-section.reveal-left:hover, .card-section.reveal-right:hover { transform: translateY(-4px); }
+.work-step.reveal-left:hover, .work-step.reveal-right:hover { transform: translateX(6px); }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal, .reveal-left, .reveal-right, .hero-load-item, .company-feature, .btn-gold, .link-arrow, .latest-card, .ask-box,
@@ -829,7 +849,8 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 
 /* LEGAL pages (Terms of Use / Privacy Statement) — real content, accordion sections */
-.legal-body { padding: 4rem 0 6rem; max-width: 780px; }
+.legal-body { padding: 4rem 0 6rem; }
+.legal-body > * { max-width: 860px; }
 .legal-intro p { font-size: 1rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 1.25rem; }
 .legal-intro p:last-child { margin-bottom: 0; }
 .legal-accordion { margin: 3rem 0; border-top: 1px solid var(--line); }

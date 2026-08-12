@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ListingTemplate from '../../components/templates/ListingTemplate';
+import useReveal from '../../hooks/useReveal';
 import { categories, caseStudies } from '../../content/caseStudies';
 
 function ChevronIcon({ open }) {
@@ -54,6 +55,7 @@ function CategoryDropdown({ categories, active, onChange }) {
 export default function CaseStudies() {
   const [active, setActive] = useState('All');
   const shown = active === 'All' ? caseStudies : caseStudies.filter((c) => c.category === active);
+  useReveal([active]);
 
   return (
     <ListingTemplate
@@ -65,8 +67,8 @@ export default function CaseStudies() {
       <CategoryDropdown categories={categories} active={active} onChange={setActive} />
 
       <div className="listing-grid">
-        {shown.map((c) => (
-          <Link to={`/resources/case-studies/${c.slug}`} className="listing-card" key={c.slug}>
+        {shown.map((c, i) => (
+          <Link to={`/resources/case-studies/${c.slug}`} className="listing-card reveal" style={{ transitionDelay: `${(i % 6) * 80}ms` }} key={c.slug}>
             <div className="listing-card-thumb">
               <img src={c.image} alt={c.title} loading="lazy" />
             </div>

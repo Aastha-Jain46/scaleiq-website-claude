@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ListingTemplate from '../../components/templates/ListingTemplate';
+import useReveal from '../../hooks/useReveal';
 import { blogs } from '../../content/blogs';
 
 function ClockIcon() {
@@ -12,6 +13,7 @@ function ClockIcon() {
 }
 
 export default function Blogs() {
+  useReveal();
   return (
     <ListingTemplate
       eyebrow="Resources"
@@ -21,7 +23,7 @@ export default function Blogs() {
     >
       <div className="blog-list">
         {blogs.map((b, i) => (
-          <Link to={`/resources/blogs/${b.slug}`} className="blog-card" key={b.slug}>
+          <Link to={`/resources/blogs/${b.slug}`} className="blog-card reveal" style={{ transitionDelay: `${(i % 6) * 80}ms` }} key={b.slug}>
             <div className="blog-card-thumb">
               <img src={b.image} alt={b.title} loading={i < 2 ? 'eager' : 'lazy'} />
             </div>
