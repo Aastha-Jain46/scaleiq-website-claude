@@ -27,3 +27,16 @@ desktop.ini
 *.njsproj
 *.sln
 *.sw?
+
+# Project working notes and reference material. Kept on the owner's machine only;
+# not part of the website code, so they are not shipped in the repo or its zip.
+/CLAUDE.md
+/PROGRESS.md
+/ScaleIQ_ClaudeCode_Brief.md
+/ScaleIQ_Project_Master_Brief.md
+/ScaleIQ_Minimal_Demo.html
+/LOGO_ScaleIQ_Transparent.png
+/Blogs - ScaleIQ - March, 2026.docx
+/ScaleIQ_Website_Content*.docx
+/.claude/
+/for-tech-team/

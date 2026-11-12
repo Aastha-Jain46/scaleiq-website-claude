@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import Breadcrumbs, { trailFor } from '../Breadcrumbs';
+import Breadcrumbs from '../Breadcrumbs';
+import { trailFor } from '../../config/breadcrumbs';
 
 export default function PageHeader({ title, intro, size }) {
   const { pathname } = useLocation();

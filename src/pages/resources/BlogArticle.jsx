@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import QuickLinksRail from '../../components/QuickLinksRail';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import { blogs, getBlogBySlug } from '../../content/blogs';
+import { getBlogBySlug } from '../../content/blogs';
 
 function slugify(heading) {
   return heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -114,4 +114,3 @@ export default function BlogArticle() {
   );
 }
 
-export const allBlogSlugs = blogs.map((b) => b.slug);

@@ -312,11 +312,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .content-body > p { max-width: 860px; }
 .content-body p { font-size: 1rem; color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.8; }
 .content-body p:last-child { margin-bottom: 0; }
-.content-note {
-  margin: 2rem 0; padding: 1.1rem 1.4rem; background: var(--off); border-radius: 8px;
-  font-size: 0.88rem; color: var(--ink-muted); border-left: 3px solid var(--gold);
-}
-.content-note strong { color: var(--ink-soft); }
 .hub-section-title { font-family: var(--heading); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.1rem); line-height: 1.25; margin-bottom: 1.75rem; letter-spacing: -0.01em; }
 .hub-section-title em { font-style: italic; font-weight: 700; color: var(--gold); }
 .leadership-cta { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
@@ -504,13 +499,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 @media (max-width: 480px) { .leader-grid { grid-template-columns: 1fr; } .leader-card .leader-photo { max-width: 280px; margin-left: auto; margin-right: auto; } }
 
-.numbered-list { max-width: 780px; }
-.numbered-item { display: flex; gap: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--line); }
-.numbered-item:first-child { border-top: none; padding-top: 0; }
-.numbered-item .n { font-family: var(--heading); font-weight: 700; font-size: 1.4rem; color: var(--gold-soft); flex-shrink: 0; width: 2.5rem; }
-.numbered-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
-.numbered-item p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
-
 /* LISTING template — Portfolio detail, Case Studies, Blog index, Whom We Serve, Services */
 .listing-body { padding: 4rem 0 6rem; }
 .filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
@@ -619,7 +607,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .article-inline-link { margin: 0.25rem 0 1rem; font-weight: 500; }
 .article-cross-link { font-size: 0.9rem; color: var(--gold); font-weight: 600; border-bottom: 1px solid var(--gold-soft); padding-bottom: 2px; transition: color 0.2s ease, border-color 0.2s ease; }
 .article-cross-link:hover, .article-cross-link:active { color: #9E6D32; border-color: #9E6D32; }
-.article-cta-note { font-size: 0.85rem; color: var(--ink-muted); margin-top: 3rem; }
 
 /* CASE STUDY DETAIL page — layout follows the real site's structure
    (breadcrumb, hero with side image, sticky scrollspy + 4 sections, closing
@@ -675,10 +662,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .cs-cta-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin: 0; }
 .cs-cta-card .btn-gold { align-self: flex-start; margin-right: 0; }
 @media (max-width: 780px) { .cs-footer-band { grid-template-columns: 1fr; } }
-.segment-block { padding: 2.25rem 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 260px 1fr; gap: 2.5rem; }
-.segment-block:first-child { border-top: none; }
-.segment-block h3 { font-family: var(--heading); font-weight: 700; font-size: 1.2rem; }
-.segment-block p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
 
 /* SEGMENT EXPLORER — Whom We Serve / Our Services interactive tab + detail panel */
 .segment-explorer { margin: 3rem 0; }
@@ -732,7 +715,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .field select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238C8680' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 .field textarea { resize: vertical; min-height: 110px; }
 .field input:focus, .field textarea:focus, .field select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
-.form-success { padding: 1.25rem; background: var(--off); border-radius: 8px; font-size: 0.92rem; color: var(--ink-soft); border-left: 3px solid var(--gold); }
 
 /* CONTACT PAGES — shared elegant single form panel, homepage-level heading
    treatment above it, used by all four Contact section pages */
@@ -809,35 +791,6 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 .category-impact-card.reveal:hover { transform: translateY(-6px); }
 .industry-chip.reveal:hover { transform: translateX(6px); }
 
-/* LEADERSHIP — spotlight circle, radial reveal + morph-on-click */
-.spotlight { position: relative; width: 460px; height: 460px; margin: 3rem auto 4.5rem; }
-.spotlight-slot { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-.spotlight-circle {
-  position: absolute; border-radius: 50%; overflow: hidden; cursor: pointer; padding: 0; background: var(--off);
-  border: 3px solid var(--line); top: -42px; left: -42px; width: 84px; height: 84px;
-  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1), height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    top 0.8s cubic-bezier(0.16, 1, 0.3, 1), left 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease, opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.spotlight-circle.active { width: 190px; height: 190px; top: -95px; left: -95px; border-color: var(--gold); cursor: default; box-shadow: 0 24px 56px rgba(26,24,21,0.16); }
-.spotlight-circle:not(.active):hover { border-color: var(--gold); }
-.spotlight-circle:not(.active):active { border-color: var(--gold); background: var(--gold-soft); }
-.spotlight-circle img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.spotlight-pre-enter { opacity: 0; width: 20px !important; height: 20px !important; top: -10px !important; left: -10px !important; }
-.spotlight-info { position: absolute; top: 108px; left: 50%; transform: translateX(-50%); width: 260px; text-align: center; }
-.spotlight-name { font-family: var(--heading); font-weight: 700; font-size: 1.15rem; color: var(--ink); }
-.spotlight-title { font-size: 0.88rem; color: var(--gold); margin-top: 0.2rem; }
-.spotlight-name-tag {
-  position: absolute; top: 48px; left: 50%; transform: translateX(-50%); text-align: center;
-  display: flex; flex-direction: column; gap: 0.15rem; width: 140px;
-}
-.spotlight-tag-name { font-size: 0.82rem; font-weight: 700; color: var(--ink); white-space: nowrap; }
-.spotlight-tag-title { font-size: 0.72rem; color: var(--ink-muted); line-height: 1.25; }
-@media (max-width: 560px) {
-  .spotlight { width: 320px; height: 320px; }
-  .spotlight-info { width: 200px; top: 92px; }
-}
-
 /* OUR CULTURE */
 .culture-steps { margin: 2rem 0; }
 
@@ -879,7 +832,7 @@ footer.site-footer { background: var(--paper); border-top: 1px solid var(--line)
 }
 
 @media (max-width: 820px) {
-  .company-feature, .impact-grid, .work-grid, .listing-grid, .segment-block {
+  .company-feature, .impact-grid, .work-grid, .listing-grid {
     grid-template-columns: 1fr;
   }
 }
