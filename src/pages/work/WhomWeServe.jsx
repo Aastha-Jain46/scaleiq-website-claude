@@ -15,7 +15,6 @@ export default function WhomWeServe() {
   return (
     <>
       <PageHeader
-        eyebrow="Our Work — Whom We Serve"
         title={<>We already speak your industry's <em>language</em>.</>}
         intro="ScaleIQ's portfolio companies have spent over a decade building digital systems for the energy industry — across oil and gas companies, GCCs, energy companies, renewables and utilities, energy ISVs, and oil service companies."
         size="hero"

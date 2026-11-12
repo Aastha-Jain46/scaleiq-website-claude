@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import QuickLinksRail from '../../components/QuickLinksRail';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { getCaseStudyBySlug } from '../../content/caseStudies';
 
 const RAIL_SECTIONS = [
@@ -71,12 +72,8 @@ export default function CaseStudyDetail() {
 
   return (
     <>
-      <div className="cs-breadcrumb wrap">
-        <Link to="/">Home</Link>
-        <span>/</span>
-        <Link to="/resources/case-studies">Case Studies</Link>
-        <span>/</span>
-        <span className="current">{study.title}</span>
+      <div className="crumb-row wrap">
+        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Case Studies', to: '/resources/case-studies' }, { label: study.title }]} />
       </div>
 
       <header className="cs-hero wrap">

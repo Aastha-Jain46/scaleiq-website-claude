@@ -16,7 +16,6 @@ export default function Blogs() {
   useReveal();
   return (
     <ListingTemplate
-      eyebrow="Resources"
       title="Blogs"
       intro="Perspectives from inside ScaleIQ, on digital transformation, energy technology, and what it takes to run complex operations well."
       size="hero"

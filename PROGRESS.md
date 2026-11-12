@@ -4,6 +4,22 @@ Running log of work on this project, most recent session first. Maintained autom
 
 ---
 
+## 2026-11-12 — New tagline, Leadership refresh, navigation polish; handed to tech team for hosting
+
+Founder ("sir") reviewed and approved the look and feel; remaining work was content and small fixes. User approved each change below as it was made.
+
+**New one-line definition (sir's direction):** the model is unchanged (buy-and-build, permanent capital, portfolio), only the keywords changed from "digital engineering partner" to **"AI Services Partner for the Energy Industry."** It is now the homepage hero headline (gold-italic "AI Services"), replacing "Growing the digital backbone…", with a new sub-line: "We deliver AI services to energy operators, and back energy-technology companies with permanent capital to grow." Also the browser-tab title + meta description. The small gold eyebrow label above hero/page headlines was removed sitewide for consistency. Ask ScaleIQ now routes "AI services / AI partner" to Our Services.
+
+**Leadership page:** Kapil Tyagi added (Head - New Markets); layout rebuilt to match the live site's structure in our own theme (founder in a featured card, the other four in a portrait grid); "Our Approach to Leadership" changed to a vertical list. Rajvardhan's title now "Head - Corporate Development & Growth" to match.
+
+**Navigation / polish:** breadcrumbs on every interior page (follow the menu; group names not clickable); menu panel cross replaced by a "back to home" arrow in the same spot (Esc also closes); What We Do tab toggle made clearly visible and the card button spaced away from its text; Join Us panel no longer disappears after switching filters (reveal observer now re-attaches on filter change, same pattern as Case Studies).
+
+**Content review:** produced a full page-by-page content document for sir. A rewritten version (more depth, clearer on what ScaleIQ does) exists but was **not applied** to the site; the doc the user is editing mirrors the current site's wording. The user will send back the edited doc; apply it page by page then. The homepage first screen was already updated above and differs from that doc.
+
+**Hosting:** the user is handing the build to the internal tech team (zip of `dist` + source + README, kept in an untracked `for-tech-team/` folder). Known open items for them: set `FORM_ENDPOINT` (`src/config/formEndpoint.js`) so forms deliver; SPA fallback to `index.html` on the server; the contact form's "Digital Engineering" option is still the old keyword (user to decide on "AI Services"); investor-deck approval workflow and the deck PDF still not built/supplied. Not yet fixed (noticed, flagged): on narrow windows/phones the header burger and content pages sit almost flush against the screen edge.
+
+---
+
 ## 2026-08-12 — Deployed for review; sitewide alignment fix, APPROVED
 
 Deployed the first-cut build to Vercel (free hobby project, connected to the GitHub repo) so the user could share a live link with the founder ("sir") instead of only localhost. Added `vercel.json` with an SPA rewrite rule so client-side routes don't 404 on direct load/refresh. Founder reviewed and approved the current state as a checkpoint, with two categories of follow-up: ~10% interactive/animation polish, ~40% content wording (content work explicitly parked for a later session).

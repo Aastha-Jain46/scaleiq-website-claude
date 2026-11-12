@@ -20,7 +20,6 @@ export default function OurServices() {
   return (
     <>
       <PageHeader
-        eyebrow="Our Work — Our Services"
         title={<>The full energy technology stack, one <em>standard</em>.</>}
         intro="From application development to AI enablement, staff augmentation to technical consulting, ScaleIQ companies work across the full energy technology stack — holding every engagement to the same standard we hold our own portfolio companies to."
         size="hero"

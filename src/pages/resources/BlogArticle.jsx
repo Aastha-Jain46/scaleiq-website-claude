@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import useReveal from '../../hooks/useReveal';
 import QuickLinksRail from '../../components/QuickLinksRail';
+import Breadcrumbs from '../../components/Breadcrumbs';
 import { blogs, getBlogBySlug } from '../../content/blogs';
 
 function slugify(heading) {
@@ -39,6 +40,7 @@ export default function BlogArticle() {
   return (
     <>
       <header className="article-header wrap">
+        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Blogs', to: '/resources/blogs' }, { label: blog.title }]} />
         <div className="article-tag">{blog.category}</div>
         <h1 className="article-title">{renderTitle(blog.title, blog.emphasis)}</h1>
         <p className="article-hook">{blog.hook}</p>

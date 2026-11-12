@@ -52,7 +52,6 @@ export default function ImpactGrowth() {
   return (
     <>
       <PageHeader
-        eyebrow="Portfolio — Impact & Growth"
         title={<>The impact we aim to leave, on companies and the <em>industry</em>.</>}
         intro="Two different questions live on this page: what changes for a company after it joins ScaleIQ, and what that adds up to across the energy industry those companies serve."
         size="hero"

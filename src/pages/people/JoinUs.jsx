@@ -32,13 +32,14 @@ const shared = [
 ];
 
 export default function JoinUs() {
-  useReveal();
   const [track, setTrack] = useState('engineering');
+  // The panel below is re-mounted on every filter switch, so re-attach the reveal observer too.
+  useReveal([track]);
   const current = tracks[track];
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title="Work on problems that matter, wherever you are." size="hero" />
+      <PageHeader title="Work on problems that matter, wherever you are." size="hero" />
       <div className="content-body wrap">
         <p className="reveal">ScaleIQ is a small team doing two demanding things at once, investing in energy-technology companies, and building the systems that run the energy industry. We look for people who already know energy, or want to.</p>
 

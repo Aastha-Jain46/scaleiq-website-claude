@@ -18,7 +18,7 @@ const routes = [
   { match: ['oges', 'wipa', 'hvms', 'udbhav'], to: '/portfolio/our-companies' },
   { match: ['founder', 'who started', 'ceo'], to: '/about/founders-note' },
   { match: ['leadership', 'management team', 'who runs'], to: '/people-culture/leadership' },
-  { match: ['build software', 'digital partner', 'engineering partner'], to: '/our-work/whom-we-serve' },
+  { match: ['build software', 'digital partner', 'engineering partner', 'ai services', 'ai partner'], to: '/our-work/whom-we-serve' },
   { match: ['what services', 'operations offer'], to: '/our-work/our-services' },
   { match: ['serve', 'clients', 'who do you work with'], to: '/our-work/whom-we-serve' },
   { match: ['who is scaleiq', 'what is scaleiq', 'tell me about scaleiq'], to: '/about/who-we-are' },

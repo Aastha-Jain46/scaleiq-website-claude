@@ -1,7 +1,11 @@
-export default function PageHeader({ eyebrow, title, intro, size }) {
+import { useLocation } from 'react-router-dom';
+import Breadcrumbs, { trailFor } from '../Breadcrumbs';
+
+export default function PageHeader({ title, intro, size }) {
+  const { pathname } = useLocation();
   return (
     <header className="page-header wrap">
-      <div className="page-eyebrow">{eyebrow}</div>
+      <Breadcrumbs items={trailFor(pathname)} />
       <h1 className={`page-h1${size === 'hero' ? ' page-h1-hero' : ''}`}>{title}</h1>
       {intro && <p className="page-intro">{intro}</p>}
     </header>

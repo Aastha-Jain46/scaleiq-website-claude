@@ -23,7 +23,7 @@ export default function Legal({ title }) {
 
   return (
     <>
-      <PageHeader eyebrow="Legal" title={title} size="hero" />
+      <PageHeader title={title} size="hero" />
       <div className="legal-body wrap">
         <div className="legal-intro reveal">
           {doc.intro.map((p) => (

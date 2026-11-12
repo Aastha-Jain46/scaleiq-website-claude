@@ -43,7 +43,6 @@ export default function ForPortfolioCompanies() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact — For Portfolio Companies"
         title={<>You didn't build this to <em>hand it off</em>.</>}
         intro="This page exists for one specific kind of conversation — not a pitch, and not a rescue. It's for founders who've built something real, and are weighing, deliberately and on their own terms, what real backing behind that could look like."
         size="hero"

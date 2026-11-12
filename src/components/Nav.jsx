@@ -57,6 +57,13 @@ export default function Nav() {
 
   useEffect(() => { setOpen(false); }, [location.pathname]);
 
+  // Esc (and a click on the dimmed area) also closes the menu.
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
     <>
       <nav className="site-nav">
@@ -71,7 +78,11 @@ export default function Nav() {
       <div className={`menu-overlay${open ? ' open' : ''}`} onClick={() => setOpen(false)} />
       <div className={`menu-panel${open ? ' open' : ''}`}>
         <div className="menu-top">
-          <button className="menu-close" aria-label="Close menu" onClick={() => setOpen(false)}>✕</button>
+          <Link to="/" className="menu-back" aria-label="Back to home" title="Back to home" onClick={() => setOpen(false)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+          </Link>
           <Link to="/" className="logo" onClick={() => setOpen(false)}>SCALEIQ</Link>
         </div>
 

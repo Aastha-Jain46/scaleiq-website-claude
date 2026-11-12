@@ -46,10 +46,9 @@ export default function Home() {
     <div id="homeView">
       {/* HERO */}
       <section className="hero wrap">
-        <div className="eyebrow hero-load-item" style={{ animationDelay: '0ms' }}>Energy technology · Buy-and-build</div>
-        <h1 className="hero-h hero-load-item" style={{ animationDelay: '100ms' }}>Growing the digital <em>backbone</em> of the energy industry.</h1>
-        <p className="hero-sub hero-load-item" style={{ animationDelay: '200ms' }}>ScaleIQ backs energy-technology companies with capital and resources, and builds technology for the wider energy industry as a trusted partner.</p>
-        <div className="hero-load-item" style={{ animationDelay: '300ms' }}>
+        <h1 className="hero-h hero-load-item" style={{ animationDelay: '0ms' }}><em>AI Services</em> Partner for the Energy Industry</h1>
+        <p className="hero-sub hero-load-item" style={{ animationDelay: '100ms' }}>We deliver AI services to energy operators, and back energy-technology companies with permanent capital to grow.</p>
+        <div className="hero-load-item" style={{ animationDelay: '200ms' }}>
           <Link to="/portfolio/our-companies" className="btn-gold">Explore Portfolio</Link>
           <Link to="/our-work/our-services" className="link-arrow">See our Work</Link>
         </div>

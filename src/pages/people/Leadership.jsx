@@ -4,13 +4,16 @@ import PageHeader from '../../components/templates/PageHeader';
 import rajeevPhoto from '../../assets/leadership/rajeev.png';
 import chitwanPhoto from '../../assets/leadership/chitwan.png';
 import amitPhoto from '../../assets/leadership/amit.png';
+import kapilPhoto from '../../assets/leadership/kapil.jpg';
 import rajvardhanPhoto from '../../assets/leadership/rajvardhan.png';
 
-const leaders = [
-  { name: 'Rajeev Sonthalia', title: 'Founder & CEO', photo: rajeevPhoto },
+const founder = { name: 'Rajeev Sonthalia', title: 'Founder & CEO', photo: rajeevPhoto };
+
+const team = [
   { name: 'Chitwan Garg', title: 'Chief Business Officer', photo: chitwanPhoto },
   { name: 'Amit Ranjan', title: 'Chief Solutions Architect', photo: amitPhoto },
-  { name: 'Rajvardhan Singh', title: 'Head, Corporate Development & Growth', photo: rajvardhanPhoto },
+  { name: 'Kapil Tyagi', title: 'Head - New Markets', photo: kapilPhoto },
+  { name: 'Rajvardhan Singh', title: 'Head - Corporate Development & Growth', photo: rajvardhanPhoto },
 ];
 
 const approach = [
@@ -24,14 +27,22 @@ export default function Leadership() {
 
   return (
     <>
-      <PageHeader eyebrow="People & Culture" title={<>Guided by <em>industry veterans</em>, not generalists learning as they go.</>} size="hero" />
+      <PageHeader title={<>Guided by <em>industry veterans</em>, not generalists learning as they go.</>} size="hero" />
       <div className="content-body wrap">
         <p className="reveal">ScaleIQ is led by people who've spent their careers inside energy and energy technology, not observing it from a distance. That experience shapes every company we back and every project we take on.</p>
 
-        <div className="leader-grid leader-grid-lg">
-          {leaders.map((l, i) => (
-            <div className="leader-card leader-card-lg reveal" style={{ transitionDelay: `${i * 120}ms` }} key={l.name}>
-              <img src={l.photo} alt={l.name} />
+        <div className="leader-feature reveal">
+          <div className="leader-photo"><img src={founder.photo} alt={founder.name} /></div>
+          <div className="leader-feature-text">
+            <div className="leader-role">{founder.title}</div>
+            <div className="leader-name">{founder.name}</div>
+          </div>
+        </div>
+
+        <div className="leader-grid">
+          {team.map((l, i) => (
+            <div className="leader-card reveal" style={{ transitionDelay: `${i * 120}ms` }} key={l.name}>
+              <div className="leader-photo"><img src={l.photo} alt={l.name} /></div>
               <div className="leader-name">{l.name}</div>
               <div className="leader-role">{l.title}</div>
             </div>

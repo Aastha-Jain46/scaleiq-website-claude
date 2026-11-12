@@ -47,7 +47,6 @@ export default function ForInvestors() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact — For Investors"
         title={<>The industry generalist capital keeps <em>underestimating</em>.</>}
         intro="ScaleIQ is raising permanent capital to back and build energy-technology companies — an industry built on real infrastructure, not hype cycles. This page is for investors evaluating that opportunity directly."
         size="hero"

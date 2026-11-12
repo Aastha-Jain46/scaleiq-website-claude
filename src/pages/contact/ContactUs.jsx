@@ -67,7 +67,6 @@ export default function ContactUs() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
         title={<>A direct line, not a <em>queue</em>.</>}
         intro="Have a question about ScaleIQ, our portfolio, or our work across energy technology? A real person reads every message that comes through here."
         size="hero"

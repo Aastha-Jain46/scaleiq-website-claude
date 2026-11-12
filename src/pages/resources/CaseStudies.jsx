@@ -59,7 +59,6 @@ export default function CaseStudies() {
 
   return (
     <ListingTemplate
-      eyebrow="Resources"
       title={<>Case <em>Studies</em></>}
       intro="Deep-dive insights into how ScaleIQ solves complex transformation challenges across energy, oil & gas, and digital infrastructure."
       size="hero"

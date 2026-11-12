@@ -39,7 +39,6 @@ export default function ForPartners() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact — For Partners"
         title={<>We grow faster with the right <em>people</em> around us.</>}
         intro="ScaleIQ partners with the people who help us find, evaluate, and grow great energy-technology companies — M&A advisors, technology and delivery partners, and specialists who know this industry as well as we do."
         size="hero"

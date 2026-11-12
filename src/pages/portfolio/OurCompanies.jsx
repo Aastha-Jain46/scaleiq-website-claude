@@ -14,7 +14,6 @@ export default function OurCompanies() {
 
   return (
     <ListingTemplate
-      eyebrow="Portfolio"
       title={<>Companies that keep their name, and gain <em>everything else</em>.</>}
       intro="ScaleIQ invests in and grows energy-technology companies with strong products, loyal customers, and leadership teams ready to grow further. Oges is the first company to join the portfolio."
       size="hero"
