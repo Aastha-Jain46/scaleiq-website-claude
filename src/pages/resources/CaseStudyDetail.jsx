@@ -73,7 +73,7 @@ export default function CaseStudyDetail() {
   return (
     <>
       <div className="crumb-row wrap">
-        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Case Studies', to: '/resources/case-studies' }, { label: study.title }]} />
+        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Resources' }, { label: 'Case Studies', to: '/resources/case-studies' }, { label: study.title }]} />
       </div>
 
       <header className="cs-hero wrap">

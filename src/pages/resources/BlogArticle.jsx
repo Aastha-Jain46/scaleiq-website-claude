@@ -40,7 +40,7 @@ export default function BlogArticle() {
   return (
     <>
       <header className="article-header wrap">
-        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Blogs', to: '/resources/blogs' }, { label: blog.title }]} />
+        <Breadcrumbs items={[{ label: 'Home', to: '/' }, { label: 'Resources' }, { label: 'Blogs', to: '/resources/blogs' }, { label: blog.title }]} />
         <div className="article-tag">{blog.category}</div>
         <h1 className="article-title">{renderTitle(blog.title, blog.emphasis)}</h1>
         <p className="article-hook">{blog.hook}</p>
